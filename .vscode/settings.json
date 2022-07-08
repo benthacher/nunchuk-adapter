@@ -1,0 +1,31 @@
+{
+    "files.associations": {
+        "usb_device.h": "c",
+        "main.h": "c",
+        "usbd_core.h": "c",
+        "usbd_conf.h": "c",
+        "usbd_def.h": "c",
+        "stdio.h": "c",
+        "usbd_hid.h": "c",
+        "i2c.h": "c",
+        "cstdint": "cpp",
+        "stm32g0xx_hal.h": "c",
+        "stm32g0xx_hal_conf.h": "c",
+        "nunchuk.h": "c",
+        "nunchuk_devices.h": "c",
+        "cmath": "c",
+        "compare": "c",
+        "concepts": "c",
+        "cstdarg": "c",
+        "cstdio": "c",
+        "cstdlib": "c",
+        "type_traits": "c",
+        "limits": "c",
+        "new": "c",
+        "*.tcc": "c",
+        "cinttypes": "c",
+        "typeinfo": "c",
+        "stdint.h": "c",
+        "stm32g0xx.h": "c"
+    }
+}
