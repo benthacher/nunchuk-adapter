@@ -3,11 +3,12 @@
 #include "main.h"
 #include "i2c.h"
 #include "string.h"
+#include "gpio.h"
 
 // device ids
-static const uint8_t NUNCHUK_STANDARD_ID[6] = { 0x00, 0x00, 0x20, 0xA4, 0x00, 0x00 };
-static const uint8_t NUNCHUK_CLASSIC_ID[6] = { 0x01, 0x01, 0x20, 0xA4, 0x00, 0x01 };
-static const uint8_t NUNCHUK_GUITAR_HERO_ID[6] = { 0x03, 0x01, 0x20, 0xA4, 0x00, 0x00 };
+static const uint8_t NUNCHUK_STANDARD_ID[6] = { 0x00, 0x00, 0xA4, 0x20, 0x00, 0x00 };
+static const uint8_t NUNCHUK_CLASSIC_ID[6] = { 0x01, 0x00, 0xA4, 0x20, 0x01, 0x01 };
+static const uint8_t NUNCHUK_GUITAR_HERO_ID[6] = { 0x00, 0x00, 0xA4, 0x20, 0x01, 0x03 };
 
 HAL_StatusTypeDef nunchuk_reg_write(uint8_t addr, uint8_t data) {
     uint8_t to_send[2] = { addr, data };
@@ -26,27 +27,38 @@ HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet) {
     return HAL_I2C_Master_Receive(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) packet, NUNCHUK_PACKET_LEN, NUNCHUK_RX_TIMEOUT);
 }
 
-nunchuk_device_t nunchuk_init() {
+HAL_StatusTypeDef nunchuk_init(nunchuk_device_t *dev) {
+    dev->type = UNKNOWN;
+    dev->connected = 0;
+
     // de-encrypt device
     if (nunchuk_reg_write(0xF0, 0x55) != HAL_OK)
-        return UNKNOWN;
+        return HAL_ERROR;
 
     if (nunchuk_reg_write(0xFB, 0x00) != HAL_OK)
-        return UNKNOWN;
+        return HAL_ERROR;
 
     nunchuk_packet_t packet;
     // read id packet
     if (nunchuk_packet_read(0xFA, &packet) != HAL_OK)
-        return UNKNOWN;
+        return HAL_ERROR;
+
+    dev->connected = 1;
 
     // compare raw packet with ID constants to check the ID, return the ID if it matches
-    if (memcmp(packet.raw, NUNCHUK_STANDARD_ID, NUNCHUK_PACKET_LEN) == 0)
-        return STANDARD;
-    if (memcmp(packet.raw, NUNCHUK_CLASSIC_ID, NUNCHUK_PACKET_LEN) == 0)
-        return CLASSIC;
-    if (memcmp(packet.raw, NUNCHUK_GUITAR_HERO_ID, NUNCHUK_PACKET_LEN) == 0)
-        return GUITAR_HERO;
-    return UNKNOWN;
+    if (memcmp(packet.raw, NUNCHUK_STANDARD_ID, NUNCHUK_PACKET_LEN) == 0) {
+        dev->type = STANDARD;
+        return HAL_OK;
+    }
+    if (memcmp(packet.raw, NUNCHUK_CLASSIC_ID, NUNCHUK_PACKET_LEN) == 0) {
+        dev->type = CLASSIC;
+        return HAL_OK;
+    }
+    if (memcmp(packet.raw, NUNCHUK_GUITAR_HERO_ID, NUNCHUK_PACKET_LEN) == 0) {
+        dev->type = GUITAR_HERO;
+        return HAL_OK;
+    }
+    return HAL_ERROR;
 }
 
 HAL_StatusTypeDef nunchuk_read_standard(nunchuk_standard_t* std) {

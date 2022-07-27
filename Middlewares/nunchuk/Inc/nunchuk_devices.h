@@ -162,12 +162,12 @@ typedef struct {
 } nunchuk_classic_t;
 
 // device enum
-typedef enum {
+typedef enum _nunchuk_device_type_t {
     UNKNOWN = 0,
     STANDARD,
     GUITAR_HERO,
     CLASSIC,
-} nunchuk_device_t;
+} nunchuk_device_type_t;
 
 // field populating methods
 void nunchuk_fill_standard(nunchuk_packet_t* packet, nunchuk_standard_t* std);

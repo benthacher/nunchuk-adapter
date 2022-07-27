@@ -26,6 +26,7 @@
         "cinttypes": "c",
         "typeinfo": "c",
         "stdint.h": "c",
-        "stm32g0xx.h": "c"
+        "stm32g0xx.h": "c",
+        "gpio.h": "c"
     }
 }

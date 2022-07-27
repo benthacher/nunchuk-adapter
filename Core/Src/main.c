@@ -51,7 +51,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void indicate_nunchuk_type(nunchuk_device_type_t type);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -90,14 +90,43 @@ int main(void)
   MX_I2C2_Init();
   MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
-  nunchuk_device_t nunchuk_dev = nunchuk_init();
+  nunchuk_device_t nunchuk = {
+    .connected = 0,
+    .type = UNKNOWN
+  };
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {
-    switch (nunchuk_dev) {
+  { 
+    // nunchuk_init(&nunchuk);
+    // continue;
+    // two main states: waiting for device, and device connected
+    if (read_pres_pin() == GPIO_PIN_SET) {
+      // if we're not connected, try to connect
+      if (!nunchuk.connected) {
+        HAL_StatusTypeDef status = nunchuk_init(&nunchuk); // try to initialize the nunchuk
+        
+        // we've successfully connected and initialized a nunchuk peripheral! blink the LED!
+        if (status == HAL_OK) {
+          indicate_nunchuk_type(nunchuk.type);
+        }
+      }
+    } else {
+      // if we're disconnecting, turn off the LED
+      if (nunchuk.connected) {
+        nunchuk.connected = 0;
+        write_led(0);
+      }
+    }
+
+    if (!nunchuk.connected)
+      continue;
+      
+    write_led(1);
+
+    switch (nunchuk.type) {
       case STANDARD: {
         nunchuk_standard_t report;
         nunchuk_read_standard(&report);
@@ -120,6 +149,7 @@ int main(void)
 
         // guitar hero report -> usb hid gamepad report
         // usb hid send report
+        
       }
       break;
       case UNKNOWN:
@@ -128,6 +158,7 @@ int main(void)
         // send it
         break;
     }
+    HAL_Delay(1);
     /* USER CODE END WHILE */
     
     /* USER CODE BEGIN 3 */
@@ -191,7 +222,21 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void indicate_nunchuk_type(nunchuk_device_type_t type) {
+  const int blink_freq = 10;
 
+  switch (type) {
+    case STANDARD:
+      blink_led(1, blink_freq);
+      break;
+    case CLASSIC:
+      blink_led(2, blink_freq);
+      break;
+    case GUITAR_HERO:
+      blink_led(3, blink_freq);
+      break;
+  }
+}
 /* USER CODE END 4 */
 
 /**

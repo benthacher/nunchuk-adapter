@@ -101,10 +101,29 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
 }
 
 /* USER CODE BEGIN 2 */
+
+void write_led(int val) {
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, val ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+
+void blink_led(int num_blinks, int frequency) {
+  // period in seconds / 1000 = period in ms, / 2 because 50% duty cycle
+  int delay_ms = (1.0 / frequency) * 1000 / 2;
+
+  while (num_blinks--) {
+    write_led(1);
+    HAL_Delay(delay_ms);
+    write_led(0);
+    HAL_Delay(delay_ms);
+  }
+}
+
+GPIO_PinState read_pres_pin() {
+  return HAL_GPIO_ReadPin(PRES_GPIO_Port, PRES_Pin);
+}
 
 /* USER CODE END 2 */
 
