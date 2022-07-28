@@ -3,7 +3,8 @@
         {
             "name": "STM32G0B1xx",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/Drivers/STM32G0xx_HAL_Driver/**"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

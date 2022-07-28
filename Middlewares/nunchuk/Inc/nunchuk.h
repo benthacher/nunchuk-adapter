@@ -11,20 +11,12 @@
 #define NUNCHUK_REPORT_ADDR 0x00
 
 /**
- * @brief Opaque struct used in nunchuk methods
- */
-typedef struct _nunchuk_device_t {
-    uint8_t connected;
-    nunchuk_device_type_t type;
-} nunchuk_device_t;
-
-/**
  * @brief Sends initialize command to nunchuk and reads device type
  * 
- * @param nunchuk_device_t device
+ * @param nunchuk_device_type_t type variable to update
  * @return HAL_StatusTypeDef status of init operation
  */
-HAL_StatusTypeDef nunchuk_init(nunchuk_device_t *dev);
+HAL_StatusTypeDef nunchuk_init(nunchuk_device_type_t *type);
 /**
  * @brief Write a byte to a register
  * 

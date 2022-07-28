@@ -27,9 +27,8 @@ HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet) {
     return HAL_I2C_Master_Receive(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) packet, NUNCHUK_PACKET_LEN, NUNCHUK_RX_TIMEOUT);
 }
 
-HAL_StatusTypeDef nunchuk_init(nunchuk_device_t *dev) {
-    dev->type = UNKNOWN;
-    dev->connected = 0;
+HAL_StatusTypeDef nunchuk_init(nunchuk_device_type_t *type) {
+    *type = UNKNOWN;
 
     // de-encrypt device
     if (nunchuk_reg_write(0xF0, 0x55) != HAL_OK)
@@ -43,22 +42,17 @@ HAL_StatusTypeDef nunchuk_init(nunchuk_device_t *dev) {
     if (nunchuk_packet_read(0xFA, &packet) != HAL_OK)
         return HAL_ERROR;
 
-    dev->connected = 1;
-
     // compare raw packet with ID constants to check the ID, return the ID if it matches
     if (memcmp(packet.raw, NUNCHUK_STANDARD_ID, NUNCHUK_PACKET_LEN) == 0) {
-        dev->type = STANDARD;
-        return HAL_OK;
+        *type = STANDARD;
     }
     if (memcmp(packet.raw, NUNCHUK_CLASSIC_ID, NUNCHUK_PACKET_LEN) == 0) {
-        dev->type = CLASSIC;
-        return HAL_OK;
+        *type = CLASSIC;
     }
     if (memcmp(packet.raw, NUNCHUK_GUITAR_HERO_ID, NUNCHUK_PACKET_LEN) == 0) {
-        dev->type = GUITAR_HERO;
-        return HAL_OK;
+        *type = GUITAR_HERO;
     }
-    return HAL_ERROR;
+    return HAL_OK; // even if the type is unknown, it still initialized successfully
 }
 
 HAL_StatusTypeDef nunchuk_read_standard(nunchuk_standard_t* std) {

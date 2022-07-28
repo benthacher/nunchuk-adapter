@@ -1,31 +1,31 @@
-ARM GAS  /tmp/ccAmLUMM.s 			page 1
+ARM GAS  /tmp/cc4R0NcH.s 			page 1
 
 
    1              		.cpu cortex-m0plus
-   2              		.eabi_attribute 20, 1
-   3              		.eabi_attribute 21, 1
-   4              		.eabi_attribute 23, 3
-   5              		.eabi_attribute 24, 1
-   6              		.eabi_attribute 25, 1
-   7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
-   9              		.eabi_attribute 34, 0
-  10              		.eabi_attribute 18, 4
-  11              		.file	"stm32g0xx_hal_msp.c"
-  12              		.text
-  13              	.Ltext0:
-  14              		.cfi_sections	.debug_frame
-  15              		.section	.text.HAL_MspInit,"ax",%progbits
-  16              		.align	1
-  17              		.global	HAL_MspInit
-  18              		.arch armv6s-m
-  19              		.syntax unified
-  20              		.code	16
-  21              		.thumb_func
-  22              		.fpu softvfp
-  24              	HAL_MspInit:
-  25              	.LFB358:
-  26              		.file 1 "Core/Src/stm32g0xx_hal_msp.c"
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32g0xx_hal_msp.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/stm32g0xx_hal_msp.c"
+  18              		.section	.text.HAL_MspInit,"ax",%progbits
+  19              		.align	1
+  20              		.global	HAL_MspInit
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	HAL_MspInit:
+  26              	.LFB358:
    1:Core/Src/stm32g0xx_hal_msp.c **** /* USER CODE BEGIN Header */
    2:Core/Src/stm32g0xx_hal_msp.c **** /**
    3:Core/Src/stm32g0xx_hal_msp.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccAmLUMM.s 			page 1
   30:Core/Src/stm32g0xx_hal_msp.c **** 
   31:Core/Src/stm32g0xx_hal_msp.c **** /* USER CODE END TD */
   32:Core/Src/stm32g0xx_hal_msp.c **** 
-ARM GAS  /tmp/ccAmLUMM.s 			page 2
+ARM GAS  /tmp/cc4R0NcH.s 			page 2
 
 
   33:Core/Src/stm32g0xx_hal_msp.c **** /* Private define ------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccAmLUMM.s 			page 1
   43 0006 196C     		ldr	r1, [r3, #64]
   44 0008 0122     		movs	r2, #1
   45 000a 1143     		orrs	r1, r2
-ARM GAS  /tmp/ccAmLUMM.s 			page 3
+ARM GAS  /tmp/cc4R0NcH.s 			page 3
 
 
   46 000c 1964     		str	r1, [r3, #64]
@@ -178,20 +178,20 @@ ARM GAS  /tmp/ccAmLUMM.s 			page 1
   89              	.Letext0:
   90              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
   91              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
-ARM GAS  /tmp/ccAmLUMM.s 			page 4
+ARM GAS  /tmp/cc4R0NcH.s 			page 4
 
 
   92              		.file 4 "Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0b1xx.h"
   93              		.file 5 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
   94              		.file 6 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h"
-ARM GAS  /tmp/ccAmLUMM.s 			page 5
+ARM GAS  /tmp/cc4R0NcH.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g0xx_hal_msp.c
-     /tmp/ccAmLUMM.s:16     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/ccAmLUMM.s:24     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/ccAmLUMM.s:84     .text.HAL_MspInit:0000000000000034 $d
+     /tmp/cc4R0NcH.s:19     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/cc4R0NcH.s:25     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/cc4R0NcH.s:84     .text.HAL_MspInit:0000000000000034 $d
 
 UNDEFINED SYMBOLS
 HAL_SYSCFG_StrobeDBattpinsConfig

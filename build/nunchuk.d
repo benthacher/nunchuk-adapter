@@ -32,7 +32,8 @@ build/nunchuk.o: Middlewares/nunchuk/Src/nunchuk.c \
  Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pcd_ex.h \
  Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr.h \
  Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr_ex.h \
- Middlewares/nunchuk/Inc/nunchuk_devices.h Core/Inc/main.h
+ Middlewares/nunchuk/Inc/nunchuk_devices.h Core/Inc/main.h \
+ Core/Inc/gpio.h
 Middlewares/nunchuk/Inc/nunchuk.h:
 Middlewares/nunchuk/Inc/nunchuk_devices.h:
 Core/Inc/i2c.h:
@@ -71,3 +72,4 @@ Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr.h:
 Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_pwr_ex.h:
 Middlewares/nunchuk/Inc/nunchuk_devices.h:
 Core/Inc/main.h:
+Core/Inc/gpio.h:

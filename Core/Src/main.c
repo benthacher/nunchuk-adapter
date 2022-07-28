@@ -31,6 +31,12 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+typedef enum _DeviceState {
+  WAITING,
+  PRESENCE_DETECTED,
+  CONNECTED
+} DeviceState;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -45,6 +51,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+
+DeviceState dev_state;
+nunchuk_device_type_t nunchuk_type;
 
 /* USER CODE END PV */
 
@@ -66,7 +75,8 @@ void indicate_nunchuk_type(nunchuk_device_type_t type);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  dev_state = WAITING;
+  nunchuk_type = UNKNOWN;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -90,77 +100,90 @@ int main(void)
   MX_I2C2_Init();
   MX_USB_Device_Init();
   /* USER CODE BEGIN 2 */
-  nunchuk_device_t nunchuk = {
-    .connected = 0,
-    .type = UNKNOWN
-  };
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  
   while (1)
-  { 
-    // nunchuk_init(&nunchuk);
-    // continue;
-    // two main states: waiting for device, and device connected
-    if (read_pres_pin() == GPIO_PIN_SET) {
-      // if we're not connected, try to connect
-      if (!nunchuk.connected) {
-        HAL_StatusTypeDef status = nunchuk_init(&nunchuk); // try to initialize the nunchuk
-        
-        // we've successfully connected and initialized a nunchuk peripheral! blink the LED!
-        if (status == HAL_OK) {
-          indicate_nunchuk_type(nunchuk.type);
+  {
+    switch (dev_state) {
+      case WAITING: {
+        write_led(0);
+        if (read_pres_pin()) {
+          dev_state = PRESENCE_DETECTED;
         }
       }
-    } else {
-      // if we're disconnecting, turn off the LED
-      if (nunchuk.connected) {
-        nunchuk.connected = 0;
-        write_led(0);
-      }
-    }
-
-    if (!nunchuk.connected)
-      continue;
-      
-    write_led(1);
-
-    switch (nunchuk.type) {
-      case STANDARD: {
-        nunchuk_standard_t report;
-        nunchuk_read_standard(&report);
-
-        // standard report -> usb hid gamepad report
-        // usb hid send report
-      }
       break;
-      case CLASSIC: {
-        nunchuk_classic_t report;
-        nunchuk_read_classic(&report);
+      case PRESENCE_DETECTED: {
+        // debounce
+        blink_led(1, 100);
+        HAL_Delay(100);
+        blink_led(1, 100);
 
-        // classic report -> usb hid gamepad report
-        // usb hid send report
-      }
-      break;
-      case GUITAR_HERO: {
-        nunchuk_guitar_hero_t report;
-        nunchuk_read_guitar_hero(&report);
-
-        // guitar hero report -> usb hid gamepad report
-        // usb hid send report
+        if (read_pres_pin()) {
+          // we still have something connected so try and initialize it
+          HAL_StatusTypeDef status = nunchuk_init(&nunchuk_type); // try to initialize the nunchuk
         
+          if (status == HAL_OK) {
+            indicate_nunchuk_type(nunchuk_type);
+            dev_state = CONNECTED;
+          }
+        } else {
+          // nothing is connected, it was a fluke or something
+          dev_state = WAITING;
+        }
       }
       break;
-      case UNKNOWN:
-      default:
-        // zero out usb hid report
-        // send it
-        break;
+      case CONNECTED: {
+        write_led(1);
+
+        // if we're connected but the presence pin goes low then we disconnected
+        if (!read_pres_pin()) {
+          dev_state = WAITING;
+          nunchuk_type = UNKNOWN;
+        }
+
+        switch (nunchuk_type) {
+          case STANDARD: {
+            nunchuk_standard_t report;
+            nunchuk_read_standard(&report);
+
+            // standard report -> usb hid gamepad report
+            // usb hid send report
+          }
+          break;
+          case CLASSIC: {
+            nunchuk_classic_t report;
+            nunchuk_read_classic(&report);
+
+            // classic report -> usb hid gamepad report
+            // usb hid send report
+          }
+          break;
+          case GUITAR_HERO: {
+            nunchuk_guitar_hero_t report;
+            nunchuk_read_guitar_hero(&report);
+
+            // guitar hero report -> usb hid gamepad report
+            // usb hid send report
+            int a = 0;
+          }
+          break;
+          case UNKNOWN:
+          default:
+            // zero out usb hid report
+            // send it
+            break;
+        }
+      }
+      break;
     }
-    HAL_Delay(1);
+
+    HAL_Delay(10);
     /* USER CODE END WHILE */
-    
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -234,6 +257,10 @@ void indicate_nunchuk_type(nunchuk_device_type_t type) {
       break;
     case GUITAR_HERO:
       blink_led(3, blink_freq);
+      break;
+    case UNKNOWN:
+    default:
+      blink_led(10, blink_freq);
       break;
   }
 }
