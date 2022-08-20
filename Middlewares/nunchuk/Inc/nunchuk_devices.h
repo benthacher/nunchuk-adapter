@@ -121,17 +121,28 @@ typedef struct {
     int8_t tb; // touch bar
     int8_t wb; // wammy bar
     struct {
-        uint8_t plus;
-        uint8_t minus;
-        uint8_t strum_down;
-        uint8_t strum_up;
-        uint8_t green;
-        uint8_t red;
-        uint8_t yellow;
-        uint8_t blue;
-        uint8_t orange
+        // byte 1
+        uint8_t green : 1;
+        uint8_t red : 1;
+        uint8_t yellow : 1;
+        uint8_t blue : 1;
+        uint8_t orange : 1;
+        uint8_t plus : 1;
+        uint8_t minus : 1;
+        uint8_t strum_down : 1;
+        // byte 2
+        uint8_t strum_up : 1;
     } buttons;
 } nunchuk_guitar_hero_t;
+
+#define GH_SX_MAX 63
+#define GH_SX_MIN 0
+#define GH_SY_MAX 63
+#define GH_SY_MIN 0
+#define GH_TB_MAX 31
+#define GH_TB_MIN 0
+#define GH_WB_MAX 31
+#define GH_WB_MIN 0
 
 typedef struct {
     int8_t lx; // left stick x

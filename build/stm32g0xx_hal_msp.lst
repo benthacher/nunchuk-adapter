@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc4R0NcH.s 			page 1
+ARM GAS  /tmp/ccfJPZ6j.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -25,7 +25,7 @@ ARM GAS  /tmp/cc4R0NcH.s 			page 1
   22              		.code	16
   23              		.thumb_func
   25              	HAL_MspInit:
-  26              	.LFB358:
+  26              	.LFB366:
    1:Core/Src/stm32g0xx_hal_msp.c **** /* USER CODE BEGIN Header */
    2:Core/Src/stm32g0xx_hal_msp.c **** /**
    3:Core/Src/stm32g0xx_hal_msp.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc4R0NcH.s 			page 1
   30:Core/Src/stm32g0xx_hal_msp.c **** 
   31:Core/Src/stm32g0xx_hal_msp.c **** /* USER CODE END TD */
   32:Core/Src/stm32g0xx_hal_msp.c **** 
-ARM GAS  /tmp/cc4R0NcH.s 			page 2
+ARM GAS  /tmp/ccfJPZ6j.s 			page 2
 
 
   33:Core/Src/stm32g0xx_hal_msp.c **** /* Private define ------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc4R0NcH.s 			page 1
   43 0006 196C     		ldr	r1, [r3, #64]
   44 0008 0122     		movs	r2, #1
   45 000a 1143     		orrs	r1, r2
-ARM GAS  /tmp/cc4R0NcH.s 			page 3
+ARM GAS  /tmp/ccfJPZ6j.s 			page 3
 
 
   46 000c 1964     		str	r1, [r3, #64]
@@ -173,25 +173,25 @@ ARM GAS  /tmp/cc4R0NcH.s 			page 1
   83              	.L2:
   84 0034 00100240 		.word	1073876992
   85              		.cfi_endproc
-  86              	.LFE358:
+  86              	.LFE366:
   88              		.text
   89              	.Letext0:
   90              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
   91              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
-ARM GAS  /tmp/cc4R0NcH.s 			page 4
+ARM GAS  /tmp/ccfJPZ6j.s 			page 4
 
 
   92              		.file 4 "Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0b1xx.h"
   93              		.file 5 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
   94              		.file 6 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h"
-ARM GAS  /tmp/cc4R0NcH.s 			page 5
+ARM GAS  /tmp/ccfJPZ6j.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g0xx_hal_msp.c
-     /tmp/cc4R0NcH.s:19     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/cc4R0NcH.s:25     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/cc4R0NcH.s:84     .text.HAL_MspInit:0000000000000034 $d
+     /tmp/ccfJPZ6j.s:19     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/ccfJPZ6j.s:25     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/ccfJPZ6j.s:84     .text.HAL_MspInit:0000000000000034 $d
 
 UNDEFINED SYMBOLS
 HAL_SYSCFG_StrobeDBattpinsConfig

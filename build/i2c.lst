@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccihPdhc.s 			page 1
+ARM GAS  /tmp/cciZPXqp.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -25,7 +25,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
   22              		.code	16
   23              		.thumb_func
   25              	MX_I2C2_Init:
-  26              	.LFB358:
+  26              	.LFB366:
    1:Core/Src/i2c.c **** /**
    2:Core/Src/i2c.c ****   ******************************************************************************
    3:Core/Src/i2c.c ****   * @file    i2c.c
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
   30:Core/Src/i2c.c **** void MX_I2C2_Init(void)
   31:Core/Src/i2c.c **** {
   27              		.loc 1 31 1 view -0
-ARM GAS  /tmp/ccihPdhc.s 			page 2
+ARM GAS  /tmp/cciZPXqp.s 			page 2
 
 
   28              		.cfi_startproc
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
   65              		.loc 1 48 3 is_stmt 1 view .LVU17
   66              		.loc 1 48 28 is_stmt 0 view .LVU18
   67 001c 0362     		str	r3, [r0, #32]
-ARM GAS  /tmp/ccihPdhc.s 			page 3
+ARM GAS  /tmp/cciZPXqp.s 			page 3
 
 
   49:Core/Src/i2c.c ****   if (HAL_I2C_Init(&hi2c2) != HAL_OK)
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  100              		.loc 1 51 5 is_stmt 1 view .LVU29
  101 0040 FFF7FEFF 		bl	Error_Handler
  102              	.LVL3:
-ARM GAS  /tmp/ccihPdhc.s 			page 4
+ARM GAS  /tmp/cciZPXqp.s 			page 4
 
 
  103 0044 EFE7     		b	.L2
@@ -202,7 +202,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  119 0058 00580040 		.word	1073764352
  120 005c BC7D7010 		.word	275807676
  121              		.cfi_endproc
- 122              	.LFE358:
+ 122              	.LFE366:
  124              		.section	.text.HAL_I2C_MspInit,"ax",%progbits
  125              		.align	1
  126              		.global	HAL_I2C_MspInit
@@ -211,7 +211,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  129              		.thumb_func
  131              	HAL_I2C_MspInit:
  132              	.LVL6:
- 133              	.LFB359:
+ 133              	.LFB367:
   70:Core/Src/i2c.c **** 
   71:Core/Src/i2c.c **** void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle)
   72:Core/Src/i2c.c **** {
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  152 000a 03A8     		add	r0, sp, #12
  153              	.LVL7:
  154              		.loc 1 74 20 view .LVU37
-ARM GAS  /tmp/ccihPdhc.s 			page 5
+ARM GAS  /tmp/cciZPXqp.s 			page 5
 
 
  155 000c FFF7FEFF 		bl	memset
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  180 0020 0123     		movs	r3, #1
  181 0022 1A43     		orrs	r2, r3
  182 0024 6263     		str	r2, [r4, #52]
-ARM GAS  /tmp/ccihPdhc.s 			page 6
+ARM GAS  /tmp/cciZPXqp.s 			page 6
 
 
   81:Core/Src/i2c.c ****     /**I2C2 GPIO Configuration
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  221 004e E36B     		ldr	r3, [r4, #60]
  222 0050 1340     		ands	r3, r2
  223 0052 0293     		str	r3, [sp, #8]
-ARM GAS  /tmp/ccihPdhc.s 			page 7
+ARM GAS  /tmp/cciZPXqp.s 			page 7
 
 
   94:Core/Src/i2c.c ****   /* USER CODE BEGIN I2C2_MspInit 1 */
@@ -375,7 +375,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  233 0058 00580040 		.word	1073764352
  234 005c 00100240 		.word	1073876992
  235              		.cfi_endproc
- 236              	.LFE359:
+ 236              	.LFE367:
  238              		.section	.text.HAL_I2C_MspDeInit,"ax",%progbits
  239              		.align	1
  240              		.global	HAL_I2C_MspDeInit
@@ -384,7 +384,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  243              		.thumb_func
  245              	HAL_I2C_MspDeInit:
  246              	.LVL13:
- 247              	.LFB360:
+ 247              	.LFB368:
  100:Core/Src/i2c.c **** 
  101:Core/Src/i2c.c **** void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
  102:Core/Src/i2c.c **** {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  111:Core/Src/i2c.c **** 
  112:Core/Src/i2c.c ****     /**I2C2 GPIO Configuration
  113:Core/Src/i2c.c ****     PA6     ------> I2C2_SDA
-ARM GAS  /tmp/ccihPdhc.s 			page 8
+ARM GAS  /tmp/cciZPXqp.s 			page 8
 
 
  114:Core/Src/i2c.c ****     PA7     ------> I2C2_SCL
@@ -470,7 +470,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  298 0030 00100240 		.word	1073876992
  299 0034 FFFFBFFF 		.word	-4194305
  300              		.cfi_endproc
- 301              	.LFE360:
+ 301              	.LFE368:
  303              		.global	hi2c2
  304              		.section	.bss.hi2c2,"aw",%nobits
  305              		.align	2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  309 0000 00000000 		.space	76
  309      00000000 
  309      00000000 
-ARM GAS  /tmp/ccihPdhc.s 			page 9
+ARM GAS  /tmp/cciZPXqp.s 			page 9
 
 
  309      00000000 
@@ -497,22 +497,22 @@ ARM GAS  /tmp/ccihPdhc.s 			page 1
  321              		.file 11 "Core/Inc/i2c.h"
  322              		.file 12 "Core/Inc/main.h"
  323              		.file 13 "<built-in>"
-ARM GAS  /tmp/ccihPdhc.s 			page 10
+ARM GAS  /tmp/cciZPXqp.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 i2c.c
-     /tmp/ccihPdhc.s:19     .text.MX_I2C2_Init:0000000000000000 $t
-     /tmp/ccihPdhc.s:25     .text.MX_I2C2_Init:0000000000000000 MX_I2C2_Init
-     /tmp/ccihPdhc.s:118    .text.MX_I2C2_Init:0000000000000054 $d
-     /tmp/ccihPdhc.s:308    .bss.hi2c2:0000000000000000 hi2c2
-     /tmp/ccihPdhc.s:125    .text.HAL_I2C_MspInit:0000000000000000 $t
-     /tmp/ccihPdhc.s:131    .text.HAL_I2C_MspInit:0000000000000000 HAL_I2C_MspInit
-     /tmp/ccihPdhc.s:233    .text.HAL_I2C_MspInit:0000000000000058 $d
-     /tmp/ccihPdhc.s:239    .text.HAL_I2C_MspDeInit:0000000000000000 $t
-     /tmp/ccihPdhc.s:245    .text.HAL_I2C_MspDeInit:0000000000000000 HAL_I2C_MspDeInit
-     /tmp/ccihPdhc.s:297    .text.HAL_I2C_MspDeInit:000000000000002c $d
-     /tmp/ccihPdhc.s:305    .bss.hi2c2:0000000000000000 $d
+     /tmp/cciZPXqp.s:19     .text.MX_I2C2_Init:0000000000000000 $t
+     /tmp/cciZPXqp.s:25     .text.MX_I2C2_Init:0000000000000000 MX_I2C2_Init
+     /tmp/cciZPXqp.s:118    .text.MX_I2C2_Init:0000000000000054 $d
+     /tmp/cciZPXqp.s:308    .bss.hi2c2:0000000000000000 hi2c2
+     /tmp/cciZPXqp.s:125    .text.HAL_I2C_MspInit:0000000000000000 $t
+     /tmp/cciZPXqp.s:131    .text.HAL_I2C_MspInit:0000000000000000 HAL_I2C_MspInit
+     /tmp/cciZPXqp.s:233    .text.HAL_I2C_MspInit:0000000000000058 $d
+     /tmp/cciZPXqp.s:239    .text.HAL_I2C_MspDeInit:0000000000000000 $t
+     /tmp/cciZPXqp.s:245    .text.HAL_I2C_MspDeInit:0000000000000000 HAL_I2C_MspDeInit
+     /tmp/cciZPXqp.s:297    .text.HAL_I2C_MspDeInit:000000000000002c $d
+     /tmp/cciZPXqp.s:305    .bss.hi2c2:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Init

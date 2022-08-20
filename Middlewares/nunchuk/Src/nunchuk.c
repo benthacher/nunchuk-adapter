@@ -10,6 +10,14 @@ static const uint8_t NUNCHUK_STANDARD_ID[6] = { 0x00, 0x00, 0xA4, 0x20, 0x00, 0x
 static const uint8_t NUNCHUK_CLASSIC_ID[6] = { 0x01, 0x00, 0xA4, 0x20, 0x01, 0x01 };
 static const uint8_t NUNCHUK_GUITAR_HERO_ID[6] = { 0x00, 0x00, 0xA4, 0x20, 0x01, 0x03 };
 
+int clamp_input(int input, int min, int max) {
+    if (input > max)
+        return max;
+    if (input < min)
+        return min;
+    return input;
+}
+
 HAL_StatusTypeDef nunchuk_reg_write(uint8_t addr, uint8_t data) {
     uint8_t to_send[2] = { addr, data };
 
@@ -99,29 +107,29 @@ void nunchuk_fill_standard(nunchuk_packet_t* packet, nunchuk_standard_t* std) {
     std->sx = packet->standard_controller.sx;
     std->sy = packet->standard_controller.sy;
 
-    std->buttons.c = packet->standard_controller.buttons.c;
-    std->buttons.z = packet->standard_controller.buttons.z;
+    std->buttons.c = !packet->standard_controller.buttons.c;
+    std->buttons.z = !packet->standard_controller.buttons.z;
 }
 
 void nunchuk_fill_guitar_hero(nunchuk_packet_t* packet, nunchuk_guitar_hero_t* gh) {
     // if both gh3 fields are all zeros, set gh3 to 1
     gh->gh3 = packet->gh_controller.gh3_0 == 0b11 && packet->gh_controller.gh3_1 == 0b11;
 
-    gh->sx = packet->gh_controller.sx;
-    gh->sy = packet->gh_controller.sy;
+    gh->sx = clamp_input(packet->gh_controller.sx, GH_SX_MIN, GH_SX_MAX);
+    gh->sy = clamp_input(packet->gh_controller.sy, GH_SY_MIN, GH_SY_MAX);
 
-    gh->tb = packet->gh_controller.tb;
-    gh->wb = packet->gh_controller.wb;
+    gh->tb = clamp_input(packet->gh_controller.tb, GH_TB_MIN, GH_TB_MAX);
+    gh->wb = clamp_input(packet->gh_controller.wb, GH_WB_MIN, GH_WB_MAX);
 
-    gh->buttons.plus = packet->gh_controller.buttons.plus;
-    gh->buttons.minus = packet->gh_controller.buttons.minus;
-    gh->buttons.strum_up = packet->gh_controller.buttons.u;
-    gh->buttons.strum_down = packet->gh_controller.buttons.d;
-    gh->buttons.green = packet->gh_controller.buttons.g;
-    gh->buttons.red = packet->gh_controller.buttons.r;
-    gh->buttons.yellow = packet->gh_controller.buttons.y;
-    gh->buttons.blue = packet->gh_controller.buttons.b;
-    gh->buttons.orange = packet->gh_controller.buttons.o;
+    gh->buttons.plus = !packet->gh_controller.buttons.plus;
+    gh->buttons.minus = !packet->gh_controller.buttons.minus;
+    gh->buttons.strum_up = !packet->gh_controller.buttons.u;
+    gh->buttons.strum_down = !packet->gh_controller.buttons.d;
+    gh->buttons.green = !packet->gh_controller.buttons.g;
+    gh->buttons.red = !packet->gh_controller.buttons.r;
+    gh->buttons.yellow = !packet->gh_controller.buttons.y;
+    gh->buttons.blue = !packet->gh_controller.buttons.b;
+    gh->buttons.orange = !packet->gh_controller.buttons.o;
 }
 
 void nunchuk_fill_classic(nunchuk_packet_t* packet, nunchuk_classic_t* cc) {
@@ -136,19 +144,19 @@ void nunchuk_fill_classic(nunchuk_packet_t* packet, nunchuk_classic_t* cc) {
                         (packet->classic_controller.lt_2_0);
     cc->right_trigger = packet->classic_controller.rt;
     
-    cc->buttons.a =             packet->classic_controller.buttons.a;
-    cc->buttons.b =             packet->classic_controller.buttons.b;
-    cc->buttons.x =             packet->classic_controller.buttons.x;
-    cc->buttons.y =             packet->classic_controller.buttons.y;
-    cc->buttons.plus =          packet->classic_controller.buttons.plus;
-    cc->buttons.home =          packet->classic_controller.buttons.h;
-    cc->buttons.minus =         packet->classic_controller.buttons.minus;
-    cc->buttons.left_trigger =  packet->classic_controller.buttons.lt;
-    cc->buttons.right_trigger = packet->classic_controller.buttons.rt;
-    cc->buttons.zl =            packet->classic_controller.buttons.zl;
-    cc->buttons.zr =            packet->classic_controller.buttons.zr;
-    cc->buttons.dpad.down =     packet->classic_controller.buttons.dd;
-    cc->buttons.dpad.right =    packet->classic_controller.buttons.dr;
-    cc->buttons.dpad.up =       packet->classic_controller.buttons.du;
-    cc->buttons.dpad.left =     packet->classic_controller.buttons.dl;
+    cc->buttons.a =             !packet->classic_controller.buttons.a;
+    cc->buttons.b =             !packet->classic_controller.buttons.b;
+    cc->buttons.x =             !packet->classic_controller.buttons.x;
+    cc->buttons.y =             !packet->classic_controller.buttons.y;
+    cc->buttons.plus =          !packet->classic_controller.buttons.plus;
+    cc->buttons.home =          !packet->classic_controller.buttons.h;
+    cc->buttons.minus =         !packet->classic_controller.buttons.minus;
+    cc->buttons.left_trigger =  !packet->classic_controller.buttons.lt;
+    cc->buttons.right_trigger = !packet->classic_controller.buttons.rt;
+    cc->buttons.zl =            !packet->classic_controller.buttons.zl;
+    cc->buttons.zr =            !packet->classic_controller.buttons.zr;
+    cc->buttons.dpad.down =     !packet->classic_controller.buttons.dd;
+    cc->buttons.dpad.right =    !packet->classic_controller.buttons.dr;
+    cc->buttons.dpad.up =       !packet->classic_controller.buttons.du;
+    cc->buttons.dpad.left =     !packet->classic_controller.buttons.dl;
 }

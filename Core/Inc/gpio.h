@@ -40,6 +40,8 @@ void MX_GPIO_Init(void);
 /* USER CODE BEGIN Prototypes */
 void write_led(int val);
 void blink_led(int num_blinks, int frequency);
+void handle_blink_requests();
+void request_blink(int num_blinks, int frequency);
 GPIO_PinState read_pres_pin();
 /* USER CODE END Prototypes */
 

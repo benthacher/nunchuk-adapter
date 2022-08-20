@@ -37,16 +37,27 @@ extern "C" {
   * @{
   */
 
+typedef struct {
+  uint16_t buttons; // bits represent buttons
+
+  int8_t x;
+  int8_t y;
+  int8_t z;
+  int8_t rx;
+  int8_t ry;
+  int8_t rz;
+} gamepad_report_t;
+
 
 /** @defgroup USBD_HID_Exported_Defines
   * @{
   */
 #define HID_EPIN_ADDR                              0x81U
-#define HID_EPIN_SIZE                              0x04U
+#define HID_EPIN_SIZE                              0x08U
 
 #define USB_HID_CONFIG_DESC_SIZ                    34U
 #define USB_HID_DESC_SIZ                           9U
-#define HID_MOUSE_REPORT_DESC_SIZE                 74U
+#define HID_GAMEPAD_REPORT_DESC_SIZE               47U
 
 #define HID_DESCRIPTOR_TYPE                        0x21U
 #define HID_REPORT_DESC                            0x22U

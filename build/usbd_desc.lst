@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccutmE2j.s 			page 1
+ARM GAS  /tmp/ccc80EwD.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -18,15 +18,15 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
   17              		.file 1 "USB_Device/App/usbd_desc.c"
-  18              		.section	.text.USBD_CDC_DeviceDescriptor,"ax",%progbits
+  18              		.section	.text.USBD_HID_DeviceDescriptor,"ax",%progbits
   19              		.align	1
-  20              		.global	USBD_CDC_DeviceDescriptor
+  20              		.global	USBD_HID_DeviceDescriptor
   21              		.syntax unified
   22              		.code	16
   23              		.thumb_func
-  25              	USBD_CDC_DeviceDescriptor:
+  25              	USBD_HID_DeviceDescriptor:
   26              	.LVL0:
-  27              	.LFB362:
+  27              	.LFB370:
    1:USB_Device/App/usbd_desc.c **** /* USER CODE BEGIN Header */
    2:USB_Device/App/usbd_desc.c **** /**
    3:USB_Device/App/usbd_desc.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   29:USB_Device/App/usbd_desc.c **** /* USER CODE END INCLUDE */
   30:USB_Device/App/usbd_desc.c **** 
   31:USB_Device/App/usbd_desc.c **** /* Private typedef -----------------------------------------------------------*/
-ARM GAS  /tmp/ccutmE2j.s 			page 2
+ARM GAS  /tmp/ccc80EwD.s 			page 2
 
 
   32:USB_Device/App/usbd_desc.c **** /* Private define ------------------------------------------------------------*/
@@ -97,11 +97,11 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   65:USB_Device/App/usbd_desc.c **** 
   66:USB_Device/App/usbd_desc.c **** #define USBD_VID     1155
   67:USB_Device/App/usbd_desc.c **** #define USBD_LANGID_STRING     1033
-  68:USB_Device/App/usbd_desc.c **** #define USBD_MANUFACTURER_STRING     "STMicroelectronics"
-  69:USB_Device/App/usbd_desc.c **** #define USBD_PID     22336
-  70:USB_Device/App/usbd_desc.c **** #define USBD_PRODUCT_STRING     "STM32 Virtual ComPort"
-  71:USB_Device/App/usbd_desc.c **** #define USBD_CONFIGURATION_STRING     "CDC Config"
-  72:USB_Device/App/usbd_desc.c **** #define USBD_INTERFACE_STRING     "CDC Interface"
+  68:USB_Device/App/usbd_desc.c **** #define USBD_MANUFACTURER_STRING     "Ben Thacher hehe"
+  69:USB_Device/App/usbd_desc.c **** #define USBD_PID     22315
+  70:USB_Device/App/usbd_desc.c **** #define USBD_PRODUCT_STRING     "Nunchuk <-> USB Adapter"
+  71:USB_Device/App/usbd_desc.c **** #define USBD_CONFIGURATION_STRING     "HID Config"
+  72:USB_Device/App/usbd_desc.c **** #define USBD_INTERFACE_STRING     "HID Interface"
   73:USB_Device/App/usbd_desc.c **** 
   74:USB_Device/App/usbd_desc.c **** /* USER CODE BEGIN PRIVATE_DEFINES */
   75:USB_Device/App/usbd_desc.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   86:USB_Device/App/usbd_desc.c **** /** @defgroup USBD_DESC_Private_Macros USBD_DESC_Private_Macros
   87:USB_Device/App/usbd_desc.c ****   * @brief Private macros.
   88:USB_Device/App/usbd_desc.c ****   * @{
-ARM GAS  /tmp/ccutmE2j.s 			page 3
+ARM GAS  /tmp/ccc80EwD.s 			page 3
 
 
   89:USB_Device/App/usbd_desc.c ****   */
@@ -148,13 +148,13 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  113:USB_Device/App/usbd_desc.c ****   * @{
  114:USB_Device/App/usbd_desc.c ****   */
  115:USB_Device/App/usbd_desc.c **** 
- 116:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
- 117:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
- 118:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
- 119:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
- 120:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
- 121:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
- 122:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+ 116:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+ 117:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+ 118:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+ 119:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+ 120:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+ 121:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
+ 122:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
  123:USB_Device/App/usbd_desc.c **** 
  124:USB_Device/App/usbd_desc.c **** /**
  125:USB_Device/App/usbd_desc.c ****   * @}
@@ -165,32 +165,32 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  130:USB_Device/App/usbd_desc.c ****   * @{
  131:USB_Device/App/usbd_desc.c ****   */
  132:USB_Device/App/usbd_desc.c **** 
- 133:USB_Device/App/usbd_desc.c **** USBD_DescriptorsTypeDef CDC_Desc =
+ 133:USB_Device/App/usbd_desc.c **** USBD_DescriptorsTypeDef HID_Desc =
  134:USB_Device/App/usbd_desc.c **** {
- 135:USB_Device/App/usbd_desc.c ****   USBD_CDC_DeviceDescriptor,
- 136:USB_Device/App/usbd_desc.c ****   USBD_CDC_LangIDStrDescriptor,
- 137:USB_Device/App/usbd_desc.c ****   USBD_CDC_ManufacturerStrDescriptor,
- 138:USB_Device/App/usbd_desc.c ****   USBD_CDC_ProductStrDescriptor,
- 139:USB_Device/App/usbd_desc.c ****   USBD_CDC_SerialStrDescriptor,
- 140:USB_Device/App/usbd_desc.c ****   USBD_CDC_ConfigStrDescriptor,
- 141:USB_Device/App/usbd_desc.c ****   USBD_CDC_InterfaceStrDescriptor
+ 135:USB_Device/App/usbd_desc.c ****   USBD_HID_DeviceDescriptor,
+ 136:USB_Device/App/usbd_desc.c ****   USBD_HID_LangIDStrDescriptor,
+ 137:USB_Device/App/usbd_desc.c ****   USBD_HID_ManufacturerStrDescriptor,
+ 138:USB_Device/App/usbd_desc.c ****   USBD_HID_ProductStrDescriptor,
+ 139:USB_Device/App/usbd_desc.c ****   USBD_HID_SerialStrDescriptor,
+ 140:USB_Device/App/usbd_desc.c ****   USBD_HID_ConfigStrDescriptor,
+ 141:USB_Device/App/usbd_desc.c ****   USBD_HID_InterfaceStrDescriptor
  142:USB_Device/App/usbd_desc.c **** };
  143:USB_Device/App/usbd_desc.c **** 
  144:USB_Device/App/usbd_desc.c **** #if defined ( __ICCARM__ ) /* IAR Compiler */
  145:USB_Device/App/usbd_desc.c ****   #pragma data_alignment=4
-ARM GAS  /tmp/ccutmE2j.s 			page 4
+ARM GAS  /tmp/ccc80EwD.s 			page 4
 
 
  146:USB_Device/App/usbd_desc.c **** #endif /* defined ( __ICCARM__ ) */
  147:USB_Device/App/usbd_desc.c **** /** USB standard device descriptor. */
- 148:USB_Device/App/usbd_desc.c **** __ALIGN_BEGIN uint8_t USBD_CDC_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
+ 148:USB_Device/App/usbd_desc.c **** __ALIGN_BEGIN uint8_t USBD_HID_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
  149:USB_Device/App/usbd_desc.c **** {
  150:USB_Device/App/usbd_desc.c ****   0x12,                       /*bLength */
  151:USB_Device/App/usbd_desc.c ****   USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
  152:USB_Device/App/usbd_desc.c ****   0x00,                       /*bcdUSB */
  153:USB_Device/App/usbd_desc.c ****   0x02,
- 154:USB_Device/App/usbd_desc.c ****   0x02,                       /*bDeviceClass*/
- 155:USB_Device/App/usbd_desc.c ****   0x02,                       /*bDeviceSubClass*/
+ 154:USB_Device/App/usbd_desc.c ****   0x00,                       /*bDeviceClass*/
+ 155:USB_Device/App/usbd_desc.c ****   0x00,                       /*bDeviceSubClass*/
  156:USB_Device/App/usbd_desc.c ****   0x00,                       /*bDeviceProtocol*/
  157:USB_Device/App/usbd_desc.c ****   USB_MAX_EP0_SIZE,           /*bMaxPacketSize*/
  158:USB_Device/App/usbd_desc.c ****   LOBYTE(USBD_VID),           /*idVendor*/
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  200:USB_Device/App/usbd_desc.c **** #if defined ( __ICCARM__ ) /*!< IAR Compiler */
  201:USB_Device/App/usbd_desc.c ****   #pragma data_alignment=4
  202:USB_Device/App/usbd_desc.c **** #endif
-ARM GAS  /tmp/ccutmE2j.s 			page 5
+ARM GAS  /tmp/ccc80EwD.s 			page 5
 
 
  203:USB_Device/App/usbd_desc.c **** __ALIGN_BEGIN uint8_t USBD_StringSerial[USB_SIZ_STRING_SERIAL] __ALIGN_END = {
@@ -261,7 +261,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  220:USB_Device/App/usbd_desc.c ****   * @param  length : Pointer to data length variable
  221:USB_Device/App/usbd_desc.c ****   * @retval Pointer to descriptor buffer
  222:USB_Device/App/usbd_desc.c ****   */
- 223:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+ 223:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  224:USB_Device/App/usbd_desc.c **** {
   28              		.loc 1 224 1 view -0
   29              		.cfi_startproc
@@ -270,12 +270,12 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   32              		@ link register save eliminated.
  225:USB_Device/App/usbd_desc.c ****   UNUSED(speed);
   33              		.loc 1 225 3 view .LVU1
- 226:USB_Device/App/usbd_desc.c ****   *length = sizeof(USBD_CDC_DeviceDesc);
+ 226:USB_Device/App/usbd_desc.c ****   *length = sizeof(USBD_HID_DeviceDesc);
   34              		.loc 1 226 3 view .LVU2
   35              		.loc 1 226 11 is_stmt 0 view .LVU3
   36 0000 1223     		movs	r3, #18
   37 0002 0B80     		strh	r3, [r1]
- 227:USB_Device/App/usbd_desc.c ****   return USBD_CDC_DeviceDesc;
+ 227:USB_Device/App/usbd_desc.c ****   return USBD_HID_DeviceDesc;
   38              		.loc 1 227 3 is_stmt 1 view .LVU4
   39              		.loc 1 227 10 is_stmt 0 view .LVU5
   40 0004 0048     		ldr	r0, .L2
@@ -287,21 +287,21 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   45              	.L3:
   46              		.align	2
   47              	.L2:
-  48 0008 00000000 		.word	USBD_CDC_DeviceDesc
+  48 0008 00000000 		.word	USBD_HID_DeviceDesc
   49              		.cfi_endproc
-  50              	.LFE362:
-  52              		.section	.text.USBD_CDC_LangIDStrDescriptor,"ax",%progbits
+  50              	.LFE370:
+  52              		.section	.text.USBD_HID_LangIDStrDescriptor,"ax",%progbits
   53              		.align	1
-  54              		.global	USBD_CDC_LangIDStrDescriptor
+  54              		.global	USBD_HID_LangIDStrDescriptor
   55              		.syntax unified
   56              		.code	16
   57              		.thumb_func
-  59              	USBD_CDC_LangIDStrDescriptor:
+  59              	USBD_HID_LangIDStrDescriptor:
   60              	.LVL2:
-ARM GAS  /tmp/ccutmE2j.s 			page 6
+ARM GAS  /tmp/ccc80EwD.s 			page 6
 
 
-  61              	.LFB363:
+  61              	.LFB371:
  229:USB_Device/App/usbd_desc.c **** 
  230:USB_Device/App/usbd_desc.c **** /**
  231:USB_Device/App/usbd_desc.c ****   * @brief  Return the LangID string descriptor
@@ -309,7 +309,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  233:USB_Device/App/usbd_desc.c ****   * @param  length : Pointer to data length variable
  234:USB_Device/App/usbd_desc.c ****   * @retval Pointer to descriptor buffer
  235:USB_Device/App/usbd_desc.c ****   */
- 236:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+ 236:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  237:USB_Device/App/usbd_desc.c **** {
   62              		.loc 1 237 1 is_stmt 1 view -0
   63              		.cfi_startproc
@@ -337,7 +337,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   81              	.L5:
   82 0008 00000000 		.word	USBD_LangIDDesc
   83              		.cfi_endproc
-  84              	.LFE363:
+  84              	.LFE371:
   86              		.section	.text.IntToUnicode,"ax",%progbits
   87              		.align	1
   88              		.syntax unified
@@ -345,7 +345,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
   90              		.thumb_func
   92              	IntToUnicode:
   93              	.LVL4:
-  94              	.LFB370:
+  94              	.LFB378:
  242:USB_Device/App/usbd_desc.c **** 
  243:USB_Device/App/usbd_desc.c **** /**
  244:USB_Device/App/usbd_desc.c ****   * @brief  Return the product string descriptor
@@ -353,12 +353,12 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  246:USB_Device/App/usbd_desc.c ****   * @param  length : Pointer to data length variable
  247:USB_Device/App/usbd_desc.c ****   * @retval Pointer to descriptor buffer
  248:USB_Device/App/usbd_desc.c ****   */
- 249:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+ 249:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  250:USB_Device/App/usbd_desc.c **** {
  251:USB_Device/App/usbd_desc.c ****   if(speed == 0)
  252:USB_Device/App/usbd_desc.c ****   {
  253:USB_Device/App/usbd_desc.c ****     USBD_GetString((uint8_t *)USBD_PRODUCT_STRING, USBD_StrDesc, length);
-ARM GAS  /tmp/ccutmE2j.s 			page 7
+ARM GAS  /tmp/ccc80EwD.s 			page 7
 
 
  254:USB_Device/App/usbd_desc.c ****   }
@@ -375,7 +375,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  265:USB_Device/App/usbd_desc.c ****   * @param  length : Pointer to data length variable
  266:USB_Device/App/usbd_desc.c ****   * @retval Pointer to descriptor buffer
  267:USB_Device/App/usbd_desc.c ****   */
- 268:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+ 268:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  269:USB_Device/App/usbd_desc.c **** {
  270:USB_Device/App/usbd_desc.c ****   UNUSED(speed);
  271:USB_Device/App/usbd_desc.c ****   USBD_GetString((uint8_t *)USBD_MANUFACTURER_STRING, USBD_StrDesc, length);
@@ -388,7 +388,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  278:USB_Device/App/usbd_desc.c ****   * @param  length : Pointer to data length variable
  279:USB_Device/App/usbd_desc.c ****   * @retval Pointer to descriptor buffer
  280:USB_Device/App/usbd_desc.c ****   */
- 281:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+ 281:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  282:USB_Device/App/usbd_desc.c **** {
  283:USB_Device/App/usbd_desc.c ****   UNUSED(speed);
  284:USB_Device/App/usbd_desc.c ****   *length = USB_SIZ_STRING_SERIAL;
@@ -397,9 +397,9 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  287:USB_Device/App/usbd_desc.c ****    * ID */
  288:USB_Device/App/usbd_desc.c ****   Get_SerialNum();
  289:USB_Device/App/usbd_desc.c **** 
- 290:USB_Device/App/usbd_desc.c ****   /* USER CODE BEGIN USBD_CDC_SerialStrDescriptor */
+ 290:USB_Device/App/usbd_desc.c ****   /* USER CODE BEGIN USBD_HID_SerialStrDescriptor */
  291:USB_Device/App/usbd_desc.c **** 
- 292:USB_Device/App/usbd_desc.c ****   /* USER CODE END USBD_CDC_SerialStrDescriptor */
+ 292:USB_Device/App/usbd_desc.c ****   /* USER CODE END USBD_HID_SerialStrDescriptor */
  293:USB_Device/App/usbd_desc.c **** 
  294:USB_Device/App/usbd_desc.c ****   return (uint8_t *) USBD_StringSerial;
  295:USB_Device/App/usbd_desc.c **** }
@@ -410,7 +410,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  300:USB_Device/App/usbd_desc.c ****   * @param  length : Pointer to data length variable
  301:USB_Device/App/usbd_desc.c ****   * @retval Pointer to descriptor buffer
  302:USB_Device/App/usbd_desc.c ****   */
- 303:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+ 303:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  304:USB_Device/App/usbd_desc.c **** {
  305:USB_Device/App/usbd_desc.c ****   if(speed == USBD_SPEED_HIGH)
  306:USB_Device/App/usbd_desc.c ****   {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  308:USB_Device/App/usbd_desc.c ****   }
  309:USB_Device/App/usbd_desc.c ****   else
  310:USB_Device/App/usbd_desc.c ****   {
-ARM GAS  /tmp/ccutmE2j.s 			page 8
+ARM GAS  /tmp/ccc80EwD.s 			page 8
 
 
  311:USB_Device/App/usbd_desc.c ****     USBD_GetString((uint8_t *)USBD_CONFIGURATION_STRING, USBD_StrDesc, length);
@@ -432,7 +432,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  319:USB_Device/App/usbd_desc.c ****   * @param  length : Pointer to data length variable
  320:USB_Device/App/usbd_desc.c ****   * @retval Pointer to descriptor buffer
  321:USB_Device/App/usbd_desc.c ****   */
- 322:USB_Device/App/usbd_desc.c **** uint8_t * USBD_CDC_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+ 322:USB_Device/App/usbd_desc.c **** uint8_t * USBD_HID_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  323:USB_Device/App/usbd_desc.c **** {
  324:USB_Device/App/usbd_desc.c ****   if(speed == 0)
  325:USB_Device/App/usbd_desc.c ****   {
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  365:USB_Device/App/usbd_desc.c **** {
   95              		.loc 1 365 1 is_stmt 1 view -0
   96              		.cfi_startproc
-ARM GAS  /tmp/ccutmE2j.s 			page 9
+ARM GAS  /tmp/ccc80EwD.s 			page 9
 
 
   97              		@ args = 0, pretend = 0, frame = 0
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  135 0016 2570     		strb	r5, [r4]
  368:USB_Device/App/usbd_desc.c ****   {
  136              		.loc 1 368 31 is_stmt 1 discriminator 2 view .LVU30
-ARM GAS  /tmp/ccutmE2j.s 			page 10
+ARM GAS  /tmp/ccc80EwD.s 			page 10
 
 
  137 0018 0133     		adds	r3, r3, #1
@@ -580,14 +580,14 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  162              		@ sp needed
  163 002e 30BD     		pop	{r4, r5, pc}
  164              		.cfi_endproc
- 165              	.LFE370:
+ 165              	.LFE378:
  167              		.section	.text.Get_SerialNum,"ax",%progbits
  168              		.align	1
  169              		.syntax unified
  170              		.code	16
  171              		.thumb_func
  173              	Get_SerialNum:
- 174              	.LFB369:
+ 174              	.LFB377:
  341:USB_Device/App/usbd_desc.c ****   uint32_t deviceserial0, deviceserial1, deviceserial2;
  175              		.loc 1 341 1 is_stmt 1 view -0
  176              		.cfi_startproc
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  181              		.cfi_def_cfa_offset 16
  182              		.cfi_offset 4, -16
  183              		.cfi_offset 5, -12
-ARM GAS  /tmp/ccutmE2j.s 			page 11
+ARM GAS  /tmp/ccc80EwD.s 			page 11
 
 
  184              		.cfi_offset 6, -8
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  224              	.LVL17:
  353:USB_Device/App/usbd_desc.c ****   }
  225              		.loc 1 353 5 view .LVU56
-ARM GAS  /tmp/ccutmE2j.s 			page 12
+ARM GAS  /tmp/ccc80EwD.s 			page 12
 
 
  226 0020 2100     		movs	r1, r4
@@ -678,16 +678,16 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  239 0038 9875FF1F 		.word	536835480
  240 003c 02000000 		.word	USBD_StringSerial+2
  241              		.cfi_endproc
- 242              	.LFE369:
- 244              		.section	.text.USBD_CDC_SerialStrDescriptor,"ax",%progbits
+ 242              	.LFE377:
+ 244              		.section	.text.USBD_HID_SerialStrDescriptor,"ax",%progbits
  245              		.align	1
- 246              		.global	USBD_CDC_SerialStrDescriptor
+ 246              		.global	USBD_HID_SerialStrDescriptor
  247              		.syntax unified
  248              		.code	16
  249              		.thumb_func
- 251              	USBD_CDC_SerialStrDescriptor:
+ 251              	USBD_HID_SerialStrDescriptor:
  252              	.LVL19:
- 253              	.LFB366:
+ 253              	.LFB374:
  282:USB_Device/App/usbd_desc.c ****   UNUSED(speed);
  254              		.loc 1 282 1 is_stmt 1 view -0
  255              		.cfi_startproc
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  273              		.loc 1 294 10 is_stmt 0 view .LVU65
  274 000a 0148     		ldr	r0, .L19
  295:USB_Device/App/usbd_desc.c **** 
-ARM GAS  /tmp/ccutmE2j.s 			page 13
+ARM GAS  /tmp/ccc80EwD.s 			page 13
 
 
  275              		.loc 1 295 1 view .LVU66
@@ -729,24 +729,24 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  280              	.L19:
  281 0010 00000000 		.word	USBD_StringSerial
  282              		.cfi_endproc
- 283              	.LFE366:
- 285              		.section	.rodata.USBD_CDC_ProductStrDescriptor.str1.4,"aMS",%progbits,1
+ 283              	.LFE374:
+ 285              		.section	.rodata.USBD_HID_ProductStrDescriptor.str1.4,"aMS",%progbits,1
  286              		.align	2
  287              	.LC6:
- 288 0000 53544D33 		.ascii	"STM32 Virtual ComPort\000"
- 288      32205669 
- 288      72747561 
- 288      6C20436F 
- 288      6D506F72 
- 289              		.section	.text.USBD_CDC_ProductStrDescriptor,"ax",%progbits
+ 288 0000 4E756E63 		.ascii	"Nunchuk <-> USB Adapter\000"
+ 288      68756B20 
+ 288      3C2D3E20 
+ 288      55534220 
+ 288      41646170 
+ 289              		.section	.text.USBD_HID_ProductStrDescriptor,"ax",%progbits
  290              		.align	1
- 291              		.global	USBD_CDC_ProductStrDescriptor
+ 291              		.global	USBD_HID_ProductStrDescriptor
  292              		.syntax unified
  293              		.code	16
  294              		.thumb_func
- 296              	USBD_CDC_ProductStrDescriptor:
+ 296              	USBD_HID_ProductStrDescriptor:
  297              	.LVL21:
- 298              	.LFB364:
+ 298              	.LFB372:
  250:USB_Device/App/usbd_desc.c ****   if(speed == 0)
  299              		.loc 1 250 1 is_stmt 1 view -0
  300              		.cfi_startproc
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  320              		.loc 1 253 5 view .LVU73
  321 000c FFF7FEFF 		bl	USBD_GetString
  322              	.LVL24:
-ARM GAS  /tmp/ccutmE2j.s 			page 14
+ARM GAS  /tmp/ccc80EwD.s 			page 14
 
 
  323              	.L23:
@@ -814,31 +814,31 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  346 0020 00000000 		.word	USBD_StrDesc
  347 0024 00000000 		.word	.LC6
  348              		.cfi_endproc
- 349              	.LFE364:
- 351              		.section	.rodata.USBD_CDC_ManufacturerStrDescriptor.str1.4,"aMS",%progbits,1
+ 349              	.LFE372:
+ 351              		.section	.rodata.USBD_HID_ManufacturerStrDescriptor.str1.4,"aMS",%progbits,1
  352              		.align	2
  353              	.LC9:
- 354 0000 53544D69 		.ascii	"STMicroelectronics\000"
- 354      63726F65 
- 354      6C656374 
- 354      726F6E69 
- 354      637300
- 355              		.section	.text.USBD_CDC_ManufacturerStrDescriptor,"ax",%progbits
+ 354 0000 42656E20 		.ascii	"Ben Thacher hehe\000"
+ 354      54686163 
+ 354      68657220 
+ 354      68656865 
+ 354      00
+ 355              		.section	.text.USBD_HID_ManufacturerStrDescriptor,"ax",%progbits
  356              		.align	1
- 357              		.global	USBD_CDC_ManufacturerStrDescriptor
+ 357              		.global	USBD_HID_ManufacturerStrDescriptor
  358              		.syntax unified
  359              		.code	16
  360              		.thumb_func
- 362              	USBD_CDC_ManufacturerStrDescriptor:
+ 362              	USBD_HID_ManufacturerStrDescriptor:
  363              	.LVL29:
- 364              	.LFB365:
+ 364              	.LFB373:
  269:USB_Device/App/usbd_desc.c ****   UNUSED(speed);
  365              		.loc 1 269 1 is_stmt 1 view -0
  366              		.cfi_startproc
  367              		@ args = 0, pretend = 0, frame = 0
  368              		@ frame_needed = 0, uses_anonymous_args = 0
  269:USB_Device/App/usbd_desc.c ****   UNUSED(speed);
-ARM GAS  /tmp/ccutmE2j.s 			page 15
+ARM GAS  /tmp/ccc80EwD.s 			page 15
 
 
  369              		.loc 1 269 1 is_stmt 0 view .LVU82
@@ -876,29 +876,29 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  395 0014 00000000 		.word	USBD_StrDesc
  396 0018 00000000 		.word	.LC9
  397              		.cfi_endproc
- 398              	.LFE365:
- 400              		.section	.rodata.USBD_CDC_ConfigStrDescriptor.str1.4,"aMS",%progbits,1
+ 398              	.LFE373:
+ 400              		.section	.rodata.USBD_HID_ConfigStrDescriptor.str1.4,"aMS",%progbits,1
  401              		.align	2
  402              	.LC12:
- 403 0000 43444320 		.ascii	"CDC Config\000"
+ 403 0000 48494420 		.ascii	"HID Config\000"
  403      436F6E66 
  403      696700
- 404              		.section	.text.USBD_CDC_ConfigStrDescriptor,"ax",%progbits
+ 404              		.section	.text.USBD_HID_ConfigStrDescriptor,"ax",%progbits
  405              		.align	1
- 406              		.global	USBD_CDC_ConfigStrDescriptor
+ 406              		.global	USBD_HID_ConfigStrDescriptor
  407              		.syntax unified
  408              		.code	16
  409              		.thumb_func
- 411              	USBD_CDC_ConfigStrDescriptor:
+ 411              	USBD_HID_ConfigStrDescriptor:
  412              	.LVL33:
- 413              	.LFB367:
+ 413              	.LFB375:
  304:USB_Device/App/usbd_desc.c ****   if(speed == USBD_SPEED_HIGH)
  414              		.loc 1 304 1 is_stmt 1 view -0
  415              		.cfi_startproc
  416              		@ args = 0, pretend = 0, frame = 0
  417              		@ frame_needed = 0, uses_anonymous_args = 0
  304:USB_Device/App/usbd_desc.c ****   if(speed == USBD_SPEED_HIGH)
-ARM GAS  /tmp/ccutmE2j.s 			page 16
+ARM GAS  /tmp/ccc80EwD.s 			page 16
 
 
  418              		.loc 1 304 1 is_stmt 0 view .LVU90
@@ -958,27 +958,27 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  460              	.L32:
  461 0020 00000000 		.word	USBD_StrDesc
  462 0024 00000000 		.word	.LC12
-ARM GAS  /tmp/ccutmE2j.s 			page 17
+ARM GAS  /tmp/ccc80EwD.s 			page 17
 
 
  463              		.cfi_endproc
- 464              	.LFE367:
- 466              		.section	.rodata.USBD_CDC_InterfaceStrDescriptor.str1.4,"aMS",%progbits,1
+ 464              	.LFE375:
+ 466              		.section	.rodata.USBD_HID_InterfaceStrDescriptor.str1.4,"aMS",%progbits,1
  467              		.align	2
  468              	.LC15:
- 469 0000 43444320 		.ascii	"CDC Interface\000"
+ 469 0000 48494420 		.ascii	"HID Interface\000"
  469      496E7465 
  469      72666163 
  469      6500
- 470              		.section	.text.USBD_CDC_InterfaceStrDescriptor,"ax",%progbits
+ 470              		.section	.text.USBD_HID_InterfaceStrDescriptor,"ax",%progbits
  471              		.align	1
- 472              		.global	USBD_CDC_InterfaceStrDescriptor
+ 472              		.global	USBD_HID_InterfaceStrDescriptor
  473              		.syntax unified
  474              		.code	16
  475              		.thumb_func
- 477              	USBD_CDC_InterfaceStrDescriptor:
+ 477              	USBD_HID_InterfaceStrDescriptor:
  478              	.LVL41:
- 479              	.LFB368:
+ 479              	.LFB376:
  323:USB_Device/App/usbd_desc.c ****   if(speed == 0)
  480              		.loc 1 323 1 is_stmt 1 view -0
  481              		.cfi_startproc
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  507 0010 0348     		ldr	r0, .L37
  333:USB_Device/App/usbd_desc.c **** 
  508              		.loc 1 333 1 view .LVU112
-ARM GAS  /tmp/ccutmE2j.s 			page 18
+ARM GAS  /tmp/ccc80EwD.s 			page 18
 
 
  509              		@ sp needed
@@ -1046,7 +1046,7 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  527 0020 00000000 		.word	USBD_StrDesc
  528 0024 00000000 		.word	.LC15
  529              		.cfi_endproc
- 530              	.LFE368:
+ 530              	.LFE376:
  532              		.global	USBD_StringSerial
  533              		.section	.data.USBD_StringSerial,"aw"
  534              		.align	2
@@ -1071,29 +1071,29 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  549              		.align	2
  552              	USBD_LangIDDesc:
  553 0000 04030904 		.ascii	"\004\003\011\004"
- 554              		.global	USBD_CDC_DeviceDesc
- 555              		.section	.data.USBD_CDC_DeviceDesc,"aw"
+ 554              		.global	USBD_HID_DeviceDesc
+ 555              		.section	.data.USBD_HID_DeviceDesc,"aw"
  556              		.align	2
- 559              	USBD_CDC_DeviceDesc:
- 560 0000 12010002 		.ascii	"\022\001\000\002\002\002\000@\203\004@W\000\002\001"
- 560      02020040 
- 560      83044057 
-ARM GAS  /tmp/ccutmE2j.s 			page 19
+ 559              	USBD_HID_DeviceDesc:
+ 560 0000 12010002 		.ascii	"\022\001\000\002\000\000\000@\203\004+W\000\002\001"
+ 560      00000040 
+ 560      83042B57 
+ARM GAS  /tmp/ccc80EwD.s 			page 19
 
 
  560      000201
  561 000f 020301   		.ascii	"\002\003\001"
- 562              		.global	CDC_Desc
- 563              		.section	.data.CDC_Desc,"aw"
+ 562              		.global	HID_Desc
+ 563              		.section	.data.HID_Desc,"aw"
  564              		.align	2
- 567              	CDC_Desc:
- 568 0000 00000000 		.word	USBD_CDC_DeviceDescriptor
- 569 0004 00000000 		.word	USBD_CDC_LangIDStrDescriptor
- 570 0008 00000000 		.word	USBD_CDC_ManufacturerStrDescriptor
- 571 000c 00000000 		.word	USBD_CDC_ProductStrDescriptor
- 572 0010 00000000 		.word	USBD_CDC_SerialStrDescriptor
- 573 0014 00000000 		.word	USBD_CDC_ConfigStrDescriptor
- 574 0018 00000000 		.word	USBD_CDC_InterfaceStrDescriptor
+ 567              	HID_Desc:
+ 568 0000 00000000 		.word	USBD_HID_DeviceDescriptor
+ 569 0004 00000000 		.word	USBD_HID_LangIDStrDescriptor
+ 570 0008 00000000 		.word	USBD_HID_ManufacturerStrDescriptor
+ 571 000c 00000000 		.word	USBD_HID_ProductStrDescriptor
+ 572 0010 00000000 		.word	USBD_HID_SerialStrDescriptor
+ 573 0014 00000000 		.word	USBD_HID_ConfigStrDescriptor
+ 574 0018 00000000 		.word	USBD_HID_InterfaceStrDescriptor
  575 001c 00000000 		.space	4
  576              		.text
  577              	.Letext0:
@@ -1103,51 +1103,51 @@ ARM GAS  /tmp/ccutmE2j.s 			page 1
  581              		.file 5 "USB_Device/App/usbd_desc.h"
  582              		.file 6 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
  583              		.file 7 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h"
-ARM GAS  /tmp/ccutmE2j.s 			page 20
+ARM GAS  /tmp/ccc80EwD.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usbd_desc.c
-     /tmp/ccutmE2j.s:19     .text.USBD_CDC_DeviceDescriptor:0000000000000000 $t
-     /tmp/ccutmE2j.s:25     .text.USBD_CDC_DeviceDescriptor:0000000000000000 USBD_CDC_DeviceDescriptor
-     /tmp/ccutmE2j.s:48     .text.USBD_CDC_DeviceDescriptor:0000000000000008 $d
-     /tmp/ccutmE2j.s:559    .data.USBD_CDC_DeviceDesc:0000000000000000 USBD_CDC_DeviceDesc
-     /tmp/ccutmE2j.s:53     .text.USBD_CDC_LangIDStrDescriptor:0000000000000000 $t
-     /tmp/ccutmE2j.s:59     .text.USBD_CDC_LangIDStrDescriptor:0000000000000000 USBD_CDC_LangIDStrDescriptor
-     /tmp/ccutmE2j.s:82     .text.USBD_CDC_LangIDStrDescriptor:0000000000000008 $d
-     /tmp/ccutmE2j.s:552    .data.USBD_LangIDDesc:0000000000000000 USBD_LangIDDesc
-     /tmp/ccutmE2j.s:87     .text.IntToUnicode:0000000000000000 $t
-     /tmp/ccutmE2j.s:92     .text.IntToUnicode:0000000000000000 IntToUnicode
-     /tmp/ccutmE2j.s:168    .text.Get_SerialNum:0000000000000000 $t
-     /tmp/ccutmE2j.s:173    .text.Get_SerialNum:0000000000000000 Get_SerialNum
-     /tmp/ccutmE2j.s:237    .text.Get_SerialNum:0000000000000030 $d
-     /tmp/ccutmE2j.s:537    .data.USBD_StringSerial:0000000000000000 USBD_StringSerial
-     /tmp/ccutmE2j.s:245    .text.USBD_CDC_SerialStrDescriptor:0000000000000000 $t
-     /tmp/ccutmE2j.s:251    .text.USBD_CDC_SerialStrDescriptor:0000000000000000 USBD_CDC_SerialStrDescriptor
-     /tmp/ccutmE2j.s:281    .text.USBD_CDC_SerialStrDescriptor:0000000000000010 $d
-     /tmp/ccutmE2j.s:286    .rodata.USBD_CDC_ProductStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/ccutmE2j.s:290    .text.USBD_CDC_ProductStrDescriptor:0000000000000000 $t
-     /tmp/ccutmE2j.s:296    .text.USBD_CDC_ProductStrDescriptor:0000000000000000 USBD_CDC_ProductStrDescriptor
-     /tmp/ccutmE2j.s:346    .text.USBD_CDC_ProductStrDescriptor:0000000000000020 $d
-     /tmp/ccutmE2j.s:545    .bss.USBD_StrDesc:0000000000000000 USBD_StrDesc
-     /tmp/ccutmE2j.s:352    .rodata.USBD_CDC_ManufacturerStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/ccutmE2j.s:356    .text.USBD_CDC_ManufacturerStrDescriptor:0000000000000000 $t
-     /tmp/ccutmE2j.s:362    .text.USBD_CDC_ManufacturerStrDescriptor:0000000000000000 USBD_CDC_ManufacturerStrDescriptor
-     /tmp/ccutmE2j.s:395    .text.USBD_CDC_ManufacturerStrDescriptor:0000000000000014 $d
-     /tmp/ccutmE2j.s:401    .rodata.USBD_CDC_ConfigStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/ccutmE2j.s:405    .text.USBD_CDC_ConfigStrDescriptor:0000000000000000 $t
-     /tmp/ccutmE2j.s:411    .text.USBD_CDC_ConfigStrDescriptor:0000000000000000 USBD_CDC_ConfigStrDescriptor
-     /tmp/ccutmE2j.s:461    .text.USBD_CDC_ConfigStrDescriptor:0000000000000020 $d
-     /tmp/ccutmE2j.s:467    .rodata.USBD_CDC_InterfaceStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/ccutmE2j.s:471    .text.USBD_CDC_InterfaceStrDescriptor:0000000000000000 $t
-     /tmp/ccutmE2j.s:477    .text.USBD_CDC_InterfaceStrDescriptor:0000000000000000 USBD_CDC_InterfaceStrDescriptor
-     /tmp/ccutmE2j.s:527    .text.USBD_CDC_InterfaceStrDescriptor:0000000000000020 $d
-     /tmp/ccutmE2j.s:534    .data.USBD_StringSerial:0000000000000000 $d
-     /tmp/ccutmE2j.s:542    .bss.USBD_StrDesc:0000000000000000 $d
-     /tmp/ccutmE2j.s:549    .data.USBD_LangIDDesc:0000000000000000 $d
-     /tmp/ccutmE2j.s:556    .data.USBD_CDC_DeviceDesc:0000000000000000 $d
-     /tmp/ccutmE2j.s:567    .data.CDC_Desc:0000000000000000 CDC_Desc
-     /tmp/ccutmE2j.s:564    .data.CDC_Desc:0000000000000000 $d
+     /tmp/ccc80EwD.s:19     .text.USBD_HID_DeviceDescriptor:0000000000000000 $t
+     /tmp/ccc80EwD.s:25     .text.USBD_HID_DeviceDescriptor:0000000000000000 USBD_HID_DeviceDescriptor
+     /tmp/ccc80EwD.s:48     .text.USBD_HID_DeviceDescriptor:0000000000000008 $d
+     /tmp/ccc80EwD.s:559    .data.USBD_HID_DeviceDesc:0000000000000000 USBD_HID_DeviceDesc
+     /tmp/ccc80EwD.s:53     .text.USBD_HID_LangIDStrDescriptor:0000000000000000 $t
+     /tmp/ccc80EwD.s:59     .text.USBD_HID_LangIDStrDescriptor:0000000000000000 USBD_HID_LangIDStrDescriptor
+     /tmp/ccc80EwD.s:82     .text.USBD_HID_LangIDStrDescriptor:0000000000000008 $d
+     /tmp/ccc80EwD.s:552    .data.USBD_LangIDDesc:0000000000000000 USBD_LangIDDesc
+     /tmp/ccc80EwD.s:87     .text.IntToUnicode:0000000000000000 $t
+     /tmp/ccc80EwD.s:92     .text.IntToUnicode:0000000000000000 IntToUnicode
+     /tmp/ccc80EwD.s:168    .text.Get_SerialNum:0000000000000000 $t
+     /tmp/ccc80EwD.s:173    .text.Get_SerialNum:0000000000000000 Get_SerialNum
+     /tmp/ccc80EwD.s:237    .text.Get_SerialNum:0000000000000030 $d
+     /tmp/ccc80EwD.s:537    .data.USBD_StringSerial:0000000000000000 USBD_StringSerial
+     /tmp/ccc80EwD.s:245    .text.USBD_HID_SerialStrDescriptor:0000000000000000 $t
+     /tmp/ccc80EwD.s:251    .text.USBD_HID_SerialStrDescriptor:0000000000000000 USBD_HID_SerialStrDescriptor
+     /tmp/ccc80EwD.s:281    .text.USBD_HID_SerialStrDescriptor:0000000000000010 $d
+     /tmp/ccc80EwD.s:286    .rodata.USBD_HID_ProductStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccc80EwD.s:290    .text.USBD_HID_ProductStrDescriptor:0000000000000000 $t
+     /tmp/ccc80EwD.s:296    .text.USBD_HID_ProductStrDescriptor:0000000000000000 USBD_HID_ProductStrDescriptor
+     /tmp/ccc80EwD.s:346    .text.USBD_HID_ProductStrDescriptor:0000000000000020 $d
+     /tmp/ccc80EwD.s:545    .bss.USBD_StrDesc:0000000000000000 USBD_StrDesc
+     /tmp/ccc80EwD.s:352    .rodata.USBD_HID_ManufacturerStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccc80EwD.s:356    .text.USBD_HID_ManufacturerStrDescriptor:0000000000000000 $t
+     /tmp/ccc80EwD.s:362    .text.USBD_HID_ManufacturerStrDescriptor:0000000000000000 USBD_HID_ManufacturerStrDescriptor
+     /tmp/ccc80EwD.s:395    .text.USBD_HID_ManufacturerStrDescriptor:0000000000000014 $d
+     /tmp/ccc80EwD.s:401    .rodata.USBD_HID_ConfigStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccc80EwD.s:405    .text.USBD_HID_ConfigStrDescriptor:0000000000000000 $t
+     /tmp/ccc80EwD.s:411    .text.USBD_HID_ConfigStrDescriptor:0000000000000000 USBD_HID_ConfigStrDescriptor
+     /tmp/ccc80EwD.s:461    .text.USBD_HID_ConfigStrDescriptor:0000000000000020 $d
+     /tmp/ccc80EwD.s:467    .rodata.USBD_HID_InterfaceStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccc80EwD.s:471    .text.USBD_HID_InterfaceStrDescriptor:0000000000000000 $t
+     /tmp/ccc80EwD.s:477    .text.USBD_HID_InterfaceStrDescriptor:0000000000000000 USBD_HID_InterfaceStrDescriptor
+     /tmp/ccc80EwD.s:527    .text.USBD_HID_InterfaceStrDescriptor:0000000000000020 $d
+     /tmp/ccc80EwD.s:534    .data.USBD_StringSerial:0000000000000000 $d
+     /tmp/ccc80EwD.s:542    .bss.USBD_StrDesc:0000000000000000 $d
+     /tmp/ccc80EwD.s:549    .data.USBD_LangIDDesc:0000000000000000 $d
+     /tmp/ccc80EwD.s:556    .data.USBD_HID_DeviceDesc:0000000000000000 $d
+     /tmp/ccc80EwD.s:567    .data.HID_Desc:0000000000000000 HID_Desc
+     /tmp/ccc80EwD.s:564    .data.HID_Desc:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 USBD_GetString

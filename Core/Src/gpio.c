@@ -21,7 +21,11 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-
+int blink_requested = 0;
+struct {
+  int num_blinks;
+  int frequency;
+} blink_request;
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -101,6 +105,7 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 2 */
@@ -109,14 +114,28 @@ void write_led(int val) {
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, val ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
+void request_blink(int num_blinks, int frequency) {
+  blink_request.num_blinks = num_blinks;
+  blink_request.frequency = frequency;
+  blink_requested = 1;
+}
+
+void handle_blink_requests() {
+  if (!blink_requested)
+    return;
+
+  blink_led(blink_request.num_blinks, blink_request.frequency);
+  blink_requested = 0;
+}
+
 void blink_led(int num_blinks, int frequency) {
   // period in seconds / 1000 = period in ms, / 2 because 50% duty cycle
   int delay_ms = (1.0 / frequency) * 1000 / 2;
 
   while (num_blinks--) {
-    write_led(1);
-    HAL_Delay(delay_ms);
     write_led(0);
+    HAL_Delay(delay_ms);
+    write_led(1);
     HAL_Delay(delay_ms);
   }
 }

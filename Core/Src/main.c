@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "nunchuk.h"
+#include "usbd_hid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,6 +55,19 @@ typedef enum _DeviceState {
 
 DeviceState dev_state;
 nunchuk_device_type_t nunchuk_type;
+int inits_failed;
+USBD_HandleTypeDef hUsbDeviceFS; 
+gamepad_report_t hid_report = {
+    .buttons = 0,
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .rx = 0,
+    .ry = 0,
+    .rz = 0,
+};
+
+#define MAX_INIT_FAILS 5
 
 /* USER CODE END PV */
 
@@ -77,6 +91,8 @@ int main(void)
   /* USER CODE BEGIN 1 */
   dev_state = WAITING;
   nunchuk_type = UNKNOWN;
+  inits_failed = 0;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -118,17 +134,26 @@ int main(void)
       break;
       case PRESENCE_DETECTED: {
         // debounce
-        blink_led(1, 100);
-        HAL_Delay(100);
-        blink_led(1, 100);
+        blink_led(1, 50);
+        HAL_Delay(50);
+        blink_led(1, 50);
 
         if (read_pres_pin()) {
           // we still have something connected so try and initialize it
           HAL_StatusTypeDef status = nunchuk_init(&nunchuk_type); // try to initialize the nunchuk
-        
+          
           if (status == HAL_OK) {
             indicate_nunchuk_type(nunchuk_type);
             dev_state = CONNECTED;
+          } else {
+            // if the initialization fails, increment a counter
+            inits_failed++;
+          }
+
+          if (inits_failed > MAX_INIT_FAILS) {
+            hi2c2.Instance->CR1 |= I2C_CR1_SWRST; // reset i2c peripheral 
+            inits_failed = 0;
+            NVIC_SystemReset();
           }
         } else {
           // nothing is connected, it was a fluke or something
@@ -148,7 +173,11 @@ int main(void)
         switch (nunchuk_type) {
           case STANDARD: {
             nunchuk_standard_t report;
-            nunchuk_read_standard(&report);
+            HAL_StatusTypeDef status = nunchuk_read_standard(&report);
+
+            if (status != HAL_OK) {
+              dev_state = WAITING; // force disconnect the nunchuk on failure
+            }
 
             // standard report -> usb hid gamepad report
             // usb hid send report
@@ -156,7 +185,11 @@ int main(void)
           break;
           case CLASSIC: {
             nunchuk_classic_t report;
-            nunchuk_read_classic(&report);
+            HAL_StatusTypeDef status = nunchuk_read_classic(&report);
+
+            if (status != HAL_OK) {
+              dev_state = WAITING; // force disconnect the nunchuk on failure
+            }
 
             // classic report -> usb hid gamepad report
             // usb hid send report
@@ -164,11 +197,22 @@ int main(void)
           break;
           case GUITAR_HERO: {
             nunchuk_guitar_hero_t report;
-            nunchuk_read_guitar_hero(&report);
+            HAL_StatusTypeDef status = nunchuk_read_guitar_hero(&report);
+
+            if (status != HAL_OK) {
+              dev_state = WAITING; // force disconnect the nunchuk on failure
+            }
 
             // guitar hero report -> usb hid gamepad report
+            hid_report.x = (report.sx - 32) << 2;
+            hid_report.y = (report.sy - 32) << 2;
+            hid_report.z = (report.wb - 16) << 3;
+            hid_report.rx = (report.tb - 16) << 3;
+            hid_report.buttons = *(uint16_t *) &report.buttons;
+            
             // usb hid send report
-            int a = 0;
+            USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *) &hid_report, sizeof(hid_report));
+
           }
           break;
           case UNKNOWN:
@@ -182,6 +226,7 @@ int main(void)
     }
 
     HAL_Delay(10);
+    handle_blink_requests();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
