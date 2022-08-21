@@ -25,12 +25,22 @@ HAL_StatusTypeDef nunchuk_reg_write(uint8_t addr, uint8_t data) {
     return HAL_I2C_Master_Transmit(&hi2c2, NUNCHUK_I2C_ADDR, to_send, sizeof(to_send), NUNCHUK_TX_TIMEOUT);
 }
 
-HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet) {
+/**
+ * @brief Reads a 6 byte packet from an address in the nunchuk
+ * 
+ * @param addr Address of packet
+ * @param packet Pointer to packet
+ * @param wait_time_ms Time to wait between sending the address and receiving the packet
+ * @return HAL_StatusTypeDef 
+ */
+HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet, int wait_time_ms) {
     // write register address to nunchuk
     HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) &addr, 1, NUNCHUK_TX_TIMEOUT);
     
     if (ret != HAL_OK)
         return ret;
+
+    HAL_Delay(wait_time_ms);
 
     return HAL_I2C_Master_Receive(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) packet, NUNCHUK_PACKET_LEN, NUNCHUK_RX_TIMEOUT);
 }
@@ -42,12 +52,16 @@ HAL_StatusTypeDef nunchuk_init(nunchuk_device_type_t *type) {
     if (nunchuk_reg_write(0xF0, 0x55) != HAL_OK)
         return HAL_ERROR;
 
+    HAL_Delay(10);
+
     if (nunchuk_reg_write(0xFB, 0x00) != HAL_OK)
         return HAL_ERROR;
 
+    HAL_Delay(10);
+
     nunchuk_packet_t packet;
     // read id packet
-    if (nunchuk_packet_read(0xFA, &packet) != HAL_OK)
+    if (nunchuk_packet_read(0xFA, &packet, 10) != HAL_OK)
         return HAL_ERROR;
 
     // compare raw packet with ID constants to check the ID, return the ID if it matches
@@ -65,7 +79,7 @@ HAL_StatusTypeDef nunchuk_init(nunchuk_device_type_t *type) {
 
 HAL_StatusTypeDef nunchuk_read_standard(nunchuk_standard_t* std) {
     nunchuk_packet_t packet;
-    HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
+    HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
 
     if (ret != HAL_OK)
         return ret;
@@ -76,7 +90,7 @@ HAL_StatusTypeDef nunchuk_read_standard(nunchuk_standard_t* std) {
 
 HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
     nunchuk_packet_t packet;
-    HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
+    HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
 
     if (ret != HAL_OK)
         return ret;
@@ -87,7 +101,7 @@ HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
 
 HAL_StatusTypeDef nunchuk_read_guitar_hero(nunchuk_guitar_hero_t* gh) {
     nunchuk_packet_t packet;
-    HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
+    HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
 
     if (ret != HAL_OK)
         return ret;

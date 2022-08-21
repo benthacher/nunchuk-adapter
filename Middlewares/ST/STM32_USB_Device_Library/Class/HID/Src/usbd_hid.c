@@ -316,6 +316,7 @@ __ALIGN_BEGIN static uint8_t HID_GAMEPAD_ReportDesc[HID_GAMEPAD_REPORT_DESC_SIZE
   0x05, 0x01,  // Usage Page (Generic Desktop Ctrls)
   0x09, 0x05,  // Usage (Game Pad)
   0xA1, 0x01,  // Collection (Application)
+  0x85, REPORT_ID,  //   Report ID (4)
   0x05, 0x09,  //   Usage Page (Button)
   0x19, 0x01,  //   Usage Minimum (Button 1)
   0x29, 0x10,  //   Usage Maximum (Button 16)

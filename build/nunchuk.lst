@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccbuvxt2.s 			page 1
+ARM GAS  /tmp/ccqhUcUe.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccbuvxt2.s 			page 1
   40 0006 02DB     		blt	.L4
   41              	.LVL1:
   42              	.L1:
-ARM GAS  /tmp/ccbuvxt2.s 			page 2
+ARM GAS  /tmp/ccqhUcUe.s 			page 2
 
 
   17:Middlewares/nunchuk/Src/nunchuk.c ****         return min;
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccbuvxt2.s 			page 1
   89 0008 5973     		strb	r1, [r3, #13]
   23:Middlewares/nunchuk/Src/nunchuk.c **** 
   24:Middlewares/nunchuk/Src/nunchuk.c ****     // write register address and data to nunchuk
-ARM GAS  /tmp/ccbuvxt2.s 			page 3
+ARM GAS  /tmp/ccqhUcUe.s 			page 3
 
 
   25:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_I2C_Master_Transmit(&hi2c2, NUNCHUK_I2C_ADDR, to_send, sizeof(to_send), NUNCHUK_TX_T
@@ -160,1259 +160,1313 @@ ARM GAS  /tmp/ccbuvxt2.s 			page 1
  126              	.LVL11:
  127              	.LFB368:
   27:Middlewares/nunchuk/Src/nunchuk.c **** 
-  28:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet) {
- 128              		.loc 1 28 79 is_stmt 1 view -0
+  28:Middlewares/nunchuk/Src/nunchuk.c **** /**
+  29:Middlewares/nunchuk/Src/nunchuk.c ****  * @brief Reads a 6 byte packet from an address in the nunchuk
+  30:Middlewares/nunchuk/Src/nunchuk.c ****  * 
+  31:Middlewares/nunchuk/Src/nunchuk.c ****  * @param addr Address of packet
+  32:Middlewares/nunchuk/Src/nunchuk.c ****  * @param packet Pointer to packet
+  33:Middlewares/nunchuk/Src/nunchuk.c ****  * @param wait_time_ms Time to wait between sending the address and receiving the packet
+  34:Middlewares/nunchuk/Src/nunchuk.c ****  * @return HAL_StatusTypeDef 
+  35:Middlewares/nunchuk/Src/nunchuk.c ****  */
+  36:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet, int wait_time_ms) {
+ 128              		.loc 1 36 97 is_stmt 1 view -0
  129              		.cfi_startproc
  130              		@ args = 0, pretend = 0, frame = 8
  131              		@ frame_needed = 0, uses_anonymous_args = 0
- 132              		.loc 1 28 79 is_stmt 0 view .LVU21
- 133 0000 10B5     		push	{r4, lr}
+ 132              		.loc 1 36 97 is_stmt 0 view .LVU21
+ 133 0000 30B5     		push	{r4, r5, lr}
  134              	.LCFI2:
- 135              		.cfi_def_cfa_offset 8
- 136              		.cfi_offset 4, -8
- 137              		.cfi_offset 14, -4
- 138 0002 84B0     		sub	sp, sp, #16
- 139              	.LCFI3:
- 140              		.cfi_def_cfa_offset 24
- 141 0004 0C00     		movs	r4, r1
- 142 0006 0F22     		movs	r2, #15
- 143 0008 6A44     		add	r2, r2, sp
- 144 000a 1070     		strb	r0, [r2]
-ARM GAS  /tmp/ccbuvxt2.s 			page 4
+ 135              		.cfi_def_cfa_offset 12
+ 136              		.cfi_offset 4, -12
+ARM GAS  /tmp/ccqhUcUe.s 			page 4
 
 
-  29:Middlewares/nunchuk/Src/nunchuk.c ****     // write register address to nunchuk
-  30:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) &addr, 1, 
- 145              		.loc 1 30 5 is_stmt 1 view .LVU22
- 146              		.loc 1 30 29 is_stmt 0 view .LVU23
- 147 000c 0A48     		ldr	r0, .L11
- 148              	.LVL12:
- 149              		.loc 1 30 29 view .LVU24
- 150 000e FA23     		movs	r3, #250
- 151 0010 9B00     		lsls	r3, r3, #2
- 152 0012 0093     		str	r3, [sp]
- 153              	.LVL13:
- 154              		.loc 1 30 29 view .LVU25
- 155 0014 0123     		movs	r3, #1
- 156 0016 A421     		movs	r1, #164
+ 137              		.cfi_offset 5, -8
+ 138              		.cfi_offset 14, -4
+ 139 0002 85B0     		sub	sp, sp, #20
+ 140              	.LCFI3:
+ 141              		.cfi_def_cfa_offset 32
+ 142 0004 0C00     		movs	r4, r1
+ 143 0006 1500     		movs	r5, r2
+ 144 0008 0F22     		movs	r2, #15
+ 145              	.LVL12:
+ 146              		.loc 1 36 97 view .LVU22
+ 147 000a 6A44     		add	r2, r2, sp
+ 148 000c 1070     		strb	r0, [r2]
+  37:Middlewares/nunchuk/Src/nunchuk.c ****     // write register address to nunchuk
+  38:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) &addr, 1, 
+ 149              		.loc 1 38 5 is_stmt 1 view .LVU23
+ 150              		.loc 1 38 29 is_stmt 0 view .LVU24
+ 151 000e 0C48     		ldr	r0, .L11
+ 152              	.LVL13:
+ 153              		.loc 1 38 29 view .LVU25
+ 154 0010 FA23     		movs	r3, #250
+ 155 0012 9B00     		lsls	r3, r3, #2
+ 156 0014 0093     		str	r3, [sp]
  157              	.LVL14:
- 158              		.loc 1 30 29 view .LVU26
- 159 0018 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 160              	.LVL15:
-  31:Middlewares/nunchuk/Src/nunchuk.c ****     
-  32:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
- 161              		.loc 1 32 5 is_stmt 1 view .LVU27
- 162              		.loc 1 32 8 is_stmt 0 view .LVU28
- 163 001c 0028     		cmp	r0, #0
- 164 001e 01D0     		beq	.L10
- 165              	.LVL16:
- 166              	.L9:
-  33:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
-  34:Middlewares/nunchuk/Src/nunchuk.c **** 
-  35:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_I2C_Master_Receive(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) packet, NUNCHUK_PACKET_LEN, 
-  36:Middlewares/nunchuk/Src/nunchuk.c **** }
- 167              		.loc 1 36 1 view .LVU29
- 168 0020 04B0     		add	sp, sp, #16
- 169              		@ sp needed
- 170              	.LVL17:
- 171              		.loc 1 36 1 view .LVU30
- 172 0022 10BD     		pop	{r4, pc}
- 173              	.LVL18:
- 174              	.L10:
-  35:Middlewares/nunchuk/Src/nunchuk.c **** }
- 175              		.loc 1 35 5 is_stmt 1 view .LVU31
-  35:Middlewares/nunchuk/Src/nunchuk.c **** }
- 176              		.loc 1 35 12 is_stmt 0 view .LVU32
- 177 0024 0448     		ldr	r0, .L11
- 178              	.LVL19:
-  35:Middlewares/nunchuk/Src/nunchuk.c **** }
- 179              		.loc 1 35 12 view .LVU33
- 180 0026 FA23     		movs	r3, #250
- 181 0028 9B00     		lsls	r3, r3, #2
- 182 002a 0093     		str	r3, [sp]
- 183 002c 0623     		movs	r3, #6
- 184 002e 2200     		movs	r2, r4
- 185 0030 A421     		movs	r1, #164
- 186 0032 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 187              	.LVL20:
- 188 0036 F3E7     		b	.L9
- 189              	.L12:
- 190              		.align	2
-ARM GAS  /tmp/ccbuvxt2.s 			page 5
-
-
- 191              	.L11:
- 192 0038 00000000 		.word	hi2c2
- 193              		.cfi_endproc
- 194              	.LFE368:
- 196              		.section	.text.nunchuk_init,"ax",%progbits
- 197              		.align	1
- 198              		.global	nunchuk_init
- 199              		.syntax unified
- 200              		.code	16
- 201              		.thumb_func
- 203              	nunchuk_init:
- 204              	.LVL21:
- 205              	.LFB369:
-  37:Middlewares/nunchuk/Src/nunchuk.c **** 
-  38:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_init(nunchuk_device_type_t *type) {
- 206              		.loc 1 38 61 is_stmt 1 view -0
- 207              		.cfi_startproc
- 208              		@ args = 0, pretend = 0, frame = 8
- 209              		@ frame_needed = 0, uses_anonymous_args = 0
- 210              		.loc 1 38 61 is_stmt 0 view .LVU35
- 211 0000 30B5     		push	{r4, r5, lr}
- 212              	.LCFI4:
- 213              		.cfi_def_cfa_offset 12
- 214              		.cfi_offset 4, -12
- 215              		.cfi_offset 5, -8
- 216              		.cfi_offset 14, -4
- 217 0002 83B0     		sub	sp, sp, #12
- 218              	.LCFI5:
- 219              		.cfi_def_cfa_offset 24
- 220 0004 0400     		movs	r4, r0
-  39:Middlewares/nunchuk/Src/nunchuk.c ****     *type = UNKNOWN;
- 221              		.loc 1 39 5 is_stmt 1 view .LVU36
- 222              		.loc 1 39 11 is_stmt 0 view .LVU37
- 223 0006 0023     		movs	r3, #0
- 224 0008 0370     		strb	r3, [r0]
-  40:Middlewares/nunchuk/Src/nunchuk.c **** 
-  41:Middlewares/nunchuk/Src/nunchuk.c ****     // de-encrypt device
-  42:Middlewares/nunchuk/Src/nunchuk.c ****     if (nunchuk_reg_write(0xF0, 0x55) != HAL_OK)
- 225              		.loc 1 42 5 is_stmt 1 view .LVU38
- 226              		.loc 1 42 9 is_stmt 0 view .LVU39
- 227 000a 5521     		movs	r1, #85
- 228 000c F020     		movs	r0, #240
- 229              	.LVL22:
- 230              		.loc 1 42 9 view .LVU40
- 231 000e FFF7FEFF 		bl	nunchuk_reg_write
- 232              	.LVL23:
- 233              		.loc 1 42 8 view .LVU41
- 234 0012 0028     		cmp	r0, #0
- 235 0014 03D0     		beq	.L20
-  43:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
- 236              		.loc 1 43 16 view .LVU42
- 237 0016 0125     		movs	r5, #1
- 238              	.L14:
+ 158              		.loc 1 38 29 view .LVU26
+ 159 0016 0123     		movs	r3, #1
+ 160 0018 A421     		movs	r1, #164
+ 161              	.LVL15:
+ 162              		.loc 1 38 29 view .LVU27
+ 163 001a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 164              	.LVL16:
+  39:Middlewares/nunchuk/Src/nunchuk.c ****     
+  40:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
+ 165              		.loc 1 40 5 is_stmt 1 view .LVU28
+ 166              		.loc 1 40 8 is_stmt 0 view .LVU29
+ 167 001e 0028     		cmp	r0, #0
+ 168 0020 01D0     		beq	.L10
+ 169              	.LVL17:
+ 170              	.L9:
+  41:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+  42:Middlewares/nunchuk/Src/nunchuk.c **** 
+  43:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_Delay(wait_time_ms);
   44:Middlewares/nunchuk/Src/nunchuk.c **** 
-  45:Middlewares/nunchuk/Src/nunchuk.c ****     if (nunchuk_reg_write(0xFB, 0x00) != HAL_OK)
-  46:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+  45:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_I2C_Master_Receive(&hi2c2, NUNCHUK_I2C_ADDR, (uint8_t*) packet, NUNCHUK_PACKET_LEN, 
+  46:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 171              		.loc 1 46 1 view .LVU30
+ 172 0022 05B0     		add	sp, sp, #20
+ 173              		@ sp needed
+ 174              	.LVL18:
+ 175              	.LVL19:
+ 176              		.loc 1 46 1 view .LVU31
+ 177 0024 30BD     		pop	{r4, r5, pc}
+ 178              	.LVL20:
+ 179              	.L10:
+  43:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 180              		.loc 1 43 5 is_stmt 1 view .LVU32
+ 181 0026 2800     		movs	r0, r5
+ 182              	.LVL21:
+ARM GAS  /tmp/ccqhUcUe.s 			page 5
+
+
+  43:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 183              		.loc 1 43 5 is_stmt 0 view .LVU33
+ 184 0028 FFF7FEFF 		bl	HAL_Delay
+ 185              	.LVL22:
+  45:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 186              		.loc 1 45 5 is_stmt 1 view .LVU34
+  45:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 187              		.loc 1 45 12 is_stmt 0 view .LVU35
+ 188 002c 0448     		ldr	r0, .L11
+ 189 002e FA23     		movs	r3, #250
+ 190 0030 9B00     		lsls	r3, r3, #2
+ 191 0032 0093     		str	r3, [sp]
+ 192 0034 0623     		movs	r3, #6
+ 193 0036 2200     		movs	r2, r4
+ 194 0038 A421     		movs	r1, #164
+ 195 003a FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 196              	.LVL23:
+ 197 003e F0E7     		b	.L9
+ 198              	.L12:
+ 199              		.align	2
+ 200              	.L11:
+ 201 0040 00000000 		.word	hi2c2
+ 202              		.cfi_endproc
+ 203              	.LFE368:
+ 205              		.section	.text.nunchuk_init,"ax",%progbits
+ 206              		.align	1
+ 207              		.global	nunchuk_init
+ 208              		.syntax unified
+ 209              		.code	16
+ 210              		.thumb_func
+ 212              	nunchuk_init:
+ 213              	.LVL24:
+ 214              	.LFB369:
   47:Middlewares/nunchuk/Src/nunchuk.c **** 
-ARM GAS  /tmp/ccbuvxt2.s 			page 6
+  48:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_init(nunchuk_device_type_t *type) {
+ 215              		.loc 1 48 61 is_stmt 1 view -0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 8
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219              		.loc 1 48 61 is_stmt 0 view .LVU37
+ 220 0000 30B5     		push	{r4, r5, lr}
+ 221              	.LCFI4:
+ 222              		.cfi_def_cfa_offset 12
+ 223              		.cfi_offset 4, -12
+ 224              		.cfi_offset 5, -8
+ 225              		.cfi_offset 14, -4
+ 226 0002 83B0     		sub	sp, sp, #12
+ 227              	.LCFI5:
+ 228              		.cfi_def_cfa_offset 24
+ 229 0004 0400     		movs	r4, r0
+  49:Middlewares/nunchuk/Src/nunchuk.c ****     *type = UNKNOWN;
+ 230              		.loc 1 49 5 is_stmt 1 view .LVU38
+ 231              		.loc 1 49 11 is_stmt 0 view .LVU39
+ 232 0006 0023     		movs	r3, #0
+ 233 0008 0370     		strb	r3, [r0]
+  50:Middlewares/nunchuk/Src/nunchuk.c **** 
+  51:Middlewares/nunchuk/Src/nunchuk.c ****     // de-encrypt device
+ARM GAS  /tmp/ccqhUcUe.s 			page 6
 
 
-  48:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
-  49:Middlewares/nunchuk/Src/nunchuk.c ****     // read id packet
-  50:Middlewares/nunchuk/Src/nunchuk.c ****     if (nunchuk_packet_read(0xFA, &packet) != HAL_OK)
-  51:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
-  52:Middlewares/nunchuk/Src/nunchuk.c **** 
-  53:Middlewares/nunchuk/Src/nunchuk.c ****     // compare raw packet with ID constants to check the ID, return the ID if it matches
-  54:Middlewares/nunchuk/Src/nunchuk.c ****     if (memcmp(packet.raw, NUNCHUK_STANDARD_ID, NUNCHUK_PACKET_LEN) == 0) {
-  55:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
-  56:Middlewares/nunchuk/Src/nunchuk.c ****     }
-  57:Middlewares/nunchuk/Src/nunchuk.c ****     if (memcmp(packet.raw, NUNCHUK_CLASSIC_ID, NUNCHUK_PACKET_LEN) == 0) {
-  58:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
-  59:Middlewares/nunchuk/Src/nunchuk.c ****     }
-  60:Middlewares/nunchuk/Src/nunchuk.c ****     if (memcmp(packet.raw, NUNCHUK_GUITAR_HERO_ID, NUNCHUK_PACKET_LEN) == 0) {
-  61:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
-  62:Middlewares/nunchuk/Src/nunchuk.c ****     }
-  63:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK; // even if the type is unknown, it still initialized successfully
-  64:Middlewares/nunchuk/Src/nunchuk.c **** }
- 239              		.loc 1 64 1 view .LVU43
- 240 0018 2800     		movs	r0, r5
- 241 001a 03B0     		add	sp, sp, #12
- 242              		@ sp needed
- 243              	.LVL24:
- 244              		.loc 1 64 1 view .LVU44
- 245 001c 30BD     		pop	{r4, r5, pc}
- 246              	.LVL25:
- 247              	.L20:
-  45:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
- 248              		.loc 1 45 5 is_stmt 1 view .LVU45
-  45:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
- 249              		.loc 1 45 9 is_stmt 0 view .LVU46
- 250 001e 0021     		movs	r1, #0
- 251 0020 FB30     		adds	r0, r0, #251
- 252 0022 FFF7FEFF 		bl	nunchuk_reg_write
- 253              	.LVL26:
-  45:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
- 254              		.loc 1 45 8 view .LVU47
- 255 0026 0028     		cmp	r0, #0
- 256 0028 01D0     		beq	.L21
-  46:Middlewares/nunchuk/Src/nunchuk.c **** 
- 257              		.loc 1 46 16 view .LVU48
- 258 002a 0125     		movs	r5, #1
- 259 002c F4E7     		b	.L14
- 260              	.L21:
-  48:Middlewares/nunchuk/Src/nunchuk.c ****     // read id packet
- 261              		.loc 1 48 5 is_stmt 1 view .LVU49
-  50:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
- 262              		.loc 1 50 5 view .LVU50
-  50:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
- 263              		.loc 1 50 9 is_stmt 0 view .LVU51
- 264 002e 6946     		mov	r1, sp
- 265 0030 FA30     		adds	r0, r0, #250
- 266 0032 FFF7FEFF 		bl	nunchuk_packet_read
- 267              	.LVL27:
- 268 0036 051E     		subs	r5, r0, #0
-  50:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
- 269              		.loc 1 50 8 view .LVU52
- 270 0038 1BD1     		bne	.L19
-ARM GAS  /tmp/ccbuvxt2.s 			page 7
+  52:Middlewares/nunchuk/Src/nunchuk.c ****     if (nunchuk_reg_write(0xF0, 0x55) != HAL_OK)
+ 234              		.loc 1 52 5 is_stmt 1 view .LVU40
+ 235              		.loc 1 52 9 is_stmt 0 view .LVU41
+ 236 000a 5521     		movs	r1, #85
+ 237 000c F020     		movs	r0, #240
+ 238              	.LVL25:
+ 239              		.loc 1 52 9 view .LVU42
+ 240 000e FFF7FEFF 		bl	nunchuk_reg_write
+ 241              	.LVL26:
+ 242              		.loc 1 52 8 view .LVU43
+ 243 0012 0028     		cmp	r0, #0
+ 244 0014 03D0     		beq	.L20
+  53:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+ 245              		.loc 1 53 16 view .LVU44
+ 246 0016 0125     		movs	r5, #1
+ 247              	.L14:
+  54:Middlewares/nunchuk/Src/nunchuk.c **** 
+  55:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_Delay(10);
+  56:Middlewares/nunchuk/Src/nunchuk.c **** 
+  57:Middlewares/nunchuk/Src/nunchuk.c ****     if (nunchuk_reg_write(0xFB, 0x00) != HAL_OK)
+  58:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+  59:Middlewares/nunchuk/Src/nunchuk.c **** 
+  60:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_Delay(10);
+  61:Middlewares/nunchuk/Src/nunchuk.c **** 
+  62:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+  63:Middlewares/nunchuk/Src/nunchuk.c ****     // read id packet
+  64:Middlewares/nunchuk/Src/nunchuk.c ****     if (nunchuk_packet_read(0xFA, &packet, 10) != HAL_OK)
+  65:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+  66:Middlewares/nunchuk/Src/nunchuk.c **** 
+  67:Middlewares/nunchuk/Src/nunchuk.c ****     // compare raw packet with ID constants to check the ID, return the ID if it matches
+  68:Middlewares/nunchuk/Src/nunchuk.c ****     if (memcmp(packet.raw, NUNCHUK_STANDARD_ID, NUNCHUK_PACKET_LEN) == 0) {
+  69:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
+  70:Middlewares/nunchuk/Src/nunchuk.c ****     }
+  71:Middlewares/nunchuk/Src/nunchuk.c ****     if (memcmp(packet.raw, NUNCHUK_CLASSIC_ID, NUNCHUK_PACKET_LEN) == 0) {
+  72:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
+  73:Middlewares/nunchuk/Src/nunchuk.c ****     }
+  74:Middlewares/nunchuk/Src/nunchuk.c ****     if (memcmp(packet.raw, NUNCHUK_GUITAR_HERO_ID, NUNCHUK_PACKET_LEN) == 0) {
+  75:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
+  76:Middlewares/nunchuk/Src/nunchuk.c ****     }
+  77:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK; // even if the type is unknown, it still initialized successfully
+  78:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 248              		.loc 1 78 1 view .LVU45
+ 249 0018 2800     		movs	r0, r5
+ 250 001a 03B0     		add	sp, sp, #12
+ 251              		@ sp needed
+ 252              	.LVL27:
+ 253              		.loc 1 78 1 view .LVU46
+ 254 001c 30BD     		pop	{r4, r5, pc}
+ 255              	.LVL28:
+ 256              	.L20:
+  55:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 257              		.loc 1 55 5 is_stmt 1 view .LVU47
+ 258 001e 0A30     		adds	r0, r0, #10
+ 259 0020 FFF7FEFF 		bl	HAL_Delay
+ 260              	.LVL29:
+  57:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+ 261              		.loc 1 57 5 view .LVU48
+ARM GAS  /tmp/ccqhUcUe.s 			page 7
 
 
-  54:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
- 271              		.loc 1 54 5 is_stmt 1 view .LVU53
-  54:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
- 272              		.loc 1 54 9 is_stmt 0 view .LVU54
- 273 003a 0F49     		ldr	r1, .L22
- 274 003c 0622     		movs	r2, #6
- 275 003e 6846     		mov	r0, sp
- 276 0040 FFF7FEFF 		bl	memcmp
- 277              	.LVL28:
-  54:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
- 278              		.loc 1 54 8 view .LVU55
- 279 0044 0028     		cmp	r0, #0
- 280 0046 01D1     		bne	.L15
-  55:Middlewares/nunchuk/Src/nunchuk.c ****     }
- 281              		.loc 1 55 9 is_stmt 1 view .LVU56
-  55:Middlewares/nunchuk/Src/nunchuk.c ****     }
- 282              		.loc 1 55 15 is_stmt 0 view .LVU57
- 283 0048 0123     		movs	r3, #1
- 284 004a 2370     		strb	r3, [r4]
- 285              	.L15:
-  57:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
- 286              		.loc 1 57 5 is_stmt 1 view .LVU58
-  57:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
- 287              		.loc 1 57 9 is_stmt 0 view .LVU59
- 288 004c 0B49     		ldr	r1, .L22+4
- 289 004e 0622     		movs	r2, #6
- 290 0050 6846     		mov	r0, sp
- 291 0052 FFF7FEFF 		bl	memcmp
- 292              	.LVL29:
-  57:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
- 293              		.loc 1 57 8 view .LVU60
- 294 0056 0028     		cmp	r0, #0
- 295 0058 01D1     		bne	.L16
-  58:Middlewares/nunchuk/Src/nunchuk.c ****     }
- 296              		.loc 1 58 9 is_stmt 1 view .LVU61
-  58:Middlewares/nunchuk/Src/nunchuk.c ****     }
- 297              		.loc 1 58 15 is_stmt 0 view .LVU62
- 298 005a 0323     		movs	r3, #3
- 299 005c 2370     		strb	r3, [r4]
- 300              	.L16:
-  60:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
- 301              		.loc 1 60 5 is_stmt 1 view .LVU63
-  60:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
- 302              		.loc 1 60 9 is_stmt 0 view .LVU64
- 303 005e 0849     		ldr	r1, .L22+8
- 304 0060 0622     		movs	r2, #6
- 305 0062 6846     		mov	r0, sp
- 306 0064 FFF7FEFF 		bl	memcmp
- 307              	.LVL30:
-  60:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
- 308              		.loc 1 60 8 view .LVU65
- 309 0068 0028     		cmp	r0, #0
- 310 006a D5D1     		bne	.L14
-  61:Middlewares/nunchuk/Src/nunchuk.c ****     }
- 311              		.loc 1 61 9 is_stmt 1 view .LVU66
-  61:Middlewares/nunchuk/Src/nunchuk.c ****     }
- 312              		.loc 1 61 15 is_stmt 0 view .LVU67
-ARM GAS  /tmp/ccbuvxt2.s 			page 8
+  57:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+ 262              		.loc 1 57 9 is_stmt 0 view .LVU49
+ 263 0024 0021     		movs	r1, #0
+ 264 0026 FB20     		movs	r0, #251
+ 265 0028 FFF7FEFF 		bl	nunchuk_reg_write
+ 266              	.LVL30:
+  57:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+ 267              		.loc 1 57 8 view .LVU50
+ 268 002c 0028     		cmp	r0, #0
+ 269 002e 01D0     		beq	.L21
+  58:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 270              		.loc 1 58 16 view .LVU51
+ 271 0030 0125     		movs	r5, #1
+ 272 0032 F1E7     		b	.L14
+ 273              	.L21:
+  60:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 274              		.loc 1 60 5 is_stmt 1 view .LVU52
+ 275 0034 0A30     		adds	r0, r0, #10
+ 276 0036 FFF7FEFF 		bl	HAL_Delay
+ 277              	.LVL31:
+  62:Middlewares/nunchuk/Src/nunchuk.c ****     // read id packet
+ 278              		.loc 1 62 5 view .LVU53
+  64:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+ 279              		.loc 1 64 5 view .LVU54
+  64:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+ 280              		.loc 1 64 9 is_stmt 0 view .LVU55
+ 281 003a 0A22     		movs	r2, #10
+ 282 003c 6946     		mov	r1, sp
+ 283 003e FA20     		movs	r0, #250
+ 284 0040 FFF7FEFF 		bl	nunchuk_packet_read
+ 285              	.LVL32:
+ 286 0044 051E     		subs	r5, r0, #0
+  64:Middlewares/nunchuk/Src/nunchuk.c ****         return HAL_ERROR;
+ 287              		.loc 1 64 8 view .LVU56
+ 288 0046 1BD1     		bne	.L19
+  68:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
+ 289              		.loc 1 68 5 is_stmt 1 view .LVU57
+  68:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
+ 290              		.loc 1 68 9 is_stmt 0 view .LVU58
+ 291 0048 0E49     		ldr	r1, .L22
+ 292 004a 0622     		movs	r2, #6
+ 293 004c 6846     		mov	r0, sp
+ 294 004e FFF7FEFF 		bl	memcmp
+ 295              	.LVL33:
+  68:Middlewares/nunchuk/Src/nunchuk.c ****         *type = STANDARD;
+ 296              		.loc 1 68 8 view .LVU59
+ 297 0052 0028     		cmp	r0, #0
+ 298 0054 01D1     		bne	.L15
+  69:Middlewares/nunchuk/Src/nunchuk.c ****     }
+ 299              		.loc 1 69 9 is_stmt 1 view .LVU60
+  69:Middlewares/nunchuk/Src/nunchuk.c ****     }
+ 300              		.loc 1 69 15 is_stmt 0 view .LVU61
+ 301 0056 0123     		movs	r3, #1
+ 302 0058 2370     		strb	r3, [r4]
+ 303              	.L15:
+  71:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
+ 304              		.loc 1 71 5 is_stmt 1 view .LVU62
+ARM GAS  /tmp/ccqhUcUe.s 			page 8
 
 
- 313 006c 0223     		movs	r3, #2
- 314 006e 2370     		strb	r3, [r4]
- 315 0070 D2E7     		b	.L14
- 316              	.L19:
-  51:Middlewares/nunchuk/Src/nunchuk.c **** 
- 317              		.loc 1 51 16 view .LVU68
- 318 0072 0125     		movs	r5, #1
- 319 0074 D0E7     		b	.L14
- 320              	.L23:
- 321 0076 C046     		.align	2
- 322              	.L22:
- 323 0078 00000000 		.word	NUNCHUK_STANDARD_ID
- 324 007c 00000000 		.word	NUNCHUK_CLASSIC_ID
- 325 0080 00000000 		.word	NUNCHUK_GUITAR_HERO_ID
- 326              		.cfi_endproc
- 327              	.LFE369:
- 329              		.section	.text.nunchuk_fill_standard,"ax",%progbits
- 330              		.align	1
- 331              		.global	nunchuk_fill_standard
- 332              		.syntax unified
- 333              		.code	16
- 334              		.thumb_func
- 336              	nunchuk_fill_standard:
- 337              	.LVL31:
- 338              	.LFB373:
+  71:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
+ 305              		.loc 1 71 9 is_stmt 0 view .LVU63
+ 306 005a 0B49     		ldr	r1, .L22+4
+ 307 005c 0622     		movs	r2, #6
+ 308 005e 6846     		mov	r0, sp
+ 309 0060 FFF7FEFF 		bl	memcmp
+ 310              	.LVL34:
+  71:Middlewares/nunchuk/Src/nunchuk.c ****         *type = CLASSIC;
+ 311              		.loc 1 71 8 view .LVU64
+ 312 0064 0028     		cmp	r0, #0
+ 313 0066 01D1     		bne	.L16
+  72:Middlewares/nunchuk/Src/nunchuk.c ****     }
+ 314              		.loc 1 72 9 is_stmt 1 view .LVU65
+  72:Middlewares/nunchuk/Src/nunchuk.c ****     }
+ 315              		.loc 1 72 15 is_stmt 0 view .LVU66
+ 316 0068 0323     		movs	r3, #3
+ 317 006a 2370     		strb	r3, [r4]
+ 318              	.L16:
+  74:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
+ 319              		.loc 1 74 5 is_stmt 1 view .LVU67
+  74:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
+ 320              		.loc 1 74 9 is_stmt 0 view .LVU68
+ 321 006c 0749     		ldr	r1, .L22+8
+ 322 006e 0622     		movs	r2, #6
+ 323 0070 6846     		mov	r0, sp
+ 324 0072 FFF7FEFF 		bl	memcmp
+ 325              	.LVL35:
+  74:Middlewares/nunchuk/Src/nunchuk.c ****         *type = GUITAR_HERO;
+ 326              		.loc 1 74 8 view .LVU69
+ 327 0076 0028     		cmp	r0, #0
+ 328 0078 CED1     		bne	.L14
+  75:Middlewares/nunchuk/Src/nunchuk.c ****     }
+ 329              		.loc 1 75 9 is_stmt 1 view .LVU70
+  75:Middlewares/nunchuk/Src/nunchuk.c ****     }
+ 330              		.loc 1 75 15 is_stmt 0 view .LVU71
+ 331 007a 0223     		movs	r3, #2
+ 332 007c 2370     		strb	r3, [r4]
+ 333 007e CBE7     		b	.L14
+ 334              	.L19:
   65:Middlewares/nunchuk/Src/nunchuk.c **** 
-  66:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_standard(nunchuk_standard_t* std) {
-  67:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
-  68:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
-  69:Middlewares/nunchuk/Src/nunchuk.c **** 
-  70:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
-  71:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
-  72:Middlewares/nunchuk/Src/nunchuk.c ****     
-  73:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_standard(&packet, std);
-  74:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
-  75:Middlewares/nunchuk/Src/nunchuk.c **** }
-  76:Middlewares/nunchuk/Src/nunchuk.c **** 
-  77:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
-  78:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
-  79:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
-  80:Middlewares/nunchuk/Src/nunchuk.c **** 
-  81:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
-  82:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
-  83:Middlewares/nunchuk/Src/nunchuk.c ****     
-  84:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_classic(&packet, cc);
-  85:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
-  86:Middlewares/nunchuk/Src/nunchuk.c **** }
-  87:Middlewares/nunchuk/Src/nunchuk.c **** 
-  88:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_guitar_hero(nunchuk_guitar_hero_t* gh) {
-  89:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
-  90:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
-  91:Middlewares/nunchuk/Src/nunchuk.c **** 
-  92:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
-  93:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
-  94:Middlewares/nunchuk/Src/nunchuk.c ****     
-  95:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_guitar_hero(&packet, gh);
-  96:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
-ARM GAS  /tmp/ccbuvxt2.s 			page 9
+ 335              		.loc 1 65 16 view .LVU72
+ 336 0080 0125     		movs	r5, #1
+ 337 0082 C9E7     		b	.L14
+ 338              	.L23:
+ 339              		.align	2
+ 340              	.L22:
+ 341 0084 00000000 		.word	NUNCHUK_STANDARD_ID
+ 342 0088 00000000 		.word	NUNCHUK_CLASSIC_ID
+ 343 008c 00000000 		.word	NUNCHUK_GUITAR_HERO_ID
+ 344              		.cfi_endproc
+ 345              	.LFE369:
+ 347              		.section	.text.nunchuk_fill_standard,"ax",%progbits
+ 348              		.align	1
+ 349              		.global	nunchuk_fill_standard
+ 350              		.syntax unified
+ 351              		.code	16
+ 352              		.thumb_func
+ARM GAS  /tmp/ccqhUcUe.s 			page 9
 
 
-  97:Middlewares/nunchuk/Src/nunchuk.c **** }
-  98:Middlewares/nunchuk/Src/nunchuk.c **** 
-  99:Middlewares/nunchuk/Src/nunchuk.c **** void nunchuk_fill_standard(nunchuk_packet_t* packet, nunchuk_standard_t* std) {
- 339              		.loc 1 99 79 is_stmt 1 view -0
- 340              		.cfi_startproc
- 341              		@ args = 0, pretend = 0, frame = 0
- 342              		@ frame_needed = 0, uses_anonymous_args = 0
- 343              		.loc 1 99 79 is_stmt 0 view .LVU70
- 344 0000 10B5     		push	{r4, lr}
- 345              	.LCFI6:
- 346              		.cfi_def_cfa_offset 8
- 347              		.cfi_offset 4, -8
- 348              		.cfi_offset 14, -4
- 100:Middlewares/nunchuk/Src/nunchuk.c ****     std->ax = (packet->standard_controller.ax_9_2 << 2) |
- 349              		.loc 1 100 5 is_stmt 1 view .LVU71
- 350              		.loc 1 100 43 is_stmt 0 view .LVU72
- 351 0002 8278     		ldrb	r2, [r0, #2]
- 352              		.loc 1 100 51 view .LVU73
- 353 0004 9200     		lsls	r2, r2, #2
- 101:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->standard_controller.ax_1_0);
- 354              		.loc 1 101 43 view .LVU74
- 355 0006 8379     		ldrb	r3, [r0, #6]
- 356 0008 9B07     		lsls	r3, r3, #30
- 357 000a 9B0F     		lsrs	r3, r3, #30
- 100:Middlewares/nunchuk/Src/nunchuk.c ****     std->ax = (packet->standard_controller.ax_9_2 << 2) |
- 358              		.loc 1 100 57 view .LVU75
- 359 000c 1343     		orrs	r3, r2
- 100:Middlewares/nunchuk/Src/nunchuk.c ****     std->ax = (packet->standard_controller.ax_9_2 << 2) |
- 360              		.loc 1 100 13 view .LVU76
- 361 000e 4B80     		strh	r3, [r1, #2]
- 102:Middlewares/nunchuk/Src/nunchuk.c ****     std->ay = (packet->standard_controller.ay_9_2 << 2) |
- 362              		.loc 1 102 5 is_stmt 1 view .LVU77
- 363              		.loc 1 102 43 is_stmt 0 view .LVU78
- 364 0010 C278     		ldrb	r2, [r0, #3]
- 365              		.loc 1 102 51 view .LVU79
- 366 0012 9200     		lsls	r2, r2, #2
- 103:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->standard_controller.ay_1_0);
- 367              		.loc 1 103 43 view .LVU80
- 368 0014 8379     		ldrb	r3, [r0, #6]
- 369 0016 1B07     		lsls	r3, r3, #28
- 370 0018 9B0F     		lsrs	r3, r3, #30
- 102:Middlewares/nunchuk/Src/nunchuk.c ****     std->ay = (packet->standard_controller.ay_9_2 << 2) |
- 371              		.loc 1 102 57 view .LVU81
- 372 001a 1343     		orrs	r3, r2
- 102:Middlewares/nunchuk/Src/nunchuk.c ****     std->ay = (packet->standard_controller.ay_9_2 << 2) |
- 373              		.loc 1 102 13 view .LVU82
- 374 001c 8B80     		strh	r3, [r1, #4]
- 104:Middlewares/nunchuk/Src/nunchuk.c ****     std->az = (packet->standard_controller.az_9_2 << 2) |
- 375              		.loc 1 104 5 is_stmt 1 view .LVU83
- 376              		.loc 1 104 43 is_stmt 0 view .LVU84
- 377 001e 0279     		ldrb	r2, [r0, #4]
- 378              		.loc 1 104 51 view .LVU85
- 379 0020 9200     		lsls	r2, r2, #2
- 105:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->standard_controller.az_1_0);
- 380              		.loc 1 105 43 view .LVU86
- 381 0022 8379     		ldrb	r3, [r0, #6]
- 382 0024 9B06     		lsls	r3, r3, #26
-ARM GAS  /tmp/ccbuvxt2.s 			page 10
+ 354              	nunchuk_fill_standard:
+ 355              	.LVL36:
+ 356              	.LFB373:
+  79:Middlewares/nunchuk/Src/nunchuk.c **** 
+  80:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_standard(nunchuk_standard_t* std) {
+  81:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+  82:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+  83:Middlewares/nunchuk/Src/nunchuk.c **** 
+  84:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
+  85:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+  86:Middlewares/nunchuk/Src/nunchuk.c ****     
+  87:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_standard(&packet, std);
+  88:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+  89:Middlewares/nunchuk/Src/nunchuk.c **** }
+  90:Middlewares/nunchuk/Src/nunchuk.c **** 
+  91:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
+  92:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+  93:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+  94:Middlewares/nunchuk/Src/nunchuk.c **** 
+  95:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
+  96:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+  97:Middlewares/nunchuk/Src/nunchuk.c ****     
+  98:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_classic(&packet, cc);
+  99:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 100:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 101:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 102:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_guitar_hero(nunchuk_guitar_hero_t* gh) {
+ 103:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+ 104:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+ 105:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 106:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
+ 107:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+ 108:Middlewares/nunchuk/Src/nunchuk.c ****     
+ 109:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_guitar_hero(&packet, gh);
+ 110:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 111:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 112:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 113:Middlewares/nunchuk/Src/nunchuk.c **** void nunchuk_fill_standard(nunchuk_packet_t* packet, nunchuk_standard_t* std) {
+ 357              		.loc 1 113 79 is_stmt 1 view -0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 361              		.loc 1 113 79 is_stmt 0 view .LVU74
+ 362 0000 70B5     		push	{r4, r5, r6, lr}
+ 363              	.LCFI6:
+ 364              		.cfi_def_cfa_offset 16
+ 365              		.cfi_offset 4, -16
+ 366              		.cfi_offset 5, -12
+ 367              		.cfi_offset 6, -8
+ 368              		.cfi_offset 14, -4
+ 114:Middlewares/nunchuk/Src/nunchuk.c ****     std->ax = (packet->standard_controller.ax_9_2 << 2) |
+ 369              		.loc 1 114 5 is_stmt 1 view .LVU75
+ 370              		.loc 1 114 43 is_stmt 0 view .LVU76
+ 371 0002 8278     		ldrb	r2, [r0, #2]
+ 372              		.loc 1 114 51 view .LVU77
+ 373 0004 9200     		lsls	r2, r2, #2
+ 115:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->standard_controller.ax_1_0);
+ARM GAS  /tmp/ccqhUcUe.s 			page 10
 
 
- 383 0026 9B0F     		lsrs	r3, r3, #30
- 104:Middlewares/nunchuk/Src/nunchuk.c ****     std->az = (packet->standard_controller.az_9_2 << 2) |
- 384              		.loc 1 104 57 view .LVU87
- 385 0028 1343     		orrs	r3, r2
- 104:Middlewares/nunchuk/Src/nunchuk.c ****     std->az = (packet->standard_controller.az_9_2 << 2) |
- 386              		.loc 1 104 13 view .LVU88
- 387 002a CB80     		strh	r3, [r1, #6]
- 106:Middlewares/nunchuk/Src/nunchuk.c ****     
- 107:Middlewares/nunchuk/Src/nunchuk.c ****     std->sx = packet->standard_controller.sx;
- 388              		.loc 1 107 5 is_stmt 1 view .LVU89
- 389              		.loc 1 107 42 is_stmt 0 view .LVU90
- 390 002c 0023     		movs	r3, #0
- 391 002e C356     		ldrsb	r3, [r0, r3]
- 392              		.loc 1 107 13 view .LVU91
- 393 0030 0B70     		strb	r3, [r1]
- 108:Middlewares/nunchuk/Src/nunchuk.c ****     std->sy = packet->standard_controller.sy;
- 394              		.loc 1 108 5 is_stmt 1 view .LVU92
- 395              		.loc 1 108 42 is_stmt 0 view .LVU93
- 396 0032 0123     		movs	r3, #1
- 397 0034 C356     		ldrsb	r3, [r0, r3]
- 398              		.loc 1 108 13 view .LVU94
- 399 0036 4B70     		strb	r3, [r1, #1]
- 109:Middlewares/nunchuk/Src/nunchuk.c **** 
- 110:Middlewares/nunchuk/Src/nunchuk.c ****     std->buttons.c = !packet->standard_controller.buttons.c;
- 400              		.loc 1 110 5 is_stmt 1 view .LVU95
- 401              		.loc 1 110 22 is_stmt 0 view .LVU96
- 402 0038 4379     		ldrb	r3, [r0, #5]
- 403 003a 5B08     		lsrs	r3, r3, #1
- 404 003c 0124     		movs	r4, #1
- 405 003e 6340     		eors	r3, r4
- 406 0040 0122     		movs	r2, #1
- 407 0042 1340     		ands	r3, r2
- 408              		.loc 1 110 20 view .LVU97
- 409 0044 4B72     		strb	r3, [r1, #9]
- 111:Middlewares/nunchuk/Src/nunchuk.c ****     std->buttons.z = !packet->standard_controller.buttons.z;
- 410              		.loc 1 111 5 is_stmt 1 view .LVU98
- 411              		.loc 1 111 22 is_stmt 0 view .LVU99
- 412 0046 4379     		ldrb	r3, [r0, #5]
- 413 0048 6340     		eors	r3, r4
- 414 004a 1A40     		ands	r2, r3
- 415              		.loc 1 111 20 view .LVU100
- 416 004c 0A72     		strb	r2, [r1, #8]
- 112:Middlewares/nunchuk/Src/nunchuk.c **** }
- 417              		.loc 1 112 1 view .LVU101
- 418              		@ sp needed
- 419 004e 10BD     		pop	{r4, pc}
- 420              		.cfi_endproc
- 421              	.LFE373:
- 423              		.section	.text.nunchuk_read_standard,"ax",%progbits
- 424              		.align	1
- 425              		.global	nunchuk_read_standard
- 426              		.syntax unified
- 427              		.code	16
- 428              		.thumb_func
- 430              	nunchuk_read_standard:
- 431              	.LVL32:
- 432              	.LFB370:
-ARM GAS  /tmp/ccbuvxt2.s 			page 11
+ 374              		.loc 1 115 43 view .LVU78
+ 375 0006 8379     		ldrb	r3, [r0, #6]
+ 376 0008 9B07     		lsls	r3, r3, #30
+ 377 000a 9B0F     		lsrs	r3, r3, #30
+ 114:Middlewares/nunchuk/Src/nunchuk.c ****     std->ax = (packet->standard_controller.ax_9_2 << 2) |
+ 378              		.loc 1 114 57 view .LVU79
+ 379 000c 1343     		orrs	r3, r2
+ 114:Middlewares/nunchuk/Src/nunchuk.c ****     std->ax = (packet->standard_controller.ax_9_2 << 2) |
+ 380              		.loc 1 114 13 view .LVU80
+ 381 000e 4B80     		strh	r3, [r1, #2]
+ 116:Middlewares/nunchuk/Src/nunchuk.c ****     std->ay = (packet->standard_controller.ay_9_2 << 2) |
+ 382              		.loc 1 116 5 is_stmt 1 view .LVU81
+ 383              		.loc 1 116 43 is_stmt 0 view .LVU82
+ 384 0010 C278     		ldrb	r2, [r0, #3]
+ 385              		.loc 1 116 51 view .LVU83
+ 386 0012 9200     		lsls	r2, r2, #2
+ 117:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->standard_controller.ay_1_0);
+ 387              		.loc 1 117 43 view .LVU84
+ 388 0014 8379     		ldrb	r3, [r0, #6]
+ 389 0016 1B07     		lsls	r3, r3, #28
+ 390 0018 9B0F     		lsrs	r3, r3, #30
+ 116:Middlewares/nunchuk/Src/nunchuk.c ****     std->ay = (packet->standard_controller.ay_9_2 << 2) |
+ 391              		.loc 1 116 57 view .LVU85
+ 392 001a 1343     		orrs	r3, r2
+ 116:Middlewares/nunchuk/Src/nunchuk.c ****     std->ay = (packet->standard_controller.ay_9_2 << 2) |
+ 393              		.loc 1 116 13 view .LVU86
+ 394 001c 8B80     		strh	r3, [r1, #4]
+ 118:Middlewares/nunchuk/Src/nunchuk.c ****     std->az = (packet->standard_controller.az_9_2 << 2) |
+ 395              		.loc 1 118 5 is_stmt 1 view .LVU87
+ 396              		.loc 1 118 43 is_stmt 0 view .LVU88
+ 397 001e 0279     		ldrb	r2, [r0, #4]
+ 398              		.loc 1 118 51 view .LVU89
+ 399 0020 9200     		lsls	r2, r2, #2
+ 119:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->standard_controller.az_1_0);
+ 400              		.loc 1 119 43 view .LVU90
+ 401 0022 8379     		ldrb	r3, [r0, #6]
+ 402 0024 9B06     		lsls	r3, r3, #26
+ 403 0026 9B0F     		lsrs	r3, r3, #30
+ 118:Middlewares/nunchuk/Src/nunchuk.c ****     std->az = (packet->standard_controller.az_9_2 << 2) |
+ 404              		.loc 1 118 57 view .LVU91
+ 405 0028 1343     		orrs	r3, r2
+ 118:Middlewares/nunchuk/Src/nunchuk.c ****     std->az = (packet->standard_controller.az_9_2 << 2) |
+ 406              		.loc 1 118 13 view .LVU92
+ 407 002a CB80     		strh	r3, [r1, #6]
+ 120:Middlewares/nunchuk/Src/nunchuk.c ****     
+ 121:Middlewares/nunchuk/Src/nunchuk.c ****     std->sx = packet->standard_controller.sx;
+ 408              		.loc 1 121 5 is_stmt 1 view .LVU93
+ 409              		.loc 1 121 42 is_stmt 0 view .LVU94
+ 410 002c 0023     		movs	r3, #0
+ 411 002e C356     		ldrsb	r3, [r0, r3]
+ 412              		.loc 1 121 13 view .LVU95
+ 413 0030 0B70     		strb	r3, [r1]
+ 122:Middlewares/nunchuk/Src/nunchuk.c ****     std->sy = packet->standard_controller.sy;
+ 414              		.loc 1 122 5 is_stmt 1 view .LVU96
+ 415              		.loc 1 122 42 is_stmt 0 view .LVU97
+ 416 0032 0123     		movs	r3, #1
+ 417 0034 C356     		ldrsb	r3, [r0, r3]
+ARM GAS  /tmp/ccqhUcUe.s 			page 11
 
 
-  66:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
- 433              		.loc 1 66 66 is_stmt 1 view -0
- 434              		.cfi_startproc
- 435              		@ args = 0, pretend = 0, frame = 8
- 436              		@ frame_needed = 0, uses_anonymous_args = 0
-  66:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
- 437              		.loc 1 66 66 is_stmt 0 view .LVU103
- 438 0000 30B5     		push	{r4, r5, lr}
- 439              	.LCFI7:
- 440              		.cfi_def_cfa_offset 12
- 441              		.cfi_offset 4, -12
- 442              		.cfi_offset 5, -8
- 443              		.cfi_offset 14, -4
- 444 0002 83B0     		sub	sp, sp, #12
- 445              	.LCFI8:
- 446              		.cfi_def_cfa_offset 24
- 447 0004 0500     		movs	r5, r0
-  67:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
- 448              		.loc 1 67 5 is_stmt 1 view .LVU104
-  68:Middlewares/nunchuk/Src/nunchuk.c **** 
- 449              		.loc 1 68 5 view .LVU105
-  68:Middlewares/nunchuk/Src/nunchuk.c **** 
- 450              		.loc 1 68 29 is_stmt 0 view .LVU106
- 451 0006 6946     		mov	r1, sp
- 452 0008 0020     		movs	r0, #0
- 453              	.LVL33:
-  68:Middlewares/nunchuk/Src/nunchuk.c **** 
- 454              		.loc 1 68 29 view .LVU107
- 455 000a FFF7FEFF 		bl	nunchuk_packet_read
- 456              	.LVL34:
- 457 000e 041E     		subs	r4, r0, #0
- 458              	.LVL35:
-  70:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
- 459              		.loc 1 70 5 is_stmt 1 view .LVU108
-  70:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
- 460              		.loc 1 70 8 is_stmt 0 view .LVU109
- 461 0010 02D0     		beq	.L27
- 462              	.LVL36:
- 463              	.L26:
-  75:Middlewares/nunchuk/Src/nunchuk.c **** 
- 464              		.loc 1 75 1 view .LVU110
- 465 0012 2000     		movs	r0, r4
- 466 0014 03B0     		add	sp, sp, #12
- 467              		@ sp needed
- 468              	.LVL37:
-  75:Middlewares/nunchuk/Src/nunchuk.c **** 
- 469              		.loc 1 75 1 view .LVU111
- 470 0016 30BD     		pop	{r4, r5, pc}
- 471              	.LVL38:
- 472              	.L27:
-  73:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
- 473              		.loc 1 73 5 is_stmt 1 view .LVU112
- 474 0018 2900     		movs	r1, r5
- 475 001a 6846     		mov	r0, sp
- 476              	.LVL39:
-  73:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
- 477              		.loc 1 73 5 is_stmt 0 view .LVU113
-ARM GAS  /tmp/ccbuvxt2.s 			page 12
-
-
- 478 001c FFF7FEFF 		bl	nunchuk_fill_standard
- 479              	.LVL40:
-  74:Middlewares/nunchuk/Src/nunchuk.c **** }
- 480              		.loc 1 74 5 is_stmt 1 view .LVU114
-  74:Middlewares/nunchuk/Src/nunchuk.c **** }
- 481              		.loc 1 74 12 is_stmt 0 view .LVU115
- 482 0020 F7E7     		b	.L26
- 483              		.cfi_endproc
- 484              	.LFE370:
- 486              		.section	.text.nunchuk_fill_guitar_hero,"ax",%progbits
- 487              		.align	1
- 488              		.global	nunchuk_fill_guitar_hero
- 489              		.syntax unified
- 490              		.code	16
- 491              		.thumb_func
- 493              	nunchuk_fill_guitar_hero:
- 494              	.LVL41:
- 495              	.LFB374:
- 113:Middlewares/nunchuk/Src/nunchuk.c **** 
- 114:Middlewares/nunchuk/Src/nunchuk.c **** void nunchuk_fill_guitar_hero(nunchuk_packet_t* packet, nunchuk_guitar_hero_t* gh) {
- 496              		.loc 1 114 84 is_stmt 1 view -0
- 497              		.cfi_startproc
- 498              		@ args = 0, pretend = 0, frame = 0
- 499              		@ frame_needed = 0, uses_anonymous_args = 0
- 500              		.loc 1 114 84 is_stmt 0 view .LVU117
- 501 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
- 502              	.LCFI9:
- 503              		.cfi_def_cfa_offset 24
- 504              		.cfi_offset 3, -24
- 505              		.cfi_offset 4, -20
- 506              		.cfi_offset 5, -16
- 507              		.cfi_offset 6, -12
- 508              		.cfi_offset 7, -8
- 509              		.cfi_offset 14, -4
- 510 0002 0500     		movs	r5, r0
- 511 0004 0C00     		movs	r4, r1
- 115:Middlewares/nunchuk/Src/nunchuk.c ****     // if both gh3 fields are all zeros, set gh3 to 1
- 116:Middlewares/nunchuk/Src/nunchuk.c ****     gh->gh3 = packet->gh_controller.gh3_0 == 0b11 && packet->gh_controller.gh3_1 == 0b11;
- 512              		.loc 1 116 5 is_stmt 1 view .LVU118
- 513              		.loc 1 116 43 is_stmt 0 view .LVU119
- 514 0006 0378     		ldrb	r3, [r0]
- 515 0008 3F22     		movs	r2, #63
- 516 000a 9343     		bics	r3, r2
- 517              		.loc 1 116 51 view .LVU120
- 518 000c C02B     		cmp	r3, #192
- 519 000e 00D1     		bne	.LCB425
- 520 0010 7AE0     		b	.L32	@long jump
- 521              	.LCB425:
- 522 0012 0023     		movs	r3, #0
- 523              	.L29:
- 524              		.loc 1 116 13 discriminator 6 view .LVU121
- 525 0014 A370     		strb	r3, [r4, #2]
- 117:Middlewares/nunchuk/Src/nunchuk.c **** 
- 118:Middlewares/nunchuk/Src/nunchuk.c ****     gh->sx = clamp_input(packet->gh_controller.sx, GH_SX_MIN, GH_SX_MAX);
- 526              		.loc 1 118 5 is_stmt 1 discriminator 6 view .LVU122
- 527              		.loc 1 118 47 is_stmt 0 discriminator 6 view .LVU123
- 528 0016 2878     		ldrb	r0, [r5]
-ARM GAS  /tmp/ccbuvxt2.s 			page 13
-
-
- 529              	.LVL42:
- 530              		.loc 1 118 47 discriminator 6 view .LVU124
- 531 0018 8006     		lsls	r0, r0, #26
- 532 001a 800E     		lsrs	r0, r0, #26
- 533              		.loc 1 118 14 discriminator 6 view .LVU125
- 534 001c 3F22     		movs	r2, #63
- 535 001e 0021     		movs	r1, #0
- 536              	.LVL43:
- 537              		.loc 1 118 14 discriminator 6 view .LVU126
- 538 0020 FFF7FEFF 		bl	clamp_input
- 539              	.LVL44:
- 540              		.loc 1 118 12 discriminator 6 view .LVU127
- 541 0024 2070     		strb	r0, [r4]
- 119:Middlewares/nunchuk/Src/nunchuk.c ****     gh->sy = clamp_input(packet->gh_controller.sy, GH_SY_MIN, GH_SY_MAX);
- 542              		.loc 1 119 5 is_stmt 1 discriminator 6 view .LVU128
- 543              		.loc 1 119 47 is_stmt 0 discriminator 6 view .LVU129
- 544 0026 6878     		ldrb	r0, [r5, #1]
- 545 0028 8006     		lsls	r0, r0, #26
- 546 002a 800E     		lsrs	r0, r0, #26
- 547              		.loc 1 119 14 discriminator 6 view .LVU130
- 548 002c 3F22     		movs	r2, #63
- 549 002e 0021     		movs	r1, #0
- 550 0030 FFF7FEFF 		bl	clamp_input
- 551              	.LVL45:
- 552              		.loc 1 119 12 discriminator 6 view .LVU131
- 553 0034 6070     		strb	r0, [r4, #1]
- 120:Middlewares/nunchuk/Src/nunchuk.c **** 
- 121:Middlewares/nunchuk/Src/nunchuk.c ****     gh->tb = clamp_input(packet->gh_controller.tb, GH_TB_MIN, GH_TB_MAX);
- 554              		.loc 1 121 5 is_stmt 1 discriminator 6 view .LVU132
- 555              		.loc 1 121 47 is_stmt 0 discriminator 6 view .LVU133
- 556 0036 A878     		ldrb	r0, [r5, #2]
- 557 0038 C006     		lsls	r0, r0, #27
- 558 003a C00E     		lsrs	r0, r0, #27
- 559              		.loc 1 121 14 discriminator 6 view .LVU134
- 560 003c 1F22     		movs	r2, #31
- 561 003e 0021     		movs	r1, #0
- 562 0040 FFF7FEFF 		bl	clamp_input
- 563              	.LVL46:
- 564              		.loc 1 121 12 discriminator 6 view .LVU135
- 565 0044 E070     		strb	r0, [r4, #3]
- 122:Middlewares/nunchuk/Src/nunchuk.c ****     gh->wb = clamp_input(packet->gh_controller.wb, GH_WB_MIN, GH_WB_MAX);
- 566              		.loc 1 122 5 is_stmt 1 discriminator 6 view .LVU136
- 567              		.loc 1 122 47 is_stmt 0 discriminator 6 view .LVU137
- 568 0046 E878     		ldrb	r0, [r5, #3]
- 569 0048 C006     		lsls	r0, r0, #27
- 570 004a C00E     		lsrs	r0, r0, #27
- 571              		.loc 1 122 14 discriminator 6 view .LVU138
- 572 004c 1F22     		movs	r2, #31
- 573 004e 0021     		movs	r1, #0
- 574 0050 FFF7FEFF 		bl	clamp_input
- 575              	.LVL47:
- 576              		.loc 1 122 12 discriminator 6 view .LVU139
- 577 0054 2071     		strb	r0, [r4, #4]
+ 418              		.loc 1 122 13 view .LVU98
+ 419 0036 4B70     		strb	r3, [r1, #1]
  123:Middlewares/nunchuk/Src/nunchuk.c **** 
- 124:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.plus = !packet->gh_controller.buttons.plus;
- 578              		.loc 1 124 5 is_stmt 1 discriminator 6 view .LVU140
- 579              		.loc 1 124 24 is_stmt 0 discriminator 6 view .LVU141
-ARM GAS  /tmp/ccbuvxt2.s 			page 14
+ 124:Middlewares/nunchuk/Src/nunchuk.c ****     std->buttons.c = !packet->standard_controller.buttons.c;
+ 420              		.loc 1 124 5 is_stmt 1 view .LVU99
+ 421              		.loc 1 124 22 is_stmt 0 view .LVU100
+ 422 0038 4379     		ldrb	r3, [r0, #5]
+ 423 003a 5B08     		lsrs	r3, r3, #1
+ 424 003c 0125     		movs	r5, #1
+ 425 003e 6B40     		eors	r3, r5
+ 426 0040 0124     		movs	r4, #1
+ 427              		.loc 1 124 20 view .LVU101
+ 428 0042 2340     		ands	r3, r4
+ 429 0044 5B00     		lsls	r3, r3, #1
+ 430 0046 0A7A     		ldrb	r2, [r1, #8]
+ 431 0048 0226     		movs	r6, #2
+ 432 004a B243     		bics	r2, r6
+ 433 004c 1343     		orrs	r3, r2
+ 434 004e 0B72     		strb	r3, [r1, #8]
+ 125:Middlewares/nunchuk/Src/nunchuk.c ****     std->buttons.z = !packet->standard_controller.buttons.z;
+ 435              		.loc 1 125 5 is_stmt 1 view .LVU102
+ 436              		.loc 1 125 22 is_stmt 0 view .LVU103
+ 437 0050 4379     		ldrb	r3, [r0, #5]
+ 438 0052 6B40     		eors	r3, r5
+ 439              		.loc 1 125 20 view .LVU104
+ 440 0054 1C40     		ands	r4, r3
+ 441 0056 0B7A     		ldrb	r3, [r1, #8]
+ 442 0058 0122     		movs	r2, #1
+ 443 005a 9343     		bics	r3, r2
+ 444 005c 2343     		orrs	r3, r4
+ 445 005e 0B72     		strb	r3, [r1, #8]
+ 126:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 446              		.loc 1 126 1 view .LVU105
+ 447              		@ sp needed
+ 448 0060 70BD     		pop	{r4, r5, r6, pc}
+ 449              		.cfi_endproc
+ 450              	.LFE373:
+ 452              		.section	.text.nunchuk_read_standard,"ax",%progbits
+ 453              		.align	1
+ 454              		.global	nunchuk_read_standard
+ 455              		.syntax unified
+ 456              		.code	16
+ 457              		.thumb_func
+ 459              	nunchuk_read_standard:
+ 460              	.LVL37:
+ 461              	.LFB370:
+  80:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+ 462              		.loc 1 80 66 is_stmt 1 view -0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 8
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+  80:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+ 466              		.loc 1 80 66 is_stmt 0 view .LVU107
+ 467 0000 30B5     		push	{r4, r5, lr}
+ 468              	.LCFI7:
+ 469              		.cfi_def_cfa_offset 12
+ 470              		.cfi_offset 4, -12
+ARM GAS  /tmp/ccqhUcUe.s 			page 12
 
 
- 580 0056 2A79     		ldrb	r2, [r5, #4]
- 581 0058 9208     		lsrs	r2, r2, #2
- 582 005a 0120     		movs	r0, #1
- 583 005c 0121     		movs	r1, #1
- 584 005e 4A40     		eors	r2, r1
- 585 0060 0123     		movs	r3, #1
- 586              		.loc 1 124 22 discriminator 6 view .LVU142
- 587 0062 1A40     		ands	r2, r3
- 588 0064 5201     		lsls	r2, r2, #5
- 589 0066 6679     		ldrb	r6, [r4, #5]
- 590 0068 2027     		movs	r7, #32
- 591 006a BE43     		bics	r6, r7
- 592 006c 3243     		orrs	r2, r6
- 593 006e 6271     		strb	r2, [r4, #5]
- 125:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.minus = !packet->gh_controller.buttons.minus;
- 594              		.loc 1 125 5 is_stmt 1 discriminator 6 view .LVU143
- 595              		.loc 1 125 25 is_stmt 0 discriminator 6 view .LVU144
- 596 0070 2A79     		ldrb	r2, [r5, #4]
- 597 0072 1209     		lsrs	r2, r2, #4
- 598 0074 4A40     		eors	r2, r1
- 599              		.loc 1 125 23 discriminator 6 view .LVU145
- 600 0076 1A40     		ands	r2, r3
- 601 0078 9201     		lsls	r2, r2, #6
- 602 007a 6679     		ldrb	r6, [r4, #5]
- 603 007c 2037     		adds	r7, r7, #32
- 604 007e BE43     		bics	r6, r7
- 605 0080 3243     		orrs	r2, r6
- 606 0082 6271     		strb	r2, [r4, #5]
- 126:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.strum_up = !packet->gh_controller.buttons.u;
- 607              		.loc 1 126 5 is_stmt 1 discriminator 6 view .LVU146
- 608              		.loc 1 126 28 is_stmt 0 discriminator 6 view .LVU147
- 609 0084 6E79     		ldrb	r6, [r5, #5]
- 610 0086 4E40     		eors	r6, r1
- 611              		.loc 1 126 26 discriminator 6 view .LVU148
- 612 0088 1E40     		ands	r6, r3
- 613 008a A279     		ldrb	r2, [r4, #6]
- 614 008c 8243     		bics	r2, r0
- 615 008e 3243     		orrs	r2, r6
- 616 0090 A271     		strb	r2, [r4, #6]
- 127:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.strum_down = !packet->gh_controller.buttons.d;
- 617              		.loc 1 127 5 is_stmt 1 discriminator 6 view .LVU149
- 618              		.loc 1 127 30 is_stmt 0 discriminator 6 view .LVU150
- 619 0092 2A79     		ldrb	r2, [r5, #4]
- 620 0094 9209     		lsrs	r2, r2, #6
- 621 0096 4A40     		eors	r2, r1
- 622 0098 1A40     		ands	r2, r3
- 623              		.loc 1 127 28 discriminator 6 view .LVU151
- 624 009a D201     		lsls	r2, r2, #7
- 625 009c 6779     		ldrb	r7, [r4, #5]
- 626 009e 7F26     		movs	r6, #127
- 627 00a0 3E40     		ands	r6, r7
- 628 00a2 3243     		orrs	r2, r6
- 629 00a4 6271     		strb	r2, [r4, #5]
- 128:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.green = !packet->gh_controller.buttons.g;
- 630              		.loc 1 128 5 is_stmt 1 discriminator 6 view .LVU152
- 631              		.loc 1 128 25 is_stmt 0 discriminator 6 view .LVU153
- 632 00a6 6A79     		ldrb	r2, [r5, #5]
-ARM GAS  /tmp/ccbuvxt2.s 			page 15
+ 471              		.cfi_offset 5, -8
+ 472              		.cfi_offset 14, -4
+ 473 0002 83B0     		sub	sp, sp, #12
+ 474              	.LCFI8:
+ 475              		.cfi_def_cfa_offset 24
+ 476 0004 0500     		movs	r5, r0
+  81:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+ 477              		.loc 1 81 5 is_stmt 1 view .LVU108
+  82:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 478              		.loc 1 82 5 view .LVU109
+  82:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 479              		.loc 1 82 29 is_stmt 0 view .LVU110
+ 480 0006 0522     		movs	r2, #5
+ 481 0008 6946     		mov	r1, sp
+ 482 000a 0020     		movs	r0, #0
+ 483              	.LVL38:
+  82:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 484              		.loc 1 82 29 view .LVU111
+ 485 000c FFF7FEFF 		bl	nunchuk_packet_read
+ 486              	.LVL39:
+ 487 0010 041E     		subs	r4, r0, #0
+ 488              	.LVL40:
+  84:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+ 489              		.loc 1 84 5 is_stmt 1 view .LVU112
+  84:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+ 490              		.loc 1 84 8 is_stmt 0 view .LVU113
+ 491 0012 02D0     		beq	.L27
+ 492              	.LVL41:
+ 493              	.L26:
+  89:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 494              		.loc 1 89 1 view .LVU114
+ 495 0014 2000     		movs	r0, r4
+ 496 0016 03B0     		add	sp, sp, #12
+ 497              		@ sp needed
+ 498              	.LVL42:
+  89:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 499              		.loc 1 89 1 view .LVU115
+ 500 0018 30BD     		pop	{r4, r5, pc}
+ 501              	.LVL43:
+ 502              	.L27:
+  87:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 503              		.loc 1 87 5 is_stmt 1 view .LVU116
+ 504 001a 2900     		movs	r1, r5
+ 505 001c 6846     		mov	r0, sp
+ 506              	.LVL44:
+  87:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 507              		.loc 1 87 5 is_stmt 0 view .LVU117
+ 508 001e FFF7FEFF 		bl	nunchuk_fill_standard
+ 509              	.LVL45:
+  88:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 510              		.loc 1 88 5 is_stmt 1 view .LVU118
+  88:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 511              		.loc 1 88 12 is_stmt 0 view .LVU119
+ 512 0022 F7E7     		b	.L26
+ 513              		.cfi_endproc
+ 514              	.LFE370:
+ 516              		.section	.text.nunchuk_fill_guitar_hero,"ax",%progbits
+ARM GAS  /tmp/ccqhUcUe.s 			page 13
 
 
- 633 00a8 1209     		lsrs	r2, r2, #4
- 634 00aa 4A40     		eors	r2, r1
- 635              		.loc 1 128 23 discriminator 6 view .LVU154
- 636 00ac 1A40     		ands	r2, r3
- 637 00ae 6679     		ldrb	r6, [r4, #5]
- 638 00b0 8643     		bics	r6, r0
- 639 00b2 3243     		orrs	r2, r6
- 640 00b4 6271     		strb	r2, [r4, #5]
- 129:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.red = !packet->gh_controller.buttons.r;
- 641              		.loc 1 129 5 is_stmt 1 discriminator 6 view .LVU155
- 642              		.loc 1 129 23 is_stmt 0 discriminator 6 view .LVU156
- 643 00b6 6A79     		ldrb	r2, [r5, #5]
- 644 00b8 9209     		lsrs	r2, r2, #6
- 645 00ba 4A40     		eors	r2, r1
- 646              		.loc 1 129 21 discriminator 6 view .LVU157
- 647 00bc 1A40     		ands	r2, r3
- 648 00be 5200     		lsls	r2, r2, #1
- 649 00c0 6079     		ldrb	r0, [r4, #5]
- 650 00c2 0226     		movs	r6, #2
- 651 00c4 B043     		bics	r0, r6
- 652 00c6 0243     		orrs	r2, r0
- 653 00c8 6271     		strb	r2, [r4, #5]
- 130:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.yellow = !packet->gh_controller.buttons.y;
- 654              		.loc 1 130 5 is_stmt 1 discriminator 6 view .LVU158
- 655              		.loc 1 130 26 is_stmt 0 discriminator 6 view .LVU159
- 656 00ca 6A79     		ldrb	r2, [r5, #5]
- 657 00cc D208     		lsrs	r2, r2, #3
- 658 00ce 4A40     		eors	r2, r1
- 659              		.loc 1 130 24 discriminator 6 view .LVU160
- 660 00d0 1A40     		ands	r2, r3
- 661 00d2 9200     		lsls	r2, r2, #2
- 662 00d4 6079     		ldrb	r0, [r4, #5]
- 663 00d6 0236     		adds	r6, r6, #2
- 664 00d8 B043     		bics	r0, r6
- 665 00da 0243     		orrs	r2, r0
- 666 00dc 6271     		strb	r2, [r4, #5]
- 131:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.blue = !packet->gh_controller.buttons.b;
- 667              		.loc 1 131 5 is_stmt 1 discriminator 6 view .LVU161
- 668              		.loc 1 131 24 is_stmt 0 discriminator 6 view .LVU162
- 669 00de 6A79     		ldrb	r2, [r5, #5]
- 670 00e0 5209     		lsrs	r2, r2, #5
- 671 00e2 4A40     		eors	r2, r1
- 672              		.loc 1 131 22 discriminator 6 view .LVU163
- 673 00e4 1340     		ands	r3, r2
- 674 00e6 DB00     		lsls	r3, r3, #3
- 675 00e8 6279     		ldrb	r2, [r4, #5]
- 676 00ea 0821     		movs	r1, #8
- 677 00ec 8A43     		bics	r2, r1
- 678 00ee 1343     		orrs	r3, r2
- 679 00f0 6371     		strb	r3, [r4, #5]
- 132:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.orange = !packet->gh_controller.buttons.o;
- 680              		.loc 1 132 5 is_stmt 1 discriminator 6 view .LVU164
- 681              		.loc 1 132 26 is_stmt 0 discriminator 6 view .LVU165
- 682 00f2 6B79     		ldrb	r3, [r5, #5]
- 683 00f4 DB43     		mvns	r3, r3
- 684 00f6 DBB2     		uxtb	r3, r3
- 685 00f8 DB09     		lsrs	r3, r3, #7
-ARM GAS  /tmp/ccbuvxt2.s 			page 16
+ 517              		.align	1
+ 518              		.global	nunchuk_fill_guitar_hero
+ 519              		.syntax unified
+ 520              		.code	16
+ 521              		.thumb_func
+ 523              	nunchuk_fill_guitar_hero:
+ 524              	.LVL46:
+ 525              	.LFB374:
+ 127:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 128:Middlewares/nunchuk/Src/nunchuk.c **** void nunchuk_fill_guitar_hero(nunchuk_packet_t* packet, nunchuk_guitar_hero_t* gh) {
+ 526              		.loc 1 128 84 is_stmt 1 view -0
+ 527              		.cfi_startproc
+ 528              		@ args = 0, pretend = 0, frame = 0
+ 529              		@ frame_needed = 0, uses_anonymous_args = 0
+ 530              		.loc 1 128 84 is_stmt 0 view .LVU121
+ 531 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 532              	.LCFI9:
+ 533              		.cfi_def_cfa_offset 24
+ 534              		.cfi_offset 3, -24
+ 535              		.cfi_offset 4, -20
+ 536              		.cfi_offset 5, -16
+ 537              		.cfi_offset 6, -12
+ 538              		.cfi_offset 7, -8
+ 539              		.cfi_offset 14, -4
+ 540 0002 0500     		movs	r5, r0
+ 541 0004 0C00     		movs	r4, r1
+ 129:Middlewares/nunchuk/Src/nunchuk.c ****     // if both gh3 fields are all zeros, set gh3 to 1
+ 130:Middlewares/nunchuk/Src/nunchuk.c ****     gh->gh3 = packet->gh_controller.gh3_0 == 0b11 && packet->gh_controller.gh3_1 == 0b11;
+ 542              		.loc 1 130 5 is_stmt 1 view .LVU122
+ 543              		.loc 1 130 43 is_stmt 0 view .LVU123
+ 544 0006 0378     		ldrb	r3, [r0]
+ 545 0008 3F22     		movs	r2, #63
+ 546 000a 9343     		bics	r3, r2
+ 547              		.loc 1 130 51 view .LVU124
+ 548 000c C02B     		cmp	r3, #192
+ 549 000e 00D1     		bne	.LCB458
+ 550 0010 7AE0     		b	.L32	@long jump
+ 551              	.LCB458:
+ 552 0012 0023     		movs	r3, #0
+ 553              	.L29:
+ 554              		.loc 1 130 13 discriminator 6 view .LVU125
+ 555 0014 A370     		strb	r3, [r4, #2]
+ 131:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 132:Middlewares/nunchuk/Src/nunchuk.c ****     gh->sx = clamp_input(packet->gh_controller.sx, GH_SX_MIN, GH_SX_MAX);
+ 556              		.loc 1 132 5 is_stmt 1 discriminator 6 view .LVU126
+ 557              		.loc 1 132 47 is_stmt 0 discriminator 6 view .LVU127
+ 558 0016 2878     		ldrb	r0, [r5]
+ 559              	.LVL47:
+ 560              		.loc 1 132 47 discriminator 6 view .LVU128
+ 561 0018 8006     		lsls	r0, r0, #26
+ 562 001a 800E     		lsrs	r0, r0, #26
+ 563              		.loc 1 132 14 discriminator 6 view .LVU129
+ 564 001c 3F22     		movs	r2, #63
+ 565 001e 0021     		movs	r1, #0
+ 566              	.LVL48:
+ 567              		.loc 1 132 14 discriminator 6 view .LVU130
+ 568 0020 FFF7FEFF 		bl	clamp_input
+ARM GAS  /tmp/ccqhUcUe.s 			page 14
 
 
- 686              		.loc 1 132 24 discriminator 6 view .LVU166
- 687 00fa 1B01     		lsls	r3, r3, #4
- 688 00fc 6279     		ldrb	r2, [r4, #5]
- 689 00fe 0831     		adds	r1, r1, #8
- 690 0100 8A43     		bics	r2, r1
- 691 0102 1343     		orrs	r3, r2
- 692 0104 6371     		strb	r3, [r4, #5]
- 133:Middlewares/nunchuk/Src/nunchuk.c **** }
- 693              		.loc 1 133 1 discriminator 6 view .LVU167
- 694              		@ sp needed
- 695              	.LVL48:
- 696              	.LVL49:
- 697              		.loc 1 133 1 discriminator 6 view .LVU168
- 698 0106 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 699              	.LVL50:
- 700              	.L32:
- 116:Middlewares/nunchuk/Src/nunchuk.c **** 
- 701              		.loc 1 116 82 discriminator 1 view .LVU169
- 702 0108 4378     		ldrb	r3, [r0, #1]
- 703 010a 9343     		bics	r3, r2
- 116:Middlewares/nunchuk/Src/nunchuk.c **** 
- 704              		.loc 1 116 51 discriminator 1 view .LVU170
- 705 010c C02B     		cmp	r3, #192
- 706 010e 01D0     		beq	.L31
- 116:Middlewares/nunchuk/Src/nunchuk.c **** 
- 707              		.loc 1 116 51 view .LVU171
- 708 0110 0023     		movs	r3, #0
- 709 0112 7FE7     		b	.L29
- 710              	.L31:
- 711 0114 0123     		movs	r3, #1
- 712 0116 7DE7     		b	.L29
- 713              		.cfi_endproc
- 714              	.LFE374:
- 716              		.section	.text.nunchuk_read_guitar_hero,"ax",%progbits
- 717              		.align	1
- 718              		.global	nunchuk_read_guitar_hero
- 719              		.syntax unified
- 720              		.code	16
- 721              		.thumb_func
- 723              	nunchuk_read_guitar_hero:
- 724              	.LVL51:
- 725              	.LFB372:
-  88:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
- 726              		.loc 1 88 71 is_stmt 1 view -0
- 727              		.cfi_startproc
- 728              		@ args = 0, pretend = 0, frame = 8
- 729              		@ frame_needed = 0, uses_anonymous_args = 0
-  88:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
- 730              		.loc 1 88 71 is_stmt 0 view .LVU173
- 731 0000 30B5     		push	{r4, r5, lr}
- 732              	.LCFI10:
- 733              		.cfi_def_cfa_offset 12
- 734              		.cfi_offset 4, -12
- 735              		.cfi_offset 5, -8
- 736              		.cfi_offset 14, -4
- 737 0002 83B0     		sub	sp, sp, #12
- 738              	.LCFI11:
-ARM GAS  /tmp/ccbuvxt2.s 			page 17
-
-
- 739              		.cfi_def_cfa_offset 24
- 740 0004 0500     		movs	r5, r0
-  89:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
- 741              		.loc 1 89 5 is_stmt 1 view .LVU174
-  90:Middlewares/nunchuk/Src/nunchuk.c **** 
- 742              		.loc 1 90 5 view .LVU175
-  90:Middlewares/nunchuk/Src/nunchuk.c **** 
- 743              		.loc 1 90 29 is_stmt 0 view .LVU176
- 744 0006 6946     		mov	r1, sp
- 745 0008 0020     		movs	r0, #0
- 746              	.LVL52:
-  90:Middlewares/nunchuk/Src/nunchuk.c **** 
- 747              		.loc 1 90 29 view .LVU177
- 748 000a FFF7FEFF 		bl	nunchuk_packet_read
- 749              	.LVL53:
- 750 000e 041E     		subs	r4, r0, #0
- 751              	.LVL54:
-  92:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
- 752              		.loc 1 92 5 is_stmt 1 view .LVU178
-  92:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
- 753              		.loc 1 92 8 is_stmt 0 view .LVU179
- 754 0010 02D0     		beq	.L35
- 755              	.LVL55:
- 756              	.L34:
-  97:Middlewares/nunchuk/Src/nunchuk.c **** 
- 757              		.loc 1 97 1 view .LVU180
- 758 0012 2000     		movs	r0, r4
- 759 0014 03B0     		add	sp, sp, #12
- 760              		@ sp needed
- 761              	.LVL56:
-  97:Middlewares/nunchuk/Src/nunchuk.c **** 
- 762              		.loc 1 97 1 view .LVU181
- 763 0016 30BD     		pop	{r4, r5, pc}
- 764              	.LVL57:
- 765              	.L35:
-  95:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
- 766              		.loc 1 95 5 is_stmt 1 view .LVU182
- 767 0018 2900     		movs	r1, r5
- 768 001a 6846     		mov	r0, sp
- 769              	.LVL58:
-  95:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
- 770              		.loc 1 95 5 is_stmt 0 view .LVU183
- 771 001c FFF7FEFF 		bl	nunchuk_fill_guitar_hero
- 772              	.LVL59:
-  96:Middlewares/nunchuk/Src/nunchuk.c **** }
- 773              		.loc 1 96 5 is_stmt 1 view .LVU184
-  96:Middlewares/nunchuk/Src/nunchuk.c **** }
- 774              		.loc 1 96 12 is_stmt 0 view .LVU185
- 775 0020 F7E7     		b	.L34
- 776              		.cfi_endproc
- 777              	.LFE372:
- 779              		.section	.text.nunchuk_fill_classic,"ax",%progbits
- 780              		.align	1
- 781              		.global	nunchuk_fill_classic
- 782              		.syntax unified
- 783              		.code	16
- 784              		.thumb_func
-ARM GAS  /tmp/ccbuvxt2.s 			page 18
-
-
- 786              	nunchuk_fill_classic:
- 787              	.LVL60:
- 788              	.LFB375:
+ 569              	.LVL49:
+ 570              		.loc 1 132 12 discriminator 6 view .LVU131
+ 571 0024 2070     		strb	r0, [r4]
+ 133:Middlewares/nunchuk/Src/nunchuk.c ****     gh->sy = clamp_input(packet->gh_controller.sy, GH_SY_MIN, GH_SY_MAX);
+ 572              		.loc 1 133 5 is_stmt 1 discriminator 6 view .LVU132
+ 573              		.loc 1 133 47 is_stmt 0 discriminator 6 view .LVU133
+ 574 0026 6878     		ldrb	r0, [r5, #1]
+ 575 0028 8006     		lsls	r0, r0, #26
+ 576 002a 800E     		lsrs	r0, r0, #26
+ 577              		.loc 1 133 14 discriminator 6 view .LVU134
+ 578 002c 3F22     		movs	r2, #63
+ 579 002e 0021     		movs	r1, #0
+ 580 0030 FFF7FEFF 		bl	clamp_input
+ 581              	.LVL50:
+ 582              		.loc 1 133 12 discriminator 6 view .LVU135
+ 583 0034 6070     		strb	r0, [r4, #1]
  134:Middlewares/nunchuk/Src/nunchuk.c **** 
- 135:Middlewares/nunchuk/Src/nunchuk.c **** void nunchuk_fill_classic(nunchuk_packet_t* packet, nunchuk_classic_t* cc) {
- 789              		.loc 1 135 76 is_stmt 1 view -0
- 790              		.cfi_startproc
- 791              		@ args = 0, pretend = 0, frame = 0
- 792              		@ frame_needed = 0, uses_anonymous_args = 0
- 793              		.loc 1 135 76 is_stmt 0 view .LVU187
- 794 0000 10B5     		push	{r4, lr}
- 795              	.LCFI12:
- 796              		.cfi_def_cfa_offset 8
- 797              		.cfi_offset 4, -8
- 798              		.cfi_offset 14, -4
- 136:Middlewares/nunchuk/Src/nunchuk.c ****     cc->lx =  packet->classic_controller.lx;
- 799              		.loc 1 136 5 is_stmt 1 view .LVU188
- 800              		.loc 1 136 41 is_stmt 0 view .LVU189
- 801 0002 0378     		ldrb	r3, [r0]
- 802 0004 9B06     		lsls	r3, r3, #26
- 803 0006 9B0E     		lsrs	r3, r3, #26
- 804              		.loc 1 136 12 view .LVU190
- 805 0008 0B70     		strb	r3, [r1]
- 137:Middlewares/nunchuk/Src/nunchuk.c ****     cc->ly =  packet->classic_controller.ly;
- 806              		.loc 1 137 5 is_stmt 1 view .LVU191
- 807              		.loc 1 137 41 is_stmt 0 view .LVU192
- 808 000a 4378     		ldrb	r3, [r0, #1]
- 809 000c 9B06     		lsls	r3, r3, #26
- 810 000e 9B0E     		lsrs	r3, r3, #26
- 811              		.loc 1 137 12 view .LVU193
- 812 0010 4B70     		strb	r3, [r1, #1]
- 138:Middlewares/nunchuk/Src/nunchuk.c ****     cc->rx = (packet->classic_controller.rx_4_3 << 3) |
- 813              		.loc 1 138 5 is_stmt 1 view .LVU194
- 814              		.loc 1 138 41 is_stmt 0 view .LVU195
- 815 0012 0378     		ldrb	r3, [r0]
- 816 0014 9B09     		lsrs	r3, r3, #6
- 817              		.loc 1 138 49 view .LVU196
- 818 0016 DB00     		lsls	r3, r3, #3
- 139:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->classic_controller.rx_2_1 << 1) |
- 819              		.loc 1 139 42 view .LVU197
- 820 0018 4278     		ldrb	r2, [r0, #1]
- 821 001a 9209     		lsrs	r2, r2, #6
- 822              		.loc 1 139 50 view .LVU198
- 823 001c 5200     		lsls	r2, r2, #1
- 138:Middlewares/nunchuk/Src/nunchuk.c ****     cc->rx = (packet->classic_controller.rx_4_3 << 3) |
- 824              		.loc 1 138 55 view .LVU199
- 825 001e 1343     		orrs	r3, r2
- 140:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->classic_controller.rx_0);
- 826              		.loc 1 140 42 view .LVU200
- 827 0020 8278     		ldrb	r2, [r0, #2]
- 828 0022 D209     		lsrs	r2, r2, #7
- 139:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->classic_controller.rx_2_1 << 1) |
- 829              		.loc 1 139 56 view .LVU201
- 830 0024 1343     		orrs	r3, r2
- 138:Middlewares/nunchuk/Src/nunchuk.c ****     cc->rx = (packet->classic_controller.rx_4_3 << 3) |
- 831              		.loc 1 138 12 view .LVU202
- 832 0026 8B70     		strb	r3, [r1, #2]
-ARM GAS  /tmp/ccbuvxt2.s 			page 19
+ 135:Middlewares/nunchuk/Src/nunchuk.c ****     gh->tb = clamp_input(packet->gh_controller.tb, GH_TB_MIN, GH_TB_MAX);
+ 584              		.loc 1 135 5 is_stmt 1 discriminator 6 view .LVU136
+ 585              		.loc 1 135 47 is_stmt 0 discriminator 6 view .LVU137
+ 586 0036 A878     		ldrb	r0, [r5, #2]
+ 587 0038 C006     		lsls	r0, r0, #27
+ 588 003a C00E     		lsrs	r0, r0, #27
+ 589              		.loc 1 135 14 discriminator 6 view .LVU138
+ 590 003c 1F22     		movs	r2, #31
+ 591 003e 0021     		movs	r1, #0
+ 592 0040 FFF7FEFF 		bl	clamp_input
+ 593              	.LVL51:
+ 594              		.loc 1 135 12 discriminator 6 view .LVU139
+ 595 0044 E070     		strb	r0, [r4, #3]
+ 136:Middlewares/nunchuk/Src/nunchuk.c ****     gh->wb = clamp_input(packet->gh_controller.wb, GH_WB_MIN, GH_WB_MAX);
+ 596              		.loc 1 136 5 is_stmt 1 discriminator 6 view .LVU140
+ 597              		.loc 1 136 47 is_stmt 0 discriminator 6 view .LVU141
+ 598 0046 E878     		ldrb	r0, [r5, #3]
+ 599 0048 C006     		lsls	r0, r0, #27
+ 600 004a C00E     		lsrs	r0, r0, #27
+ 601              		.loc 1 136 14 discriminator 6 view .LVU142
+ 602 004c 1F22     		movs	r2, #31
+ 603 004e 0021     		movs	r1, #0
+ 604 0050 FFF7FEFF 		bl	clamp_input
+ 605              	.LVL52:
+ 606              		.loc 1 136 12 discriminator 6 view .LVU143
+ 607 0054 2071     		strb	r0, [r4, #4]
+ 137:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 138:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.plus = !packet->gh_controller.buttons.plus;
+ 608              		.loc 1 138 5 is_stmt 1 discriminator 6 view .LVU144
+ 609              		.loc 1 138 24 is_stmt 0 discriminator 6 view .LVU145
+ 610 0056 2A79     		ldrb	r2, [r5, #4]
+ 611 0058 9208     		lsrs	r2, r2, #2
+ 612 005a 0120     		movs	r0, #1
+ 613 005c 0121     		movs	r1, #1
+ 614 005e 4A40     		eors	r2, r1
+ 615 0060 0123     		movs	r3, #1
+ 616              		.loc 1 138 22 discriminator 6 view .LVU146
+ 617 0062 1A40     		ands	r2, r3
+ 618 0064 5201     		lsls	r2, r2, #5
+ 619 0066 6679     		ldrb	r6, [r4, #5]
+ARM GAS  /tmp/ccqhUcUe.s 			page 15
 
 
- 141:Middlewares/nunchuk/Src/nunchuk.c ****     cc->ry =  packet->classic_controller.ry;
- 833              		.loc 1 141 5 is_stmt 1 view .LVU203
- 834              		.loc 1 141 41 is_stmt 0 view .LVU204
- 835 0028 8378     		ldrb	r3, [r0, #2]
- 836 002a DB06     		lsls	r3, r3, #27
- 837 002c DB0E     		lsrs	r3, r3, #27
- 838              		.loc 1 141 12 view .LVU205
- 839 002e CB70     		strb	r3, [r1, #3]
- 142:Middlewares/nunchuk/Src/nunchuk.c **** 
- 143:Middlewares/nunchuk/Src/nunchuk.c ****     cc->left_trigger = (packet->classic_controller.lt_4_3 << 3) |
- 840              		.loc 1 143 5 is_stmt 1 view .LVU206
- 841              		.loc 1 143 51 is_stmt 0 view .LVU207
- 842 0030 8378     		ldrb	r3, [r0, #2]
- 843 0032 5B06     		lsls	r3, r3, #25
- 844 0034 9B0F     		lsrs	r3, r3, #30
- 845              		.loc 1 143 59 view .LVU208
- 846 0036 DB00     		lsls	r3, r3, #3
- 144:Middlewares/nunchuk/Src/nunchuk.c ****                         (packet->classic_controller.lt_2_0);
- 847              		.loc 1 144 52 view .LVU209
- 848 0038 C278     		ldrb	r2, [r0, #3]
- 849 003a 5209     		lsrs	r2, r2, #5
- 143:Middlewares/nunchuk/Src/nunchuk.c ****                         (packet->classic_controller.lt_2_0);
- 850              		.loc 1 143 65 view .LVU210
- 851 003c 1343     		orrs	r3, r2
- 143:Middlewares/nunchuk/Src/nunchuk.c ****                         (packet->classic_controller.lt_2_0);
- 852              		.loc 1 143 22 view .LVU211
- 853 003e 0B71     		strb	r3, [r1, #4]
- 145:Middlewares/nunchuk/Src/nunchuk.c ****     cc->right_trigger = packet->classic_controller.rt;
- 854              		.loc 1 145 5 is_stmt 1 view .LVU212
- 855              		.loc 1 145 51 is_stmt 0 view .LVU213
- 856 0040 C378     		ldrb	r3, [r0, #3]
- 857 0042 DB06     		lsls	r3, r3, #27
- 858 0044 DB0E     		lsrs	r3, r3, #27
- 859              		.loc 1 145 23 view .LVU214
- 860 0046 4B71     		strb	r3, [r1, #5]
- 146:Middlewares/nunchuk/Src/nunchuk.c ****     
- 147:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.a =             !packet->classic_controller.buttons.a;
- 861              		.loc 1 147 5 is_stmt 1 view .LVU215
- 862              		.loc 1 147 33 is_stmt 0 view .LVU216
- 863 0048 4479     		ldrb	r4, [r0, #5]
- 864 004a 2409     		lsrs	r4, r4, #4
- 865 004c 0122     		movs	r2, #1
- 866 004e 5440     		eors	r4, r2
- 867 0050 0123     		movs	r3, #1
- 868 0052 1C40     		ands	r4, r3
- 869              		.loc 1 147 19 view .LVU217
- 870 0054 8C71     		strb	r4, [r1, #6]
- 148:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.b =             !packet->classic_controller.buttons.b;
- 871              		.loc 1 148 5 is_stmt 1 view .LVU218
- 872              		.loc 1 148 33 is_stmt 0 view .LVU219
- 873 0056 4479     		ldrb	r4, [r0, #5]
- 874 0058 A409     		lsrs	r4, r4, #6
- 875 005a 5440     		eors	r4, r2
- 876 005c 1C40     		ands	r4, r3
- 877              		.loc 1 148 19 view .LVU220
- 878 005e CC71     		strb	r4, [r1, #7]
- 149:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.x =             !packet->classic_controller.buttons.x;
-ARM GAS  /tmp/ccbuvxt2.s 			page 20
+ 620 0068 2027     		movs	r7, #32
+ 621 006a BE43     		bics	r6, r7
+ 622 006c 3243     		orrs	r2, r6
+ 623 006e 6271     		strb	r2, [r4, #5]
+ 139:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.minus = !packet->gh_controller.buttons.minus;
+ 624              		.loc 1 139 5 is_stmt 1 discriminator 6 view .LVU147
+ 625              		.loc 1 139 25 is_stmt 0 discriminator 6 view .LVU148
+ 626 0070 2A79     		ldrb	r2, [r5, #4]
+ 627 0072 1209     		lsrs	r2, r2, #4
+ 628 0074 4A40     		eors	r2, r1
+ 629              		.loc 1 139 23 discriminator 6 view .LVU149
+ 630 0076 1A40     		ands	r2, r3
+ 631 0078 9201     		lsls	r2, r2, #6
+ 632 007a 6679     		ldrb	r6, [r4, #5]
+ 633 007c 2037     		adds	r7, r7, #32
+ 634 007e BE43     		bics	r6, r7
+ 635 0080 3243     		orrs	r2, r6
+ 636 0082 6271     		strb	r2, [r4, #5]
+ 140:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.strum_up = !packet->gh_controller.buttons.u;
+ 637              		.loc 1 140 5 is_stmt 1 discriminator 6 view .LVU150
+ 638              		.loc 1 140 28 is_stmt 0 discriminator 6 view .LVU151
+ 639 0084 6E79     		ldrb	r6, [r5, #5]
+ 640 0086 4E40     		eors	r6, r1
+ 641              		.loc 1 140 26 discriminator 6 view .LVU152
+ 642 0088 1E40     		ands	r6, r3
+ 643 008a A279     		ldrb	r2, [r4, #6]
+ 644 008c 8243     		bics	r2, r0
+ 645 008e 3243     		orrs	r2, r6
+ 646 0090 A271     		strb	r2, [r4, #6]
+ 141:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.strum_down = !packet->gh_controller.buttons.d;
+ 647              		.loc 1 141 5 is_stmt 1 discriminator 6 view .LVU153
+ 648              		.loc 1 141 30 is_stmt 0 discriminator 6 view .LVU154
+ 649 0092 2A79     		ldrb	r2, [r5, #4]
+ 650 0094 9209     		lsrs	r2, r2, #6
+ 651 0096 4A40     		eors	r2, r1
+ 652 0098 1A40     		ands	r2, r3
+ 653              		.loc 1 141 28 discriminator 6 view .LVU155
+ 654 009a D201     		lsls	r2, r2, #7
+ 655 009c 6779     		ldrb	r7, [r4, #5]
+ 656 009e 7F26     		movs	r6, #127
+ 657 00a0 3E40     		ands	r6, r7
+ 658 00a2 3243     		orrs	r2, r6
+ 659 00a4 6271     		strb	r2, [r4, #5]
+ 142:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.green = !packet->gh_controller.buttons.g;
+ 660              		.loc 1 142 5 is_stmt 1 discriminator 6 view .LVU156
+ 661              		.loc 1 142 25 is_stmt 0 discriminator 6 view .LVU157
+ 662 00a6 6A79     		ldrb	r2, [r5, #5]
+ 663 00a8 1209     		lsrs	r2, r2, #4
+ 664 00aa 4A40     		eors	r2, r1
+ 665              		.loc 1 142 23 discriminator 6 view .LVU158
+ 666 00ac 1A40     		ands	r2, r3
+ 667 00ae 6679     		ldrb	r6, [r4, #5]
+ 668 00b0 8643     		bics	r6, r0
+ 669 00b2 3243     		orrs	r2, r6
+ 670 00b4 6271     		strb	r2, [r4, #5]
+ 143:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.red = !packet->gh_controller.buttons.r;
+ 671              		.loc 1 143 5 is_stmt 1 discriminator 6 view .LVU159
+ARM GAS  /tmp/ccqhUcUe.s 			page 16
 
 
- 879              		.loc 1 149 5 is_stmt 1 view .LVU221
- 880              		.loc 1 149 33 is_stmt 0 view .LVU222
- 881 0060 4479     		ldrb	r4, [r0, #5]
- 882 0062 E408     		lsrs	r4, r4, #3
- 883 0064 5440     		eors	r4, r2
- 884 0066 1C40     		ands	r4, r3
- 885              		.loc 1 149 19 view .LVU223
- 886 0068 0C72     		strb	r4, [r1, #8]
- 150:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.y =             !packet->classic_controller.buttons.y;
- 887              		.loc 1 150 5 is_stmt 1 view .LVU224
- 888              		.loc 1 150 33 is_stmt 0 view .LVU225
- 889 006a 4479     		ldrb	r4, [r0, #5]
- 890 006c 6409     		lsrs	r4, r4, #5
- 891 006e 5440     		eors	r4, r2
- 892 0070 1C40     		ands	r4, r3
- 893              		.loc 1 150 19 view .LVU226
- 894 0072 4C72     		strb	r4, [r1, #9]
- 151:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.plus =          !packet->classic_controller.buttons.plus;
- 895              		.loc 1 151 5 is_stmt 1 view .LVU227
- 896              		.loc 1 151 33 is_stmt 0 view .LVU228
- 897 0074 0479     		ldrb	r4, [r0, #4]
- 898 0076 A408     		lsrs	r4, r4, #2
- 899 0078 5440     		eors	r4, r2
- 900 007a 1C40     		ands	r4, r3
- 901              		.loc 1 151 22 view .LVU229
- 902 007c 8C72     		strb	r4, [r1, #10]
- 152:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.home =          !packet->classic_controller.buttons.h;
- 903              		.loc 1 152 5 is_stmt 1 view .LVU230
- 904              		.loc 1 152 33 is_stmt 0 view .LVU231
- 905 007e 0479     		ldrb	r4, [r0, #4]
- 906 0080 E408     		lsrs	r4, r4, #3
- 907 0082 5440     		eors	r4, r2
- 908 0084 1C40     		ands	r4, r3
- 909              		.loc 1 152 22 view .LVU232
- 910 0086 CC72     		strb	r4, [r1, #11]
- 153:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.minus =         !packet->classic_controller.buttons.minus;
- 911              		.loc 1 153 5 is_stmt 1 view .LVU233
- 912              		.loc 1 153 33 is_stmt 0 view .LVU234
- 913 0088 0479     		ldrb	r4, [r0, #4]
- 914 008a 2409     		lsrs	r4, r4, #4
- 915 008c 5440     		eors	r4, r2
- 916 008e 1C40     		ands	r4, r3
- 917              		.loc 1 153 23 view .LVU235
- 918 0090 0C73     		strb	r4, [r1, #12]
- 154:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.left_trigger =  !packet->classic_controller.buttons.lt;
- 919              		.loc 1 154 5 is_stmt 1 view .LVU236
- 920              		.loc 1 154 33 is_stmt 0 view .LVU237
- 921 0092 0479     		ldrb	r4, [r0, #4]
- 922 0094 6409     		lsrs	r4, r4, #5
- 923 0096 5440     		eors	r4, r2
- 924 0098 1C40     		ands	r4, r3
- 925              		.loc 1 154 30 view .LVU238
- 926 009a 4C73     		strb	r4, [r1, #13]
- 155:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.right_trigger = !packet->classic_controller.buttons.rt;
- 927              		.loc 1 155 5 is_stmt 1 view .LVU239
- 928              		.loc 1 155 33 is_stmt 0 view .LVU240
- 929 009c 0479     		ldrb	r4, [r0, #4]
-ARM GAS  /tmp/ccbuvxt2.s 			page 21
+ 672              		.loc 1 143 23 is_stmt 0 discriminator 6 view .LVU160
+ 673 00b6 6A79     		ldrb	r2, [r5, #5]
+ 674 00b8 9209     		lsrs	r2, r2, #6
+ 675 00ba 4A40     		eors	r2, r1
+ 676              		.loc 1 143 21 discriminator 6 view .LVU161
+ 677 00bc 1A40     		ands	r2, r3
+ 678 00be 5200     		lsls	r2, r2, #1
+ 679 00c0 6079     		ldrb	r0, [r4, #5]
+ 680 00c2 0226     		movs	r6, #2
+ 681 00c4 B043     		bics	r0, r6
+ 682 00c6 0243     		orrs	r2, r0
+ 683 00c8 6271     		strb	r2, [r4, #5]
+ 144:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.yellow = !packet->gh_controller.buttons.y;
+ 684              		.loc 1 144 5 is_stmt 1 discriminator 6 view .LVU162
+ 685              		.loc 1 144 26 is_stmt 0 discriminator 6 view .LVU163
+ 686 00ca 6A79     		ldrb	r2, [r5, #5]
+ 687 00cc D208     		lsrs	r2, r2, #3
+ 688 00ce 4A40     		eors	r2, r1
+ 689              		.loc 1 144 24 discriminator 6 view .LVU164
+ 690 00d0 1A40     		ands	r2, r3
+ 691 00d2 9200     		lsls	r2, r2, #2
+ 692 00d4 6079     		ldrb	r0, [r4, #5]
+ 693 00d6 0236     		adds	r6, r6, #2
+ 694 00d8 B043     		bics	r0, r6
+ 695 00da 0243     		orrs	r2, r0
+ 696 00dc 6271     		strb	r2, [r4, #5]
+ 145:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.blue = !packet->gh_controller.buttons.b;
+ 697              		.loc 1 145 5 is_stmt 1 discriminator 6 view .LVU165
+ 698              		.loc 1 145 24 is_stmt 0 discriminator 6 view .LVU166
+ 699 00de 6A79     		ldrb	r2, [r5, #5]
+ 700 00e0 5209     		lsrs	r2, r2, #5
+ 701 00e2 4A40     		eors	r2, r1
+ 702              		.loc 1 145 22 discriminator 6 view .LVU167
+ 703 00e4 1340     		ands	r3, r2
+ 704 00e6 DB00     		lsls	r3, r3, #3
+ 705 00e8 6279     		ldrb	r2, [r4, #5]
+ 706 00ea 0821     		movs	r1, #8
+ 707 00ec 8A43     		bics	r2, r1
+ 708 00ee 1343     		orrs	r3, r2
+ 709 00f0 6371     		strb	r3, [r4, #5]
+ 146:Middlewares/nunchuk/Src/nunchuk.c ****     gh->buttons.orange = !packet->gh_controller.buttons.o;
+ 710              		.loc 1 146 5 is_stmt 1 discriminator 6 view .LVU168
+ 711              		.loc 1 146 26 is_stmt 0 discriminator 6 view .LVU169
+ 712 00f2 6B79     		ldrb	r3, [r5, #5]
+ 713 00f4 DB43     		mvns	r3, r3
+ 714 00f6 DBB2     		uxtb	r3, r3
+ 715 00f8 DB09     		lsrs	r3, r3, #7
+ 716              		.loc 1 146 24 discriminator 6 view .LVU170
+ 717 00fa 1B01     		lsls	r3, r3, #4
+ 718 00fc 6279     		ldrb	r2, [r4, #5]
+ 719 00fe 0831     		adds	r1, r1, #8
+ 720 0100 8A43     		bics	r2, r1
+ 721 0102 1343     		orrs	r3, r2
+ 722 0104 6371     		strb	r3, [r4, #5]
+ 147:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 723              		.loc 1 147 1 discriminator 6 view .LVU171
+ 724              		@ sp needed
+ARM GAS  /tmp/ccqhUcUe.s 			page 17
 
 
- 930 009e 6408     		lsrs	r4, r4, #1
- 931 00a0 5440     		eors	r4, r2
- 932 00a2 1C40     		ands	r4, r3
- 933              		.loc 1 155 31 view .LVU241
- 934 00a4 8C73     		strb	r4, [r1, #14]
- 156:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.zl =            !packet->classic_controller.buttons.zl;
- 935              		.loc 1 156 5 is_stmt 1 view .LVU242
- 936              		.loc 1 156 33 is_stmt 0 view .LVU243
- 937 00a6 4479     		ldrb	r4, [r0, #5]
- 938 00a8 E443     		mvns	r4, r4
- 939 00aa E4B2     		uxtb	r4, r4
- 940 00ac E409     		lsrs	r4, r4, #7
- 941              		.loc 1 156 20 view .LVU244
- 942 00ae 0C74     		strb	r4, [r1, #16]
- 157:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.zr =            !packet->classic_controller.buttons.zr;
- 943              		.loc 1 157 5 is_stmt 1 view .LVU245
- 944              		.loc 1 157 33 is_stmt 0 view .LVU246
- 945 00b0 4479     		ldrb	r4, [r0, #5]
- 946 00b2 A408     		lsrs	r4, r4, #2
- 947 00b4 5440     		eors	r4, r2
- 948 00b6 1C40     		ands	r4, r3
- 949              		.loc 1 157 20 view .LVU247
- 950 00b8 CC73     		strb	r4, [r1, #15]
- 158:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.down =     !packet->classic_controller.buttons.dd;
- 951              		.loc 1 158 5 is_stmt 1 view .LVU248
- 952              		.loc 1 158 33 is_stmt 0 view .LVU249
- 953 00ba 0479     		ldrb	r4, [r0, #4]
- 954 00bc A409     		lsrs	r4, r4, #6
- 955 00be 5440     		eors	r4, r2
- 956 00c0 1C40     		ands	r4, r3
- 957              		.loc 1 158 27 view .LVU250
- 958 00c2 4C74     		strb	r4, [r1, #17]
- 159:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.right =    !packet->classic_controller.buttons.dr;
- 959              		.loc 1 159 5 is_stmt 1 view .LVU251
- 960              		.loc 1 159 33 is_stmt 0 view .LVU252
- 961 00c4 0479     		ldrb	r4, [r0, #4]
- 962 00c6 E443     		mvns	r4, r4
- 963 00c8 E4B2     		uxtb	r4, r4
- 964 00ca E409     		lsrs	r4, r4, #7
- 965              		.loc 1 159 28 view .LVU253
- 966 00cc 8C74     		strb	r4, [r1, #18]
- 160:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.up =       !packet->classic_controller.buttons.du;
- 967              		.loc 1 160 5 is_stmt 1 view .LVU254
- 968              		.loc 1 160 33 is_stmt 0 view .LVU255
- 969 00ce 4479     		ldrb	r4, [r0, #5]
- 970 00d0 5440     		eors	r4, r2
- 971 00d2 1C40     		ands	r4, r3
- 972              		.loc 1 160 25 view .LVU256
- 973 00d4 CC74     		strb	r4, [r1, #19]
- 161:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.left =     !packet->classic_controller.buttons.dl;
- 974              		.loc 1 161 5 is_stmt 1 view .LVU257
- 975              		.loc 1 161 33 is_stmt 0 view .LVU258
- 976 00d6 4079     		ldrb	r0, [r0, #5]
- 977              	.LVL61:
- 978              		.loc 1 161 33 view .LVU259
- 979 00d8 4008     		lsrs	r0, r0, #1
- 980 00da 4240     		eors	r2, r0
-ARM GAS  /tmp/ccbuvxt2.s 			page 22
+ 725              	.LVL53:
+ 726              	.LVL54:
+ 727              		.loc 1 147 1 discriminator 6 view .LVU172
+ 728 0106 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 729              	.LVL55:
+ 730              	.L32:
+ 130:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 731              		.loc 1 130 82 discriminator 1 view .LVU173
+ 732 0108 4378     		ldrb	r3, [r0, #1]
+ 733 010a 9343     		bics	r3, r2
+ 130:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 734              		.loc 1 130 51 discriminator 1 view .LVU174
+ 735 010c C02B     		cmp	r3, #192
+ 736 010e 01D0     		beq	.L31
+ 130:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 737              		.loc 1 130 51 view .LVU175
+ 738 0110 0023     		movs	r3, #0
+ 739 0112 7FE7     		b	.L29
+ 740              	.L31:
+ 741 0114 0123     		movs	r3, #1
+ 742 0116 7DE7     		b	.L29
+ 743              		.cfi_endproc
+ 744              	.LFE374:
+ 746              		.section	.text.nunchuk_read_guitar_hero,"ax",%progbits
+ 747              		.align	1
+ 748              		.global	nunchuk_read_guitar_hero
+ 749              		.syntax unified
+ 750              		.code	16
+ 751              		.thumb_func
+ 753              	nunchuk_read_guitar_hero:
+ 754              	.LVL56:
+ 755              	.LFB372:
+ 102:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+ 756              		.loc 1 102 71 is_stmt 1 view -0
+ 757              		.cfi_startproc
+ 758              		@ args = 0, pretend = 0, frame = 8
+ 759              		@ frame_needed = 0, uses_anonymous_args = 0
+ 102:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+ 760              		.loc 1 102 71 is_stmt 0 view .LVU177
+ 761 0000 30B5     		push	{r4, r5, lr}
+ 762              	.LCFI10:
+ 763              		.cfi_def_cfa_offset 12
+ 764              		.cfi_offset 4, -12
+ 765              		.cfi_offset 5, -8
+ 766              		.cfi_offset 14, -4
+ 767 0002 83B0     		sub	sp, sp, #12
+ 768              	.LCFI11:
+ 769              		.cfi_def_cfa_offset 24
+ 770 0004 0500     		movs	r5, r0
+ 103:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+ 771              		.loc 1 103 5 is_stmt 1 view .LVU178
+ 104:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 772              		.loc 1 104 5 view .LVU179
+ 104:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 773              		.loc 1 104 29 is_stmt 0 view .LVU180
+ 774 0006 0522     		movs	r2, #5
+ 775 0008 6946     		mov	r1, sp
+ARM GAS  /tmp/ccqhUcUe.s 			page 18
 
 
- 981 00dc 1340     		ands	r3, r2
- 982              		.loc 1 161 27 view .LVU260
- 983 00de 0B75     		strb	r3, [r1, #20]
- 162:Middlewares/nunchuk/Src/nunchuk.c **** }...
- 984              		.loc 1 162 1 view .LVU261
- 985              		@ sp needed
- 986 00e0 10BD     		pop	{r4, pc}
- 987              		.cfi_endproc
- 988              	.LFE375:
- 990              		.section	.text.nunchuk_read_classic,"ax",%progbits
- 991              		.align	1
- 992              		.global	nunchuk_read_classic
- 993              		.syntax unified
- 994              		.code	16
- 995              		.thumb_func
- 997              	nunchuk_read_classic:
- 998              	.LVL62:
- 999              	.LFB371:
-  77:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
- 1000              		.loc 1 77 63 is_stmt 1 view -0
- 1001              		.cfi_startproc
- 1002              		@ args = 0, pretend = 0, frame = 8
- 1003              		@ frame_needed = 0, uses_anonymous_args = 0
-  77:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
- 1004              		.loc 1 77 63 is_stmt 0 view .LVU263
- 1005 0000 30B5     		push	{r4, r5, lr}
- 1006              	.LCFI13:
- 1007              		.cfi_def_cfa_offset 12
- 1008              		.cfi_offset 4, -12
- 1009              		.cfi_offset 5, -8
- 1010              		.cfi_offset 14, -4
- 1011 0002 83B0     		sub	sp, sp, #12
- 1012              	.LCFI14:
- 1013              		.cfi_def_cfa_offset 24
- 1014 0004 0500     		movs	r5, r0
-  78:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
- 1015              		.loc 1 78 5 is_stmt 1 view .LVU264
-  79:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
- 1016              		.loc 1 79 5 view .LVU265
-  79:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
- 1017              		.loc 1 79 29 is_stmt 0 view .LVU266
- 1018 0006 6946     		mov	r1, sp
- 1019 0008 0020     		movs	r0, #0
- 1020              	.LVL63:
-  79:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet);
- 1021              		.loc 1 79 29 view .LVU267
- 1022 000a FFF7FEFF 		bl	nunchuk_packet_read
- 1023              	.LVL64:
- 1024 000e 041E     		subs	r4, r0, #0
- 1025              	.LVL65:
-  81:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
- 1026              		.loc 1 81 5 is_stmt 1 view .LVU268
-  81:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
- 1027              		.loc 1 81 8 is_stmt 0 view .LVU269
- 1028 0010 02D0     		beq	.L39
- 1029              	.LVL66:
- 1030              	.L38:
-ARM GAS  /tmp/ccbuvxt2.s 			page 23
+ 776 000a 0020     		movs	r0, #0
+ 777              	.LVL57:
+ 104:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 778              		.loc 1 104 29 view .LVU181
+ 779 000c FFF7FEFF 		bl	nunchuk_packet_read
+ 780              	.LVL58:
+ 781 0010 041E     		subs	r4, r0, #0
+ 782              	.LVL59:
+ 106:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+ 783              		.loc 1 106 5 is_stmt 1 view .LVU182
+ 106:Middlewares/nunchuk/Src/nunchuk.c ****         return ret;
+ 784              		.loc 1 106 8 is_stmt 0 view .LVU183
+ 785 0012 02D0     		beq	.L35
+ 786              	.LVL60:
+ 787              	.L34:
+ 111:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 788              		.loc 1 111 1 view .LVU184
+ 789 0014 2000     		movs	r0, r4
+ 790 0016 03B0     		add	sp, sp, #12
+ 791              		@ sp needed
+ 792              	.LVL61:
+ 111:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 793              		.loc 1 111 1 view .LVU185
+ 794 0018 30BD     		pop	{r4, r5, pc}
+ 795              	.LVL62:
+ 796              	.L35:
+ 109:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 797              		.loc 1 109 5 is_stmt 1 view .LVU186
+ 798 001a 2900     		movs	r1, r5
+ 799 001c 6846     		mov	r0, sp
+ 800              	.LVL63:
+ 109:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 801              		.loc 1 109 5 is_stmt 0 view .LVU187
+ 802 001e FFF7FEFF 		bl	nunchuk_fill_guitar_hero
+ 803              	.LVL64:
+ 110:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 804              		.loc 1 110 5 is_stmt 1 view .LVU188
+ 110:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 805              		.loc 1 110 12 is_stmt 0 view .LVU189
+ 806 0022 F7E7     		b	.L34
+ 807              		.cfi_endproc
+ 808              	.LFE372:
+ 810              		.section	.text.nunchuk_fill_classic,"ax",%progbits
+ 811              		.align	1
+ 812              		.global	nunchuk_fill_classic
+ 813              		.syntax unified
+ 814              		.code	16
+ 815              		.thumb_func
+ 817              	nunchuk_fill_classic:
+ 818              	.LVL65:
+ 819              	.LFB375:
+ 148:Middlewares/nunchuk/Src/nunchuk.c **** 
+ 149:Middlewares/nunchuk/Src/nunchuk.c **** void nunchuk_fill_classic(nunchuk_packet_t* packet, nunchuk_classic_t* cc) {
+ 820              		.loc 1 149 76 is_stmt 1 view -0
+ 821              		.cfi_startproc
+ 822              		@ args = 0, pretend = 0, frame = 0
+ 823              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccqhUcUe.s 			page 19
 
 
-  86:Middlewares/nunchuk/Src/nunchuk.c **** }
- 1031              		.loc 1 86 1 view .LVU270
- 1032 0012 2000     		movs	r0, r4
- 1033 0014 03B0     		add	sp, sp, #12
- 1034              		@ sp needed
- 1035              	.LVL67:
-  86:Middlewares/nunchuk/Src/nunchuk.c **** }
- 1036              		.loc 1 86 1 view .LVU271
- 1037 0016 30BD     		pop	{r4, r5, pc}
- 1038              	.LVL68:
- 1039              	.L39:
-  84:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_classic(&packet, cc);
- 1040              		.loc 1 84 5 is_stmt 1 view .LVU272
- 1041 0018 2900     		movs	r1, r5
- 1042 001a 6846     		mov	r0, sp
- 1043              	.LVL69:
-  84:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_classic(&packet, cc);
- 1044              		.loc 1 84 5 is_stmt 0 view .LVU273
- 1045 001c FFF7FEFF 		bl	nunchuk_fill_classic
- 1046              	.LVL70:
-  85:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
- 1047              		.loc 1 85 5 is_stmt 1 view .LVU274
-  85:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
- 1048              		.loc 1 85 12 is_stmt 0 view .LVU275
- 1049 0020 F7E7     		b	.L38
- 1050              		.cfi_endproc
- 1051              	.LFE371:
- 1053              		.section	.rodata.NUNCHUK_GUITAR_HERO_ID,"a"
- 1054              		.align	2
- 1057              	NUNCHUK_GUITAR_HERO_ID:
- 1058 0000 0000A420 		.ascii	"\000\000\244 \001\003"
- 1058      0103
- 1059              		.section	.rodata.NUNCHUK_CLASSIC_ID,"a"
- 1060              		.align	2
- 1063              	NUNCHUK_CLASSIC_ID:
- 1064 0000 0100A420 		.ascii	"\001\000\244 \001\001"
- 1064      0101
- 1065              		.section	.rodata.NUNCHUK_STANDARD_ID,"a"
- 1066              		.align	2
- 1069              	NUNCHUK_STANDARD_ID:
- 1070 0000 0000A420 		.ascii	"\000\000\244 \000\000"
- 1070      0000
- 1071              		.text
- 1072              	.Letext0:
- 1073              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 1074              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 1075              		.file 4 "Middlewares/nunchuk/Inc/nunchuk_devices.h"
- 1076              		.file 5 "Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0b1xx.h"
- 1077              		.file 6 "/usr/lib/gcc/arm-none-eabi/12.1.0/include/stddef.h"
- 1078              		.file 7 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_def.h"
- 1079              		.file 8 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_dma.h"
- 1080              		.file 9 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h"
- 1081              		.file 10 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
- 1082              		.file 11 "/usr/arm-none-eabi/include/string.h"
- 1083              		.file 12 "Core/Inc/i2c.h"
-ARM GAS  /tmp/ccbuvxt2.s 			page 24
+ 824              		.loc 1 149 76 is_stmt 0 view .LVU191
+ 825 0000 10B5     		push	{r4, lr}
+ 826              	.LCFI12:
+ 827              		.cfi_def_cfa_offset 8
+ 828              		.cfi_offset 4, -8
+ 829              		.cfi_offset 14, -4
+ 150:Middlewares/nunchuk/Src/nunchuk.c ****     cc->lx =  packet->classic_controller.lx;
+ 830              		.loc 1 150 5 is_stmt 1 view .LVU192
+ 831              		.loc 1 150 41 is_stmt 0 view .LVU193
+ 832 0002 0378     		ldrb	r3, [r0]
+ 833 0004 9B06     		lsls	r3, r3, #26
+ 834 0006 9B0E     		lsrs	r3, r3, #26
+ 835              		.loc 1 150 12 view .LVU194
+ 836 0008 0B70     		strb	r3, [r1]
+ 151:Middlewares/nunchuk/Src/nunchuk.c ****     cc->ly =  packet->classic_controller.ly;
+ 837              		.loc 1 151 5 is_stmt 1 view .LVU195
+ 838              		.loc 1 151 41 is_stmt 0 view .LVU196
+ 839 000a 4378     		ldrb	r3, [r0, #1]
+ 840 000c 9B06     		lsls	r3, r3, #26
+ 841 000e 9B0E     		lsrs	r3, r3, #26
+ 842              		.loc 1 151 12 view .LVU197
+ 843 0010 4B70     		strb	r3, [r1, #1]
+ 152:Middlewares/nunchuk/Src/nunchuk.c ****     cc->rx = (packet->classic_controller.rx_4_3 << 3) |
+ 844              		.loc 1 152 5 is_stmt 1 view .LVU198
+ 845              		.loc 1 152 41 is_stmt 0 view .LVU199
+ 846 0012 0378     		ldrb	r3, [r0]
+ 847 0014 9B09     		lsrs	r3, r3, #6
+ 848              		.loc 1 152 49 view .LVU200
+ 849 0016 DB00     		lsls	r3, r3, #3
+ 153:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->classic_controller.rx_2_1 << 1) |
+ 850              		.loc 1 153 42 view .LVU201
+ 851 0018 4278     		ldrb	r2, [r0, #1]
+ 852 001a 9209     		lsrs	r2, r2, #6
+ 853              		.loc 1 153 50 view .LVU202
+ 854 001c 5200     		lsls	r2, r2, #1
+ 152:Middlewares/nunchuk/Src/nunchuk.c ****     cc->rx = (packet->classic_controller.rx_4_3 << 3) |
+ 855              		.loc 1 152 55 view .LVU203
+ 856 001e 1343     		orrs	r3, r2
+ 154:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->classic_controller.rx_0);
+ 857              		.loc 1 154 42 view .LVU204
+ 858 0020 8278     		ldrb	r2, [r0, #2]
+ 859 0022 D209     		lsrs	r2, r2, #7
+ 153:Middlewares/nunchuk/Src/nunchuk.c ****               (packet->classic_controller.rx_2_1 << 1) |
+ 860              		.loc 1 153 56 view .LVU205
+ 861 0024 1343     		orrs	r3, r2
+ 152:Middlewares/nunchuk/Src/nunchuk.c ****     cc->rx = (packet->classic_controller.rx_4_3 << 3) |
+ 862              		.loc 1 152 12 view .LVU206
+ 863 0026 8B70     		strb	r3, [r1, #2]
+ 155:Middlewares/nunchuk/Src/nunchuk.c ****     cc->ry =  packet->classic_controller.ry;
+ 864              		.loc 1 155 5 is_stmt 1 view .LVU207
+ 865              		.loc 1 155 41 is_stmt 0 view .LVU208
+ 866 0028 8378     		ldrb	r3, [r0, #2]
+ 867 002a DB06     		lsls	r3, r3, #27
+ 868 002c DB0E     		lsrs	r3, r3, #27
+ 869              		.loc 1 155 12 view .LVU209
+ 870 002e CB70     		strb	r3, [r1, #3]
+ 156:Middlewares/nunchuk/Src/nunchuk.c **** 
+ARM GAS  /tmp/ccqhUcUe.s 			page 20
+
+
+ 157:Middlewares/nunchuk/Src/nunchuk.c ****     cc->left_trigger = (packet->classic_controller.lt_4_3 << 3) |
+ 871              		.loc 1 157 5 is_stmt 1 view .LVU210
+ 872              		.loc 1 157 51 is_stmt 0 view .LVU211
+ 873 0030 8378     		ldrb	r3, [r0, #2]
+ 874 0032 5B06     		lsls	r3, r3, #25
+ 875 0034 9B0F     		lsrs	r3, r3, #30
+ 876              		.loc 1 157 59 view .LVU212
+ 877 0036 DB00     		lsls	r3, r3, #3
+ 158:Middlewares/nunchuk/Src/nunchuk.c ****                         (packet->classic_controller.lt_2_0);
+ 878              		.loc 1 158 52 view .LVU213
+ 879 0038 C278     		ldrb	r2, [r0, #3]
+ 880 003a 5209     		lsrs	r2, r2, #5
+ 157:Middlewares/nunchuk/Src/nunchuk.c ****                         (packet->classic_controller.lt_2_0);
+ 881              		.loc 1 157 65 view .LVU214
+ 882 003c 1343     		orrs	r3, r2
+ 157:Middlewares/nunchuk/Src/nunchuk.c ****                         (packet->classic_controller.lt_2_0);
+ 883              		.loc 1 157 22 view .LVU215
+ 884 003e 0B71     		strb	r3, [r1, #4]
+ 159:Middlewares/nunchuk/Src/nunchuk.c ****     cc->right_trigger = packet->classic_controller.rt;
+ 885              		.loc 1 159 5 is_stmt 1 view .LVU216
+ 886              		.loc 1 159 51 is_stmt 0 view .LVU217
+ 887 0040 C378     		ldrb	r3, [r0, #3]
+ 888 0042 DB06     		lsls	r3, r3, #27
+ 889 0044 DB0E     		lsrs	r3, r3, #27
+ 890              		.loc 1 159 23 view .LVU218
+ 891 0046 4B71     		strb	r3, [r1, #5]
+ 160:Middlewares/nunchuk/Src/nunchuk.c ****     
+ 161:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.a =             !packet->classic_controller.buttons.a;
+ 892              		.loc 1 161 5 is_stmt 1 view .LVU219
+ 893              		.loc 1 161 33 is_stmt 0 view .LVU220
+ 894 0048 4479     		ldrb	r4, [r0, #5]
+ 895 004a 2409     		lsrs	r4, r4, #4
+ 896 004c 0122     		movs	r2, #1
+ 897 004e 5440     		eors	r4, r2
+ 898 0050 0123     		movs	r3, #1
+ 899 0052 1C40     		ands	r4, r3
+ 900              		.loc 1 161 19 view .LVU221
+ 901 0054 8C71     		strb	r4, [r1, #6]
+ 162:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.b =             !packet->classic_controller.buttons.b;
+ 902              		.loc 1 162 5 is_stmt 1 view .LVU222
+ 903              		.loc 1 162 33 is_stmt 0 view .LVU223
+ 904 0056 4479     		ldrb	r4, [r0, #5]
+ 905 0058 A409     		lsrs	r4, r4, #6
+ 906 005a 5440     		eors	r4, r2
+ 907 005c 1C40     		ands	r4, r3
+ 908              		.loc 1 162 19 view .LVU224
+ 909 005e CC71     		strb	r4, [r1, #7]
+ 163:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.x =             !packet->classic_controller.buttons.x;
+ 910              		.loc 1 163 5 is_stmt 1 view .LVU225
+ 911              		.loc 1 163 33 is_stmt 0 view .LVU226
+ 912 0060 4479     		ldrb	r4, [r0, #5]
+ 913 0062 E408     		lsrs	r4, r4, #3
+ 914 0064 5440     		eors	r4, r2
+ 915 0066 1C40     		ands	r4, r3
+ 916              		.loc 1 163 19 view .LVU227
+ 917 0068 0C72     		strb	r4, [r1, #8]
+ 164:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.y =             !packet->classic_controller.buttons.y;
+ARM GAS  /tmp/ccqhUcUe.s 			page 21
+
+
+ 918              		.loc 1 164 5 is_stmt 1 view .LVU228
+ 919              		.loc 1 164 33 is_stmt 0 view .LVU229
+ 920 006a 4479     		ldrb	r4, [r0, #5]
+ 921 006c 6409     		lsrs	r4, r4, #5
+ 922 006e 5440     		eors	r4, r2
+ 923 0070 1C40     		ands	r4, r3
+ 924              		.loc 1 164 19 view .LVU230
+ 925 0072 4C72     		strb	r4, [r1, #9]
+ 165:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.plus =          !packet->classic_controller.buttons.plus;
+ 926              		.loc 1 165 5 is_stmt 1 view .LVU231
+ 927              		.loc 1 165 33 is_stmt 0 view .LVU232
+ 928 0074 0479     		ldrb	r4, [r0, #4]
+ 929 0076 A408     		lsrs	r4, r4, #2
+ 930 0078 5440     		eors	r4, r2
+ 931 007a 1C40     		ands	r4, r3
+ 932              		.loc 1 165 22 view .LVU233
+ 933 007c 8C72     		strb	r4, [r1, #10]
+ 166:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.home =          !packet->classic_controller.buttons.h;
+ 934              		.loc 1 166 5 is_stmt 1 view .LVU234
+ 935              		.loc 1 166 33 is_stmt 0 view .LVU235
+ 936 007e 0479     		ldrb	r4, [r0, #4]
+ 937 0080 E408     		lsrs	r4, r4, #3
+ 938 0082 5440     		eors	r4, r2
+ 939 0084 1C40     		ands	r4, r3
+ 940              		.loc 1 166 22 view .LVU236
+ 941 0086 CC72     		strb	r4, [r1, #11]
+ 167:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.minus =         !packet->classic_controller.buttons.minus;
+ 942              		.loc 1 167 5 is_stmt 1 view .LVU237
+ 943              		.loc 1 167 33 is_stmt 0 view .LVU238
+ 944 0088 0479     		ldrb	r4, [r0, #4]
+ 945 008a 2409     		lsrs	r4, r4, #4
+ 946 008c 5440     		eors	r4, r2
+ 947 008e 1C40     		ands	r4, r3
+ 948              		.loc 1 167 23 view .LVU239
+ 949 0090 0C73     		strb	r4, [r1, #12]
+ 168:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.left_trigger =  !packet->classic_controller.buttons.lt;
+ 950              		.loc 1 168 5 is_stmt 1 view .LVU240
+ 951              		.loc 1 168 33 is_stmt 0 view .LVU241
+ 952 0092 0479     		ldrb	r4, [r0, #4]
+ 953 0094 6409     		lsrs	r4, r4, #5
+ 954 0096 5440     		eors	r4, r2
+ 955 0098 1C40     		ands	r4, r3
+ 956              		.loc 1 168 30 view .LVU242
+ 957 009a 4C73     		strb	r4, [r1, #13]
+ 169:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.right_trigger = !packet->classic_controller.buttons.rt;
+ 958              		.loc 1 169 5 is_stmt 1 view .LVU243
+ 959              		.loc 1 169 33 is_stmt 0 view .LVU244
+ 960 009c 0479     		ldrb	r4, [r0, #4]
+ 961 009e 6408     		lsrs	r4, r4, #1
+ 962 00a0 5440     		eors	r4, r2
+ 963 00a2 1C40     		ands	r4, r3
+ 964              		.loc 1 169 31 view .LVU245
+ 965 00a4 8C73     		strb	r4, [r1, #14]
+ 170:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.zl =            !packet->classic_controller.buttons.zl;
+ 966              		.loc 1 170 5 is_stmt 1 view .LVU246
+ 967              		.loc 1 170 33 is_stmt 0 view .LVU247
+ 968 00a6 4479     		ldrb	r4, [r0, #5]
+ARM GAS  /tmp/ccqhUcUe.s 			page 22
+
+
+ 969 00a8 E443     		mvns	r4, r4
+ 970 00aa E4B2     		uxtb	r4, r4
+ 971 00ac E409     		lsrs	r4, r4, #7
+ 972              		.loc 1 170 20 view .LVU248
+ 973 00ae 0C74     		strb	r4, [r1, #16]
+ 171:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.zr =            !packet->classic_controller.buttons.zr;
+ 974              		.loc 1 171 5 is_stmt 1 view .LVU249
+ 975              		.loc 1 171 33 is_stmt 0 view .LVU250
+ 976 00b0 4479     		ldrb	r4, [r0, #5]
+ 977 00b2 A408     		lsrs	r4, r4, #2
+ 978 00b4 5440     		eors	r4, r2
+ 979 00b6 1C40     		ands	r4, r3
+ 980              		.loc 1 171 20 view .LVU251
+ 981 00b8 CC73     		strb	r4, [r1, #15]
+ 172:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.down =     !packet->classic_controller.buttons.dd;
+ 982              		.loc 1 172 5 is_stmt 1 view .LVU252
+ 983              		.loc 1 172 33 is_stmt 0 view .LVU253
+ 984 00ba 0479     		ldrb	r4, [r0, #4]
+ 985 00bc A409     		lsrs	r4, r4, #6
+ 986 00be 5440     		eors	r4, r2
+ 987 00c0 1C40     		ands	r4, r3
+ 988              		.loc 1 172 27 view .LVU254
+ 989 00c2 4C74     		strb	r4, [r1, #17]
+ 173:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.right =    !packet->classic_controller.buttons.dr;
+ 990              		.loc 1 173 5 is_stmt 1 view .LVU255
+ 991              		.loc 1 173 33 is_stmt 0 view .LVU256
+ 992 00c4 0479     		ldrb	r4, [r0, #4]
+ 993 00c6 E443     		mvns	r4, r4
+ 994 00c8 E4B2     		uxtb	r4, r4
+ 995 00ca E409     		lsrs	r4, r4, #7
+ 996              		.loc 1 173 28 view .LVU257
+ 997 00cc 8C74     		strb	r4, [r1, #18]
+ 174:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.up =       !packet->classic_controller.buttons.du;
+ 998              		.loc 1 174 5 is_stmt 1 view .LVU258
+ 999              		.loc 1 174 33 is_stmt 0 view .LVU259
+ 1000 00ce 4479     		ldrb	r4, [r0, #5]
+ 1001 00d0 5440     		eors	r4, r2
+ 1002 00d2 1C40     		ands	r4, r3
+ 1003              		.loc 1 174 25 view .LVU260
+ 1004 00d4 CC74     		strb	r4, [r1, #19]
+ 175:Middlewares/nunchuk/Src/nunchuk.c ****     cc->buttons.dpad.left =     !packet->classic_controller.buttons.dl;
+ 1005              		.loc 1 175 5 is_stmt 1 view .LVU261
+ 1006              		.loc 1 175 33 is_stmt 0 view .LVU262
+ 1007 00d6 4079     		ldrb	r0, [r0, #5]
+ 1008              	.LVL66:
+ 1009              		.loc 1 175 33 view .LVU263
+ 1010 00d8 4008     		lsrs	r0, r0, #1
+ 1011 00da 4240     		eors	r2, r0
+ 1012 00dc 1340     		ands	r3, r2
+ 1013              		.loc 1 175 27 view .LVU264
+ 1014 00de 0B75     		strb	r3, [r1, #20]
+ 176:Middlewares/nunchuk/Src/nunchuk.c **** }...
+ 1015              		.loc 1 176 1 view .LVU265
+ 1016              		@ sp needed
+ 1017 00e0 10BD     		pop	{r4, pc}
+ 1018              		.cfi_endproc
+ 1019              	.LFE375:
+ARM GAS  /tmp/ccqhUcUe.s 			page 23
+
+
+ 1021              		.section	.text.nunchuk_read_classic,"ax",%progbits
+ 1022              		.align	1
+ 1023              		.global	nunchuk_read_classic
+ 1024              		.syntax unified
+ 1025              		.code	16
+ 1026              		.thumb_func
+ 1028              	nunchuk_read_classic:
+ 1029              	.LVL67:
+ 1030              	.LFB371:
+  91:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
+ 1031              		.loc 1 91 63 is_stmt 1 view -0
+ 1032              		.cfi_startproc
+ 1033              		@ args = 0, pretend = 0, frame = 8
+ 1034              		@ frame_needed = 0, uses_anonymous_args = 0
+  91:Middlewares/nunchuk/Src/nunchuk.c **** HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc) {
+ 1035              		.loc 1 91 63 is_stmt 0 view .LVU267
+ 1036 0000 30B5     		push	{r4, r5, lr}
+ 1037              	.LCFI13:
+ 1038              		.cfi_def_cfa_offset 12
+ 1039              		.cfi_offset 4, -12
+ 1040              		.cfi_offset 5, -8
+ 1041              		.cfi_offset 14, -4
+ 1042 0002 83B0     		sub	sp, sp, #12
+ 1043              	.LCFI14:
+ 1044              		.cfi_def_cfa_offset 24
+ 1045 0004 0500     		movs	r5, r0
+  92:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_packet_t packet;
+ 1046              		.loc 1 92 5 is_stmt 1 view .LVU268
+  93:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+ 1047              		.loc 1 93 5 view .LVU269
+  93:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+ 1048              		.loc 1 93 29 is_stmt 0 view .LVU270
+ 1049 0006 0522     		movs	r2, #5
+ 1050 0008 6946     		mov	r1, sp
+ 1051 000a 0020     		movs	r0, #0
+ 1052              	.LVL68:
+  93:Middlewares/nunchuk/Src/nunchuk.c ****     HAL_StatusTypeDef ret = nunchuk_packet_read(NUNCHUK_REPORT_ADDR, &packet, 5);
+ 1053              		.loc 1 93 29 view .LVU271
+ 1054 000c FFF7FEFF 		bl	nunchuk_packet_read
+ 1055              	.LVL69:
+ 1056 0010 041E     		subs	r4, r0, #0
+ 1057              	.LVL70:
+  95:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
+ 1058              		.loc 1 95 5 is_stmt 1 view .LVU272
+  95:Middlewares/nunchuk/Src/nunchuk.c ****     if (ret != HAL_OK)
+ 1059              		.loc 1 95 8 is_stmt 0 view .LVU273
+ 1060 0012 02D0     		beq	.L39
+ 1061              	.LVL71:
+ 1062              	.L38:
+ 100:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 1063              		.loc 1 100 1 view .LVU274
+ 1064 0014 2000     		movs	r0, r4
+ 1065 0016 03B0     		add	sp, sp, #12
+ 1066              		@ sp needed
+ 1067              	.LVL72:
+ 100:Middlewares/nunchuk/Src/nunchuk.c **** }
+ 1068              		.loc 1 100 1 view .LVU275
+ARM GAS  /tmp/ccqhUcUe.s 			page 24
+
+
+ 1069 0018 30BD     		pop	{r4, r5, pc}
+ 1070              	.LVL73:
+ 1071              	.L39:
+  98:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_classic(&packet, cc);
+ 1072              		.loc 1 98 5 is_stmt 1 view .LVU276
+ 1073 001a 2900     		movs	r1, r5
+ 1074 001c 6846     		mov	r0, sp
+ 1075              	.LVL74:
+  98:Middlewares/nunchuk/Src/nunchuk.c ****     nunchuk_fill_classic(&packet, cc);
+ 1076              		.loc 1 98 5 is_stmt 0 view .LVU277
+ 1077 001e FFF7FEFF 		bl	nunchuk_fill_classic
+ 1078              	.LVL75:
+  99:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 1079              		.loc 1 99 5 is_stmt 1 view .LVU278
+  99:Middlewares/nunchuk/Src/nunchuk.c ****     return HAL_OK;
+ 1080              		.loc 1 99 12 is_stmt 0 view .LVU279
+ 1081 0022 F7E7     		b	.L38
+ 1082              		.cfi_endproc
+ 1083              	.LFE371:
+ 1085              		.section	.rodata.NUNCHUK_GUITAR_HERO_ID,"a"
+ 1086              		.align	2
+ 1089              	NUNCHUK_GUITAR_HERO_ID:
+ 1090 0000 0000A420 		.ascii	"\000\000\244 \001\003"
+ 1090      0103
+ 1091              		.section	.rodata.NUNCHUK_CLASSIC_ID,"a"
+ 1092              		.align	2
+ 1095              	NUNCHUK_CLASSIC_ID:
+ 1096 0000 0100A420 		.ascii	"\001\000\244 \001\001"
+ 1096      0101
+ 1097              		.section	.rodata.NUNCHUK_STANDARD_ID,"a"
+ 1098              		.align	2
+ 1101              	NUNCHUK_STANDARD_ID:
+ 1102 0000 0000A420 		.ascii	"\000\000\244 \000\000"
+ 1102      0000
+ 1103              		.text
+ 1104              	.Letext0:
+ 1105              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1106              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1107              		.file 4 "Middlewares/nunchuk/Inc/nunchuk_devices.h"
+ 1108              		.file 5 "Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g0b1xx.h"
+ 1109              		.file 6 "/usr/lib/gcc/arm-none-eabi/12.1.0/include/stddef.h"
+ 1110              		.file 7 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_def.h"
+ 1111              		.file 8 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_dma.h"
+ 1112              		.file 9 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h"
+ 1113              		.file 10 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
+ 1114              		.file 11 "/usr/arm-none-eabi/include/string.h"
+ 1115              		.file 12 "Core/Inc/i2c.h"
+ 1116              		.file 13 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h"
+ARM GAS  /tmp/ccqhUcUe.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 nunchuk.c
-     /tmp/ccbuvxt2.s:19     .text.clamp_input:0000000000000000 $t
-     /tmp/ccbuvxt2.s:25     .text.clamp_input:0000000000000000 clamp_input
-     /tmp/ccbuvxt2.s:64     .text.nunchuk_reg_write:0000000000000000 $t
-     /tmp/ccbuvxt2.s:70     .text.nunchuk_reg_write:0000000000000000 nunchuk_reg_write
-     /tmp/ccbuvxt2.s:114    .text.nunchuk_reg_write:0000000000000020 $d
-     /tmp/ccbuvxt2.s:119    .text.nunchuk_packet_read:0000000000000000 $t
-     /tmp/ccbuvxt2.s:125    .text.nunchuk_packet_read:0000000000000000 nunchuk_packet_read
-     /tmp/ccbuvxt2.s:192    .text.nunchuk_packet_read:0000000000000038 $d
-     /tmp/ccbuvxt2.s:197    .text.nunchuk_init:0000000000000000 $t
-     /tmp/ccbuvxt2.s:203    .text.nunchuk_init:0000000000000000 nunchuk_init
-     /tmp/ccbuvxt2.s:323    .text.nunchuk_init:0000000000000078 $d
-     /tmp/ccbuvxt2.s:1069   .rodata.NUNCHUK_STANDARD_ID:0000000000000000 NUNCHUK_STANDARD_ID
-     /tmp/ccbuvxt2.s:1063   .rodata.NUNCHUK_CLASSIC_ID:0000000000000000 NUNCHUK_CLASSIC_ID
-     /tmp/ccbuvxt2.s:1057   .rodata.NUNCHUK_GUITAR_HERO_ID:0000000000000000 NUNCHUK_GUITAR_HERO_ID
-     /tmp/ccbuvxt2.s:330    .text.nunchuk_fill_standard:0000000000000000 $t
-     /tmp/ccbuvxt2.s:336    .text.nunchuk_fill_standard:0000000000000000 nunchuk_fill_standard
-     /tmp/ccbuvxt2.s:424    .text.nunchuk_read_standard:0000000000000000 $t
-     /tmp/ccbuvxt2.s:430    .text.nunchuk_read_standard:0000000000000000 nunchuk_read_standard
-     /tmp/ccbuvxt2.s:487    .text.nunchuk_fill_guitar_hero:0000000000000000 $t
-     /tmp/ccbuvxt2.s:493    .text.nunchuk_fill_guitar_hero:0000000000000000 nunchuk_fill_guitar_hero
-     /tmp/ccbuvxt2.s:717    .text.nunchuk_read_guitar_hero:0000000000000000 $t
-     /tmp/ccbuvxt2.s:723    .text.nunchuk_read_guitar_hero:0000000000000000 nunchuk_read_guitar_hero
-     /tmp/ccbuvxt2.s:780    .text.nunchuk_fill_classic:0000000000000000 $t
-     /tmp/ccbuvxt2.s:786    .text.nunchuk_fill_classic:0000000000000000 nunchuk_fill_classic
-     /tmp/ccbuvxt2.s:991    .text.nunchuk_read_classic:0000000000000000 $t
-     /tmp/ccbuvxt2.s:997    .text.nunchuk_read_classic:0000000000000000 nunchuk_read_classic
-     /tmp/ccbuvxt2.s:1054   .rodata.NUNCHUK_GUITAR_HERO_ID:0000000000000000 $d
-     /tmp/ccbuvxt2.s:1060   .rodata.NUNCHUK_CLASSIC_ID:0000000000000000 $d
-     /tmp/ccbuvxt2.s:1066   .rodata.NUNCHUK_STANDARD_ID:0000000000000000 $d
+     /tmp/ccqhUcUe.s:19     .text.clamp_input:0000000000000000 $t
+     /tmp/ccqhUcUe.s:25     .text.clamp_input:0000000000000000 clamp_input
+     /tmp/ccqhUcUe.s:64     .text.nunchuk_reg_write:0000000000000000 $t
+     /tmp/ccqhUcUe.s:70     .text.nunchuk_reg_write:0000000000000000 nunchuk_reg_write
+     /tmp/ccqhUcUe.s:114    .text.nunchuk_reg_write:0000000000000020 $d
+     /tmp/ccqhUcUe.s:119    .text.nunchuk_packet_read:0000000000000000 $t
+     /tmp/ccqhUcUe.s:125    .text.nunchuk_packet_read:0000000000000000 nunchuk_packet_read
+     /tmp/ccqhUcUe.s:201    .text.nunchuk_packet_read:0000000000000040 $d
+     /tmp/ccqhUcUe.s:206    .text.nunchuk_init:0000000000000000 $t
+     /tmp/ccqhUcUe.s:212    .text.nunchuk_init:0000000000000000 nunchuk_init
+     /tmp/ccqhUcUe.s:341    .text.nunchuk_init:0000000000000084 $d
+     /tmp/ccqhUcUe.s:1101   .rodata.NUNCHUK_STANDARD_ID:0000000000000000 NUNCHUK_STANDARD_ID
+     /tmp/ccqhUcUe.s:1095   .rodata.NUNCHUK_CLASSIC_ID:0000000000000000 NUNCHUK_CLASSIC_ID
+     /tmp/ccqhUcUe.s:1089   .rodata.NUNCHUK_GUITAR_HERO_ID:0000000000000000 NUNCHUK_GUITAR_HERO_ID
+     /tmp/ccqhUcUe.s:348    .text.nunchuk_fill_standard:0000000000000000 $t
+     /tmp/ccqhUcUe.s:354    .text.nunchuk_fill_standard:0000000000000000 nunchuk_fill_standard
+     /tmp/ccqhUcUe.s:453    .text.nunchuk_read_standard:0000000000000000 $t
+     /tmp/ccqhUcUe.s:459    .text.nunchuk_read_standard:0000000000000000 nunchuk_read_standard
+     /tmp/ccqhUcUe.s:517    .text.nunchuk_fill_guitar_hero:0000000000000000 $t
+     /tmp/ccqhUcUe.s:523    .text.nunchuk_fill_guitar_hero:0000000000000000 nunchuk_fill_guitar_hero
+     /tmp/ccqhUcUe.s:747    .text.nunchuk_read_guitar_hero:0000000000000000 $t
+     /tmp/ccqhUcUe.s:753    .text.nunchuk_read_guitar_hero:0000000000000000 nunchuk_read_guitar_hero
+     /tmp/ccqhUcUe.s:811    .text.nunchuk_fill_classic:0000000000000000 $t
+     /tmp/ccqhUcUe.s:817    .text.nunchuk_fill_classic:0000000000000000 nunchuk_fill_classic
+     /tmp/ccqhUcUe.s:1022   .text.nunchuk_read_classic:0000000000000000 $t
+     /tmp/ccqhUcUe.s:1028   .text.nunchuk_read_classic:0000000000000000 nunchuk_read_classic
+     /tmp/ccqhUcUe.s:1086   .rodata.NUNCHUK_GUITAR_HERO_ID:0000000000000000 $d
+     /tmp/ccqhUcUe.s:1092   .rodata.NUNCHUK_CLASSIC_ID:0000000000000000 $d
+     /tmp/ccqhUcUe.s:1098   .rodata.NUNCHUK_STANDARD_ID:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Master_Transmit
 hi2c2
+HAL_Delay
 HAL_I2C_Master_Receive
 memcmp

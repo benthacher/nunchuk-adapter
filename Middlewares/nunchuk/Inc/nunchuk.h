@@ -32,7 +32,7 @@ HAL_StatusTypeDef nunchuk_reg_write(uint8_t addr, uint8_t data);
  * @param packet packet to populate with data
  * @return HAL_StatusTypeDef 
  */
-HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet);
+HAL_StatusTypeDef nunchuk_packet_read(uint8_t addr, nunchuk_packet_t* packet, int wait_time_ms);
 
 HAL_StatusTypeDef nunchuk_read_standard(nunchuk_standard_t* std);
 HAL_StatusTypeDef nunchuk_read_classic(nunchuk_classic_t* cc);

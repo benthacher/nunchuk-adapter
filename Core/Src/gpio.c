@@ -133,9 +133,9 @@ void blink_led(int num_blinks, int frequency) {
   int delay_ms = (1.0 / frequency) * 1000 / 2;
 
   while (num_blinks--) {
-    write_led(0);
-    HAL_Delay(delay_ms);
     write_led(1);
+    HAL_Delay(delay_ms);
+    write_led(0);
     HAL_Delay(delay_ms);
   }
 }

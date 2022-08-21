@@ -107,8 +107,9 @@ typedef struct {
     int16_t ay;
     int16_t az;
     struct {
-        uint8_t z;
-        uint8_t c;
+        // byte 1
+        uint8_t z : 1;
+        uint8_t c : 1;
     } buttons;
 } nunchuk_standard_t;
 

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccxdYRE2.s 			page 1
+ARM GAS  /tmp/cci3xWha.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
   30:Core/Src/gpio.c **** 
   31:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
   32:Core/Src/gpio.c **** /* Configure GPIO                                                             */
-ARM GAS  /tmp/ccxdYRE2.s 			page 2
+ARM GAS  /tmp/cci3xWha.s 			page 2
 
 
   33:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
   60 0016 0222     		movs	r2, #2
   61 0018 1143     		orrs	r1, r2
   62 001a 5963     		str	r1, [r3, #52]
-ARM GAS  /tmp/ccxdYRE2.s 			page 3
+ARM GAS  /tmp/cci3xWha.s 			page 3
 
 
   63              		.loc 1 53 3 view .LVU6
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  114 0050 0392     		str	r2, [sp, #12]
  115              		.loc 1 56 3 view .LVU25
  116 0052 039A     		ldr	r2, [sp, #12]
-ARM GAS  /tmp/ccxdYRE2.s 			page 4
+ARM GAS  /tmp/cci3xWha.s 			page 4
 
 
  117              	.LBE5:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  159              	.LVL2:
   69:Core/Src/gpio.c **** 
   70:Core/Src/gpio.c ****   /*Configure GPIO pins : PC14 PC15 */
-ARM GAS  /tmp/ccxdYRE2.s 			page 5
+ARM GAS  /tmp/cci3xWha.s 			page 5
 
 
   71:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_14|GPIO_PIN_15;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
   86:Core/Src/gpio.c ****   HAL_GPIO_Init(PRES_GPIO_Port, &GPIO_InitStruct);
  199              		.loc 1 86 3 is_stmt 1 view .LVU61
  200 00ac A027     		movs	r7, #160
-ARM GAS  /tmp/ccxdYRE2.s 			page 6
+ARM GAS  /tmp/cci3xWha.s 			page 6
 
 
  201 00ae FF05     		lsls	r7, r7, #23
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  104:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3;
  238              		.loc 1 104 3 view .LVU78
  239              		.loc 1 104 23 is_stmt 0 view .LVU79
-ARM GAS  /tmp/ccxdYRE2.s 			page 7
+ARM GAS  /tmp/cci3xWha.s 			page 7
 
 
  240 00d8 0E23     		movs	r3, #14
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  287 0000 10B5     		push	{r4, lr}
  288              	.LCFI3:
  289              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccxdYRE2.s 			page 8
+ARM GAS  /tmp/cci3xWha.s 			page 8
 
 
  290              		.cfi_offset 4, -8
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  121:Core/Src/gpio.c **** }
  339              		.loc 1 121 1 view .LVU98
  340              		@ sp needed
-ARM GAS  /tmp/ccxdYRE2.s 			page 9
+ARM GAS  /tmp/cci3xWha.s 			page 9
 
 
  341 000c 7047     		bx	lr
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  385 000c 0B00     		movs	r3, r1
  386 000e 0020     		movs	r0, #0
  387 0010 0F49     		ldr	r1, .L13
-ARM GAS  /tmp/ccxdYRE2.s 			page 10
+ARM GAS  /tmp/cci3xWha.s 			page 10
 
 
  388 0012 FFF7FEFF 		bl	__aeabi_ddiv
@@ -565,9 +565,9 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  407 002c 0CE0     		b	.L11
  408              	.LVL21:
  409              	.L12:
- 136:Core/Src/gpio.c ****     write_led(0);
+ 136:Core/Src/gpio.c ****     write_led(1);
  410              		.loc 1 136 5 is_stmt 1 view .LVU109
- 411 002e 0020     		movs	r0, #0
+ 411 002e 0120     		movs	r0, #1
  412 0030 FFF7FEFF 		bl	write_led
  413              	.LVL22:
  137:Core/Src/gpio.c ****     HAL_Delay(delay_ms);
@@ -575,9 +575,9 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  415 0034 2800     		movs	r0, r5
  416 0036 FFF7FEFF 		bl	HAL_Delay
  417              	.LVL23:
- 138:Core/Src/gpio.c ****     write_led(1);
+ 138:Core/Src/gpio.c ****     write_led(0);
  418              		.loc 1 138 5 view .LVU111
- 419 003a 0120     		movs	r0, #1
+ 419 003a 0020     		movs	r0, #0
  420 003c FFF7FEFF 		bl	write_led
  421              	.LVL24:
  139:Core/Src/gpio.c ****     HAL_Delay(delay_ms);
@@ -585,20 +585,20 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  423 0040 2800     		movs	r0, r5
  424 0042 FFF7FEFF 		bl	HAL_Delay
  425              	.LVL25:
- 135:Core/Src/gpio.c ****     write_led(0);
+ 135:Core/Src/gpio.c ****     write_led(1);
  426              		.loc 1 135 20 is_stmt 0 view .LVU113
  427 0046 3400     		movs	r4, r6
  428              	.LVL26:
  429              	.L11:
- 135:Core/Src/gpio.c ****     write_led(0);
+ 135:Core/Src/gpio.c ****     write_led(1);
  430              		.loc 1 135 10 is_stmt 1 view .LVU114
- 135:Core/Src/gpio.c ****     write_led(0);
+ 135:Core/Src/gpio.c ****     write_led(1);
  431              		.loc 1 135 20 is_stmt 0 view .LVU115
  432 0048 661E     		subs	r6, r4, #1
  433              	.LVL27:
- 135:Core/Src/gpio.c ****     write_led(0);
+ 135:Core/Src/gpio.c ****     write_led(1);
  434              		.loc 1 135 10 view .LVU116
-ARM GAS  /tmp/ccxdYRE2.s 			page 11
+ARM GAS  /tmp/cci3xWha.s 			page 11
 
 
  435 004a 002C     		cmp	r4, #0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  483 000c 054B     		ldr	r3, .L18+4
  484 000e 5968     		ldr	r1, [r3, #4]
  485 0010 1868     		ldr	r0, [r3]
-ARM GAS  /tmp/ccxdYRE2.s 			page 12
+ARM GAS  /tmp/cci3xWha.s 			page 12
 
 
  486 0012 FFF7FEFF 		bl	blink_led
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  539 0000 00000000 		.space	8
  539      00000000 
  540              		.global	blink_requested
-ARM GAS  /tmp/ccxdYRE2.s 			page 13
+ARM GAS  /tmp/cci3xWha.s 			page 13
 
 
  541              		.section	.bss.blink_requested,"aw",%nobits
@@ -734,32 +734,32 @@ ARM GAS  /tmp/ccxdYRE2.s 			page 1
  553              		.file 6 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h"
  554              		.file 7 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
  555              		.file 8 "<built-in>"
-ARM GAS  /tmp/ccxdYRE2.s 			page 14
+ARM GAS  /tmp/cci3xWha.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gpio.c
-     /tmp/ccxdYRE2.s:19     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccxdYRE2.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccxdYRE2.s:262    .text.MX_GPIO_Init:00000000000000f0 $d
-     /tmp/ccxdYRE2.s:273    .text.write_led:0000000000000000 $t
-     /tmp/ccxdYRE2.s:279    .text.write_led:0000000000000000 write_led
-     /tmp/ccxdYRE2.s:308    .text.write_led:0000000000000014 $d
-     /tmp/ccxdYRE2.s:313    .text.request_blink:0000000000000000 $t
-     /tmp/ccxdYRE2.s:319    .text.request_blink:0000000000000000 request_blink
-     /tmp/ccxdYRE2.s:345    .text.request_blink:0000000000000010 $d
-     /tmp/ccxdYRE2.s:538    .bss.blink_request:0000000000000000 blink_request
-     /tmp/ccxdYRE2.s:545    .bss.blink_requested:0000000000000000 blink_requested
-     /tmp/ccxdYRE2.s:355    .text.blink_led:0000000000000000 $t
-     /tmp/ccxdYRE2.s:361    .text.blink_led:0000000000000000 blink_led
-     /tmp/ccxdYRE2.s:446    .text.blink_led:0000000000000050 $d
-     /tmp/ccxdYRE2.s:453    .text.handle_blink_requests:0000000000000000 $t
-     /tmp/ccxdYRE2.s:459    .text.handle_blink_requests:0000000000000000 handle_blink_requests
-     /tmp/ccxdYRE2.s:497    .text.handle_blink_requests:0000000000000020 $d
-     /tmp/ccxdYRE2.s:503    .text.read_pres_pin:0000000000000000 $t
-     /tmp/ccxdYRE2.s:509    .text.read_pres_pin:0000000000000000 read_pres_pin
-     /tmp/ccxdYRE2.s:535    .bss.blink_request:0000000000000000 $d
-     /tmp/ccxdYRE2.s:542    .bss.blink_requested:0000000000000000 $d
+     /tmp/cci3xWha.s:19     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/cci3xWha.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/cci3xWha.s:262    .text.MX_GPIO_Init:00000000000000f0 $d
+     /tmp/cci3xWha.s:273    .text.write_led:0000000000000000 $t
+     /tmp/cci3xWha.s:279    .text.write_led:0000000000000000 write_led
+     /tmp/cci3xWha.s:308    .text.write_led:0000000000000014 $d
+     /tmp/cci3xWha.s:313    .text.request_blink:0000000000000000 $t
+     /tmp/cci3xWha.s:319    .text.request_blink:0000000000000000 request_blink
+     /tmp/cci3xWha.s:345    .text.request_blink:0000000000000010 $d
+     /tmp/cci3xWha.s:538    .bss.blink_request:0000000000000000 blink_request
+     /tmp/cci3xWha.s:545    .bss.blink_requested:0000000000000000 blink_requested
+     /tmp/cci3xWha.s:355    .text.blink_led:0000000000000000 $t
+     /tmp/cci3xWha.s:361    .text.blink_led:0000000000000000 blink_led
+     /tmp/cci3xWha.s:446    .text.blink_led:0000000000000050 $d
+     /tmp/cci3xWha.s:453    .text.handle_blink_requests:0000000000000000 $t
+     /tmp/cci3xWha.s:459    .text.handle_blink_requests:0000000000000000 handle_blink_requests
+     /tmp/cci3xWha.s:497    .text.handle_blink_requests:0000000000000020 $d
+     /tmp/cci3xWha.s:503    .text.read_pres_pin:0000000000000000 $t
+     /tmp/cci3xWha.s:509    .text.read_pres_pin:0000000000000000 read_pres_pin
+     /tmp/cci3xWha.s:535    .bss.blink_request:0000000000000000 $d
+     /tmp/cci3xWha.s:542    .bss.blink_requested:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 memset

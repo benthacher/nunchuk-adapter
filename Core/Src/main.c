@@ -57,15 +57,7 @@ DeviceState dev_state;
 nunchuk_device_type_t nunchuk_type;
 int inits_failed;
 USBD_HandleTypeDef hUsbDeviceFS; 
-gamepad_report_t hid_report = {
-    .buttons = 0,
-    .x = 0,
-    .y = 0,
-    .z = 0,
-    .rx = 0,
-    .ry = 0,
-    .rz = 0,
-};
+gamepad_report_t hid_report;
 
 #define MAX_INIT_FAILS 5
 
@@ -79,7 +71,17 @@ void indicate_nunchuk_type(nunchuk_device_type_t type);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void clear_hid_report() {
+  memset(&hid_report, 0, sizeof(hid_report));
+  hid_report.report_id = REPORT_ID;
+}
 
+void disconnect_nunchuk() {
+  dev_state = WAITING;
+  nunchuk_type = UNKNOWN;
+  clear_hid_report();
+  USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *) &hid_report, sizeof(hid_report));
+}
 /* USER CODE END 0 */
 
 /**
@@ -89,8 +91,7 @@ void indicate_nunchuk_type(nunchuk_device_type_t type);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  dev_state = WAITING;
-  nunchuk_type = UNKNOWN;
+  disconnect_nunchuk();
   inits_failed = 0;
 
   /* USER CODE END 1 */
@@ -166,8 +167,7 @@ int main(void)
 
         // if we're connected but the presence pin goes low then we disconnected
         if (!read_pres_pin()) {
-          dev_state = WAITING;
-          nunchuk_type = UNKNOWN;
+          disconnect_nunchuk();
         }
 
         switch (nunchuk_type) {
@@ -176,11 +176,17 @@ int main(void)
             HAL_StatusTypeDef status = nunchuk_read_standard(&report);
 
             if (status != HAL_OK) {
-              dev_state = WAITING; // force disconnect the nunchuk on failure
+              // force disconnect the nunchuk on failure
+              disconnect_nunchuk();
             }
 
             // standard report -> usb hid gamepad report
-            // usb hid send report
+            hid_report.x = report.sx - 128;
+            hid_report.y = report.sy - 128;
+            hid_report.rx = (report.ax >> 2) - 128;
+            hid_report.ry = (report.ay >> 2) - 128;
+            hid_report.rz = (report.az >> 2) - 128;
+            hid_report.buttons = *(uint16_t *) &report.buttons;
           }
           break;
           case CLASSIC: {
@@ -188,11 +194,11 @@ int main(void)
             HAL_StatusTypeDef status = nunchuk_read_classic(&report);
 
             if (status != HAL_OK) {
-              dev_state = WAITING; // force disconnect the nunchuk on failure
+              // force disconnect the nunchuk on failure
+              disconnect_nunchuk();
             }
 
             // classic report -> usb hid gamepad report
-            // usb hid send report
           }
           break;
           case GUITAR_HERO: {
@@ -200,27 +206,30 @@ int main(void)
             HAL_StatusTypeDef status = nunchuk_read_guitar_hero(&report);
 
             if (status != HAL_OK) {
-              dev_state = WAITING; // force disconnect the nunchuk on failure
+              // force disconnect the nunchuk on failure
+              disconnect_nunchuk();
             }
 
             // guitar hero report -> usb hid gamepad report
             hid_report.x = (report.sx - 32) << 2;
             hid_report.y = (report.sy - 32) << 2;
-            hid_report.z = (report.wb - 16) << 3;
+            hid_report.z = (int8_t) (((report.wb - 16) / 9.0) * 127);
             hid_report.rx = (report.tb - 16) << 3;
             hid_report.buttons = *(uint16_t *) &report.buttons;
-            
-            // usb hid send report
-            USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *) &hid_report, sizeof(hid_report));
-
           }
           break;
           case UNKNOWN:
+            // if we're here, we can talk to the nunchuk but we don't know 
+            // the id, so just stay connected but clear out the report
+            clear_hid_report();   
+            break; 
           default:
-            // zero out usb hid report
-            // send it
+            disconnect_nunchuk();   
             break;
         }
+
+        // usb hid send report
+        USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *) &hid_report, sizeof(hid_report));
       }
       break;
     }
